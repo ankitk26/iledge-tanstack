@@ -1,0 +1,6 @@
+{
+  "typescript.preferences.autoImportFileExcludePatterns": ["@radix-ui"],
+  "files.exclude": {
+    "node_modules/": true
+  }
+}
