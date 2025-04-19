@@ -13,7 +13,11 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as ProtectedImport } from './routes/_protected'
-import { Route as ProtectedIndexImport } from './routes/_protected/index'
+import { Route as ProtectedIndexImport } from './routes/_protected.index'
+import { Route as ProtectedInsightsImport } from './routes/_protected.insights'
+import { Route as ProtectedExpensesImport } from './routes/_protected.expenses'
+import { Route as ProtectedAdminImport } from './routes/_protected.admin'
+import { Route as ProtectedPayeesPayeeIdImport } from './routes/_protected.payees.$payeeId'
 
 // Create/Update Routes
 
@@ -31,6 +35,30 @@ const ProtectedRoute = ProtectedImport.update({
 const ProtectedIndexRoute = ProtectedIndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedInsightsRoute = ProtectedInsightsImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedExpensesRoute = ProtectedExpensesImport.update({
+  id: '/expenses',
+  path: '/expenses',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedAdminRoute = ProtectedAdminImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedPayeesPayeeIdRoute = ProtectedPayeesPayeeIdImport.update({
+  id: '/payees/$payeeId',
+  path: '/payees/$payeeId',
   getParentRoute: () => ProtectedRoute,
 } as any)
 
@@ -52,11 +80,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
+    '/_protected/admin': {
+      id: '/_protected/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof ProtectedAdminImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/expenses': {
+      id: '/_protected/expenses'
+      path: '/expenses'
+      fullPath: '/expenses'
+      preLoaderRoute: typeof ProtectedExpensesImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/insights': {
+      id: '/_protected/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof ProtectedInsightsImport
+      parentRoute: typeof ProtectedImport
+    }
     '/_protected/': {
       id: '/_protected/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof ProtectedIndexImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/payees/$payeeId': {
+      id: '/_protected/payees/$payeeId'
+      path: '/payees/$payeeId'
+      fullPath: '/payees/$payeeId'
+      preLoaderRoute: typeof ProtectedPayeesPayeeIdImport
       parentRoute: typeof ProtectedImport
     }
   }
@@ -65,11 +121,19 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface ProtectedRouteChildren {
+  ProtectedAdminRoute: typeof ProtectedAdminRoute
+  ProtectedExpensesRoute: typeof ProtectedExpensesRoute
+  ProtectedInsightsRoute: typeof ProtectedInsightsRoute
   ProtectedIndexRoute: typeof ProtectedIndexRoute
+  ProtectedPayeesPayeeIdRoute: typeof ProtectedPayeesPayeeIdRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedAdminRoute: ProtectedAdminRoute,
+  ProtectedExpensesRoute: ProtectedExpensesRoute,
+  ProtectedInsightsRoute: ProtectedInsightsRoute,
   ProtectedIndexRoute: ProtectedIndexRoute,
+  ProtectedPayeesPayeeIdRoute: ProtectedPayeesPayeeIdRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
@@ -79,27 +143,54 @@ const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '': typeof ProtectedRouteWithChildren
   '/login': typeof LoginRoute
+  '/admin': typeof ProtectedAdminRoute
+  '/expenses': typeof ProtectedExpensesRoute
+  '/insights': typeof ProtectedInsightsRoute
   '/': typeof ProtectedIndexRoute
+  '/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
 
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
+  '/admin': typeof ProtectedAdminRoute
+  '/expenses': typeof ProtectedExpensesRoute
+  '/insights': typeof ProtectedInsightsRoute
   '/': typeof ProtectedIndexRoute
+  '/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_protected': typeof ProtectedRouteWithChildren
   '/login': typeof LoginRoute
+  '/_protected/admin': typeof ProtectedAdminRoute
+  '/_protected/expenses': typeof ProtectedExpensesRoute
+  '/_protected/insights': typeof ProtectedInsightsRoute
   '/_protected/': typeof ProtectedIndexRoute
+  '/_protected/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/'
+  fullPaths:
+    | ''
+    | '/login'
+    | '/admin'
+    | '/expenses'
+    | '/insights'
+    | '/'
+    | '/payees/$payeeId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/'
-  id: '__root__' | '/_protected' | '/login' | '/_protected/'
+  to: '/login' | '/admin' | '/expenses' | '/insights' | '/' | '/payees/$payeeId'
+  id:
+    | '__root__'
+    | '/_protected'
+    | '/login'
+    | '/_protected/admin'
+    | '/_protected/expenses'
+    | '/_protected/insights'
+    | '/_protected/'
+    | '/_protected/payees/$payeeId'
   fileRoutesById: FileRoutesById
 }
 
@@ -130,14 +221,34 @@ export const routeTree = rootRoute
     "/_protected": {
       "filePath": "_protected.tsx",
       "children": [
-        "/_protected/"
+        "/_protected/admin",
+        "/_protected/expenses",
+        "/_protected/insights",
+        "/_protected/",
+        "/_protected/payees/$payeeId"
       ]
     },
     "/login": {
       "filePath": "login.tsx"
     },
+    "/_protected/admin": {
+      "filePath": "_protected.admin.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/expenses": {
+      "filePath": "_protected.expenses.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/insights": {
+      "filePath": "_protected.insights.tsx",
+      "parent": "/_protected"
+    },
     "/_protected/": {
-      "filePath": "_protected/index.tsx",
+      "filePath": "_protected.index.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/payees/$payeeId": {
+      "filePath": "_protected.payees.$payeeId.tsx",
       "parent": "/_protected"
     }
   }

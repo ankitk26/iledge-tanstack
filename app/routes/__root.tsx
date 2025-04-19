@@ -10,6 +10,7 @@ import type { ReactNode } from "react";
 import NotFound from "~/components/tanstack/not-found";
 import { authUserQuery, getUser } from "~/queries/get-user";
 import appCss from "../app.css?url";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -33,9 +34,10 @@ export const Route = createRootRouteWithContext<{
       },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap",
       },
     ],
   }),
@@ -58,7 +60,14 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <NextThemesProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </NextThemesProvider>
         <Scripts />
       </body>
     </html>

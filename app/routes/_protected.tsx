@@ -1,4 +1,5 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import Header from "~/components/shared/header";
 
 export const Route = createFileRoute("/_protected")({
   beforeLoad: async ({ context }) => {
@@ -12,4 +13,16 @@ export const Route = createFileRoute("/_protected")({
 
     return { user };
   },
+  component: LayoutComponent,
 });
+
+function LayoutComponent() {
+  return (
+    <div>
+      <Header />
+      <main className="w-5/6 mx-auto my-10">
+        <Outlet />
+      </main>
+    </div>
+  );
+}
