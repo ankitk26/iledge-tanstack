@@ -25,7 +25,7 @@ export default function CurrMonthExpenses() {
   return (
     <Card className="col-span-1">
       <CardHeader>
-        <CardTitle className="text-foreground/60 text-sm">
+        <CardTitle className="text-muted-foreground text-sm">
           This month's expenses
         </CardTitle>
       </CardHeader>
@@ -36,7 +36,7 @@ export default function CurrMonthExpenses() {
           <h2 className="text-3xl">{currMonthAmount}</h2>
         )}
       </CardContent>
-      <CardFooter className="flex flex-col items-start text-xs text-foreground/60">
+      <CardFooter className="flex flex-col items-start text-xs text-muted-foreground">
         {isPending ? (
           <>
             <Skeleton className="w-32 h-3" />

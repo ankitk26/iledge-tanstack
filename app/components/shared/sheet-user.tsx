@@ -18,7 +18,7 @@ export default function SheetUser() {
       </Avatar>
       <div className="flex flex-col text-sm items-start">
         <div>{data?.name}</div>
-        <div className="text-foreground/60">{data?.email}</div>
+        <div className="text-muted-foreground">{data?.email}</div>
       </div>
     </div>
   );

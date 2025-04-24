@@ -13,7 +13,7 @@ export default function TodayExpenses() {
   return (
     <Card className="col-span-1">
       <CardHeader>
-        <CardTitle className="text-foreground/60 text-sm">
+        <CardTitle className="text-muted-foreground text-sm">
           Today's expenses
         </CardTitle>
       </CardHeader>

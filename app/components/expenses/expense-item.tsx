@@ -15,7 +15,7 @@ export default function ExpenseItem() {
           <div className="flex flex-col">
             <span>Amazon</span>
             <Link to="/payees/$payeeId" params={{ payeeId: "45" }}>
-              <span className="text-sm text-foreground/50">amazon@upi</span>
+              <span className="text-sm text-muted-foreground">amazon@upi</span>
             </Link>
           </div>
         </div>

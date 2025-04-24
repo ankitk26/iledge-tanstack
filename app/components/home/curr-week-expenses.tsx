@@ -13,7 +13,7 @@ export default function CurrWeekExpenses() {
   return (
     <Card className="col-span-1">
       <CardHeader>
-        <CardTitle className="text-foreground/60 text-sm">
+        <CardTitle className="text-muted-foreground text-sm">
           This week's expenses
         </CardTitle>
       </CardHeader>

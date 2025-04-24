@@ -24,7 +24,7 @@ export const columns: ColumnDef<Payee>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Name
-          <ArrowUpDown className="ml-2 size-4 text-foreground/60" />
+          <ArrowUpDown className="ml-2 size-4 text-muted-foreground" />
         </Button>
       );
     },
@@ -43,7 +43,7 @@ export const columns: ColumnDef<Payee>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Amount
-          <ArrowUpDown className="ml-2 size-4 text-foreground/60" />
+          <ArrowUpDown className="ml-2 size-4 text-muted-foreground" />
         </Button>
       );
     },

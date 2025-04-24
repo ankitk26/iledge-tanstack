@@ -23,7 +23,7 @@ export default function PayeeItem() {
 
           <div className="flex flex-col items-start gap-1">
             <h3 className="text-sm">ABDUL QADIR</h3>
-            <h4 className="text-xs text-foreground/60">aq333667@axl</h4>
+            <h4 className="text-xs text-muted-foreground">aq333667@axl</h4>
           </div>
         </div>
 

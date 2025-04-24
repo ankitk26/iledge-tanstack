@@ -23,14 +23,14 @@ function RouteComponent() {
       <div className="flex items-center justify-between">
         <div className="flex flex-col items-start gap-1">
           <h2 className="text-xl font-semibold">Zepto</h2>
-          <h5 className="text-foreground/60">zeptonow.bdpg@icici</h5>
+          <h5 className="text-muted-foreground">zeptonow.bdpg@icici</h5>
         </div>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
         <Card className="lg:grid-cols-1">
           <CardHeader>
-            <CardTitle className="text-foreground/60">
+            <CardTitle className="text-muted-foreground">
               Amount spent this month
             </CardTitle>
           </CardHeader>
@@ -45,7 +45,7 @@ function RouteComponent() {
 
         <Card className="lg:grid-cols-1">
           <CardHeader>
-            <CardTitle className="text-foreground/60">
+            <CardTitle className="text-muted-foreground">
               Total Amount spent
             </CardTitle>
           </CardHeader>

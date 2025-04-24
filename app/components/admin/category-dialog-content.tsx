@@ -27,7 +27,7 @@ export default function CategoryDialogContent() {
       <div className="grid gap-8">
         {/* Communication */}
         <div className="flex flex-col items-start">
-          <h3 className="font-medium text-foreground/60">Communication</h3>
+          <h3 className="font-medium text-muted-foreground">Communication</h3>
           <div className="flex items-center mt-6 gap-12">
             <div className="flex flex-col items-center gap-2">
               <Button size="icon">
@@ -54,7 +54,7 @@ export default function CategoryDialogContent() {
 
         {/* Food & Shopping */}
         <div className="flex flex-col items-start">
-          <h3 className="font-medium text-foreground/60">Lifestyle</h3>
+          <h3 className="font-medium text-muted-foreground">Lifestyle</h3>
           <div className="flex items-center mt-6 gap-12 flex-wrap">
             <div className="flex flex-col items-center gap-2">
               <Button size="icon">
@@ -81,7 +81,9 @@ export default function CategoryDialogContent() {
 
         {/* Travel & Transport */}
         <div className="flex flex-col items-start">
-          <h3 className="font-medium text-foreground/60">Travel & Transport</h3>
+          <h3 className="font-medium text-muted-foreground">
+            Travel & Transport
+          </h3>
           <div className="flex items-center mt-6 gap-12 flex-wrap">
             <div className="flex flex-col items-center gap-2">
               <Button size="icon">
@@ -108,7 +110,9 @@ export default function CategoryDialogContent() {
 
         {/* Health & Fitness */}
         <div className="flex flex-col items-start">
-          <h3 className="font-medium text-foreground/60">Health & Fitness</h3>
+          <h3 className="font-medium text-muted-foreground">
+            Health & Fitness
+          </h3>
           <div className="flex items-center mt-6 gap-12 flex-wrap">
             <div className="flex flex-col items-center gap-2">
               <Button size="icon">
@@ -129,7 +133,7 @@ export default function CategoryDialogContent() {
 
         {/* Finance */}
         <div className="flex flex-col items-start">
-          <h3 className="font-medium text-foreground/60">Finance</h3>
+          <h3 className="font-medium text-muted-foreground">Finance</h3>
           <div className="flex items-center mt-6 gap-12 flex-wrap">
             <div className="flex flex-col items-center gap-2">
               <Button size="icon">
@@ -150,7 +154,7 @@ export default function CategoryDialogContent() {
 
         {/* Education & Utilities */}
         <div className="flex flex-col items-start">
-          <h3 className="font-medium text-foreground/60">Others</h3>
+          <h3 className="font-medium text-muted-foreground">Others</h3>
           <div className="flex items-center mt-6 gap-12 flex-wrap">
             <div className="flex flex-col items-center gap-2">
               <Button size="icon">

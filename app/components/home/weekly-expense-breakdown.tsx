@@ -75,7 +75,7 @@ export default function WeeklyExpenseBreakdown() {
           )
         )}
         {data?.length === 0 && (
-          <p className="text-sm text-center text-foreground/50">
+          <p className="text-sm text-center text-muted-foreground">
             No data found
           </p>
         )}
