@@ -8,9 +8,11 @@ import {
 import type { ReactNode } from "react";
 
 import NotFound from "~/components/tanstack/not-found";
-import { authUserQuery, getUser } from "~/queries/get-user";
 import appCss from "../app.css?url";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { Toaster } from "~/components/ui/sonner";
+import { getUser } from "~/server-fns/get-user";
+import { authUserQuery } from "~/queries";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -67,6 +69,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           disableTransitionOnChange
         >
           {children}
+          <Toaster />
         </NextThemesProvider>
         <Scripts />
       </body>

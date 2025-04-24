@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import SheetUser from "./sheet-user";
 import User from "./user";
 import ThemeToggle from "./theme-toggle";
+import LoadExpensesButton from "./load-expenses-button";
 
 const navlinks = [
   { path: "/expenses", label: "Expenses" },
@@ -34,6 +35,7 @@ export default function Header() {
           ))}
         </div>
         <div className="space-x-6 lg:flex hidden">
+          <LoadExpensesButton />
           <ThemeToggle />
           <User />
           <Button

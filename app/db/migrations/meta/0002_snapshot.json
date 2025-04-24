@@ -1,6 +1,6 @@
 {
-  "id": "9089f9d9-b702-45a3-ab22-dbf5f5d6eebe",
-  "prevId": "c233070e-a28e-4868-8005-6a202fe0b7d6",
+  "id": "2f1aec3a-18fd-49d8-8bd6-bc24726f15f5",
+  "prevId": "9089f9d9-b702-45a3-ab22-dbf5f5d6eebe",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -186,8 +186,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "receiver_id": {
-          "name": "receiver_id",
+        "payee_id": {
+          "name": "payee_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
@@ -264,8 +264,8 @@
           "primaryKey": true,
           "notNull": true
         },
-        "receiver_upi_id": {
-          "name": "receiver_upi_id",
+        "payee_upi_id": {
+          "name": "payee_upi_id",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -335,11 +335,11 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "payee_receiver_upi_id_unique": {
-          "name": "payee_receiver_upi_id_unique",
+        "payee_payee_upi_id_unique": {
+          "name": "payee_payee_upi_id_unique",
           "nullsNotDistinct": false,
           "columns": [
-            "receiver_upi_id"
+            "payee_upi_id"
           ]
         }
       },

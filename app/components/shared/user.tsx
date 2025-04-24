@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { authUserQuery } from "~/queries/get-user";
+import { authUserQuery } from "~/queries";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
