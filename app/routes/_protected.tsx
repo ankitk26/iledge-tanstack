@@ -18,9 +18,9 @@ export const Route = createFileRoute("/_protected")({
 
 function LayoutComponent() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="w-5/6 mx-auto my-10">
+      <main className="w-5/6 mx-auto my-10 grow flex flex-col">
         <Outlet />
       </main>
     </div>

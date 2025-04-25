@@ -14,7 +14,7 @@ export const getCurrentWeekTotal = createServerFn({ method: "GET" }).handler(
 
     return await db
       .select({
-        amount: sql<number>`COALESCE(SUM(${expense.amount}), 0)`,
+        amount: sql<number>`COALESCE(SUM(${expense.amount}), 0)::float`,
       })
       .from(expense)
       .where(

@@ -28,7 +28,7 @@ export const getMonthComparison = createServerFn({ method: "GET" }).handler(
       .with(targetMonths)
       .select({
         month_date: sql<string>`${targetMonths.month_date}`,
-        amount: sql<number>`COALESCE(SUM(${expense.amount}), 0)`,
+        amount: sql<number>`COALESCE(SUM(${expense.amount}), 0)::float`,
       })
       .from(targetMonths)
       .leftJoin(
