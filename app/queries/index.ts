@@ -2,7 +2,9 @@ import { queryOptions } from "@tanstack/react-query";
 import { getCurrentDayTotal } from "~/server-fns/get-current-day-total";
 import { getCurrentWeekTotal } from "~/server-fns/get-current-week-total";
 import { getDailyTotals } from "~/server-fns/get-daily-totals";
+import { ExpensesQueryParams, getExpenses } from "~/server-fns/get-expenses";
 import { getMonthComparison } from "~/server-fns/get-month-comparison";
+import { getMonthlyTotals } from "~/server-fns/get-monthly-totals";
 import { getPayeeTotals } from "~/server-fns/get-payee-totals";
 import { getUser } from "~/server-fns/get-user";
 import { getWeeklyTotals } from "~/server-fns/get-weekly-totals";
@@ -47,4 +49,21 @@ export const payeesTotalsQuery = ({
   queryOptions({
     queryKey: ["payees", "totals", { month, year }],
     queryFn: () => getPayeeTotals({ data: { month, year } }),
+  });
+
+export const monthlyTotalsQuery = (userId: string) =>
+  queryOptions({
+    queryKey: ["monthly_totals"],
+    queryFn: () => getMonthlyTotals({ data: { id: userId } }),
+  });
+
+export const expensesQuery = ({
+  userId,
+  payeeId,
+  month,
+  year,
+}: ExpensesQueryParams) =>
+  queryOptions({
+    queryKey: ["expenses", { payeeId, month, year }],
+    queryFn: () => getExpenses({ data: { userId, payeeId, month, year } }),
   });

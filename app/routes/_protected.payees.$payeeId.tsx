@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Calculator, TrendingUp } from "lucide-react";
-import MonthExpensesList from "~/components/expenses/month-expenses-list";
 import PayeeMonthlyExpenses from "~/components/expenses/payee-monthly-expenses";
 import PayeeMonthlyExpensesCount from "~/components/expenses/payee-monthly-expenses-count";
 import PayeeDailyExpenses from "~/components/payee/payee-daily-expenses";
+import ExpensesList from "~/components/shared/expenses-list";
 import {
   Card,
   CardContent,
@@ -71,7 +71,7 @@ function RouteComponent() {
       <div>
         <h3>All transactions</h3>
         <div className="space-y-5 mt-4">
-          <MonthExpensesList />
+          <ExpensesList />
         </div>
       </div>
     </div>

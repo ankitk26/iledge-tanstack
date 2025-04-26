@@ -5,7 +5,6 @@ import { formatAmount } from "~/lib/format-amount";
 import { payeesTotalsQuery } from "~/queries";
 import { useInsightsStore } from "~/store/use-insights";
 import { Card, CardContent } from "../ui/card";
-import { ScrollArea } from "../ui/scroll-area";
 import { Skeleton } from "../ui/skeleton";
 import FilterSection from "./filter-section";
 import TableHeader from "./table-header";
@@ -73,23 +72,21 @@ export default function ExpenseTable() {
 
       <TableHeader />
 
-      <ScrollArea className="h-[calc(100vh-450px)] overflow-hidden">
-        <CardContent className="px-0 text-sm flex flex-col gap-4 mt-0 rounded-lg">
-          {isPending && <TableSkeleton />}
+      <CardContent className="px-0 text-sm flex flex-col gap-4 mt-0 rounded-lg">
+        {isPending && <TableSkeleton />}
 
-          {!isPending && filteredData.length === 0 && (
-            <div className="text-center text-muted-foreground py-6">
-              No expenses found for the selected filters
-            </div>
-          )}
+        {!isPending && filteredData.length === 0 && (
+          <div className="text-center text-muted-foreground py-6">
+            No expenses found for the selected filters
+          </div>
+        )}
 
-          {!isPending &&
-            filteredData.length > 0 &&
-            filteredData.map((payee) => (
-              <TablePayeeRow key={payee.id} payee={payee} />
-            ))}
-        </CardContent>
-      </ScrollArea>
+        {!isPending &&
+          filteredData.length > 0 &&
+          filteredData.map((payee) => (
+            <TablePayeeRow key={payee.id} payee={payee} />
+          ))}
+      </CardContent>
 
       <div className="flex items-center text-sm justify-between px-4 mt-4">
         {isPending ? (

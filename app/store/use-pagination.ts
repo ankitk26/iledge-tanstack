@@ -127,7 +127,7 @@ export const setTotalItems = (count: number, instanceId = "default") => {
 };
 
 // Helper function to get a specific instance state for components
-export const usePaginationStoreInstance = (
+export const usePaginationInstance = (
   instanceId = "default",
   options?: Partial<PaginationState>
 ) => {
@@ -156,11 +156,11 @@ export const usePaginationStoreInstance = (
 };
 
 // Helper function to get pagination controls for a specific instance
-export const usePaginationStoreControls = (
+export const usePaginationControls = (
   instanceId = "default",
   config?: Partial<PaginationState>
 ) => {
-  const state = usePaginationStoreInstance(instanceId, config);
+  const state = usePaginationInstance(instanceId, config);
   const { windowStart, windowSize, totalItems } = state;
 
   // Derived values
