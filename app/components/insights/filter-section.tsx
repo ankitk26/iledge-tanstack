@@ -13,6 +13,13 @@ export default function FilterSection() {
   const { view, month, year } = useSearch({ from: "/_protected/insights" });
   const navigate = useNavigate();
 
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
+
+  const months = Array.from({ length: 12 }, (_, i) =>
+    new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(2000, i))
+  );
+
   const { searchQuery, setSearchQuery } = useInsightsStore();
 
   return (
@@ -25,7 +32,7 @@ export default function FilterSection() {
       {view === "monthly" && (
         <div className="flex items-center w-full justify-between gap-4">
           <Select
-            value={year ? year.toString() : new Date().getFullYear().toString()}
+            value={year ? year.toString() : currentYear.toString()}
             onValueChange={(val) =>
               navigate({
                 to: "/insights",
@@ -37,16 +44,16 @@ export default function FilterSection() {
               <SelectValue placeholder="Select year" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="2023">2023</SelectItem>
-              <SelectItem value="2024">2024</SelectItem>
-              <SelectItem value="2025">2025</SelectItem>
+              {[...Array(currentYear - 2023 + 1)].map((_, i) => (
+                <SelectItem key={2023 + i} value={(2023 + i).toString()}>
+                  {2023 + i}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
           <Select
-            value={
-              month ? month.toString() : (new Date().getMonth() + 1).toString()
-            }
+            value={month ? month.toString() : currentMonth.toString()}
             onValueChange={(val) =>
               navigate({
                 to: "/insights",
@@ -58,18 +65,11 @@ export default function FilterSection() {
               <SelectValue placeholder="Select month" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="1">Jan</SelectItem>
-              <SelectItem value="2">Feb</SelectItem>
-              <SelectItem value="3">Mar</SelectItem>
-              <SelectItem value="4">Apr</SelectItem>
-              <SelectItem value="5">May</SelectItem>
-              <SelectItem value="6">Jun</SelectItem>
-              <SelectItem value="7">Jul</SelectItem>
-              <SelectItem value="8">Aug</SelectItem>
-              <SelectItem value="9">Sep</SelectItem>
-              <SelectItem value="10">Oct</SelectItem>
-              <SelectItem value="11">Nov</SelectItem>
-              <SelectItem value="12">Dec</SelectItem>
+              {months.map((month, index) => (
+                <SelectItem key={index + 1} value={(index + 1).toString()}>
+                  {month}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
