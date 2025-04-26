@@ -1,20 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
-import { payeesTotalsQuery } from "~/queries";
-import { Card, CardContent, CardHeader } from "../ui/card";
-import { Separator } from "../ui/separator";
+import { useSearch } from "@tanstack/react-router";
+import { useMemo } from "react";
 import { formatAmount } from "~/lib/format-amount";
-import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
+import { payeesTotalsQuery } from "~/queries";
+import { useInsightsStore } from "~/store/insights-filter-store";
+import { Card, CardContent } from "../ui/card";
 import { ScrollArea } from "../ui/scroll-area";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { useMemo, useState } from "react";
+import { Skeleton } from "../ui/skeleton";
+import FilterSection from "./filter-section";
+import TableHeader from "./table-header";
+import TablePayeeRow from "./table-payee-row";
+import TableSkeleton from "./table-skeleton";
 
 export default function ExpenseTable() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState<"name" | "amount">("name");
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const searchQuery = useInsightsStore((store) => store.searchQuery);
+  const { sortBy, sortDirection, month, year } = useSearch({
+    from: "/_protected/insights",
+  });
 
-  const { data = [], isPending, isError, error } = useQuery(payeesTotalsQuery);
+  const {
+    data = [],
+    isPending,
+    isError,
+    error,
+  } = useQuery(payeesTotalsQuery({ month, year }));
 
   if (isError) {
     return (
@@ -60,79 +69,40 @@ export default function ExpenseTable() {
 
   return (
     <Card className="px-4">
-      <Input
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search for payee by name or UPI ID..."
-      />
-      <CardHeader className="flex rounded-lg px-0 justify-between">
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2"
-          onClick={() => {
-            setSortBy("name");
-            if (sortDirection === "asc") {
-              setSortDirection("desc");
-            } else {
-              setSortDirection("asc");
-            }
-          }}
-        >
-          <span className="font-semibold">Name</span>
-          {sortBy === "name" ? (
-            sortDirection === "asc" ? (
-              <ArrowUp className="size-4 text-muted-foreground" />
-            ) : (
-              <ArrowDown className="size-4 text-muted-foreground" />
-            )
-          ) : null}
-        </Button>
-        <Button
-          variant="ghost"
-          className="flex items-center gap-2"
-          onClick={() => {
-            setSortBy("amount");
-            if (sortDirection === "asc") {
-              setSortDirection("desc");
-            } else {
-              setSortDirection("asc");
-            }
-          }}
-        >
-          <span className="font-semibold">Amount</span>
-          {sortBy === "amount" ? (
-            sortDirection === "asc" ? (
-              <ArrowUp className="size-4 text-muted-foreground" />
-            ) : (
-              <ArrowDown className="size-4 text-muted-foreground" />
-            )
-          ) : null}
-        </Button>
-      </CardHeader>
+      <FilterSection />
+
+      <TableHeader />
+
       <ScrollArea className="h-[calc(100vh-450px)] overflow-hidden">
         <CardContent className="px-0 text-sm flex flex-col gap-4 mt-0 rounded-lg">
-          {filteredData?.map((payee) => (
-            <>
-              <div
-                key={payee.id}
-                className="px-4 flex flex-col lg:flex-row lg:items-center lg:justify-between"
-              >
-                <div className="flex flex-col ">
-                  <span>{payee.name}</span>
-                  <span className="text-muted-foreground text-xs">
-                    {payee.upi_id}
-                  </span>
-                </div>
-                <div className="mt-4 lg:mt-0">{formatAmount(payee.amount)}</div>
-              </div>
-              <Separator />
-            </>
-          ))}
+          {isPending && <TableSkeleton />}
+
+          {!isPending && filteredData.length === 0 && (
+            <div className="text-center text-muted-foreground py-6">
+              No expenses found for the selected filters
+            </div>
+          )}
+
+          {!isPending &&
+            filteredData.length > 0 &&
+            filteredData.map((payee) => (
+              <TablePayeeRow key={payee.id} payee={payee} />
+            ))}
         </CardContent>
       </ScrollArea>
+
       <div className="flex items-center text-sm justify-between px-4 mt-4">
-        <div>{filteredData.length} rows</div>
-        <div>Total: {formatAmount(filteredTotalAmount ?? 0)}</div>
+        {isPending ? (
+          <Skeleton className="h-4 w-16 mt-4 lg:mt-0" />
+        ) : (
+          <div>{filteredData.length} rows</div>
+        )}
+
+        {isPending ? (
+          <Skeleton className="h-4 w-16 mt-4 lg:mt-0" />
+        ) : (
+          <div>Total: {formatAmount(filteredTotalAmount ?? 0)}</div>
+        )}
       </div>
     </Card>
   );

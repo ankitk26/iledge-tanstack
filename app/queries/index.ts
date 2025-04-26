@@ -37,7 +37,14 @@ export const weeklyTotalsQuery = queryOptions({
   queryFn: () => getWeeklyTotals(),
 });
 
-export const payeesTotalsQuery = queryOptions({
-  queryKey: ["payees", "totals"],
-  queryFn: () => getPayeeTotals(),
-});
+export const payeesTotalsQuery = ({
+  month,
+  year,
+}: {
+  month: number | undefined;
+  year: number | undefined;
+}) =>
+  queryOptions({
+    queryKey: ["payees", "totals", { month, year }],
+    queryFn: () => getPayeeTotals({ data: { month, year } }),
+  });
