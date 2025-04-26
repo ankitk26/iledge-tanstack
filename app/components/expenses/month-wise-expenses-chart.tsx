@@ -8,8 +8,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useMediaQuery } from "~/hooks/use-media-query";
 import { getDateParts } from "~/lib/month-year-formatter";
-import { useIsDesktopScreen } from "~/lib/use-window-size";
 import { monthlyTotalsQuery } from "~/queries";
 import { usePaginationControls } from "~/store/use-pagination";
 import ChartPagination from "../shared/chart-pagination";
@@ -33,7 +33,7 @@ export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
   const { data, isPending } = useQuery(monthlyTotalsQuery(userId));
   const { month, year } = useSearch({ from: "/_protected/expenses" });
   const navigate = useNavigate();
-  const isDesktopSize = useIsDesktopScreen();
+  const isDesktopSize = useMediaQuery("(min-width: 1024px)");
 
   const paginationInstanceId = "all-transactions";
   const paginationConfig = {
