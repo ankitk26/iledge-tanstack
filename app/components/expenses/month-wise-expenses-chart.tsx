@@ -1,12 +1,4 @@
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  LabelList,
-  Rectangle,
-  ReferenceLine,
-  XAxis,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, Rectangle, XAxis } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
   ChartConfig,
@@ -19,11 +11,6 @@ import {
 const monthYearFormatter = new Intl.DateTimeFormat("en-IN", {
   month: "short",
   year: "numeric",
-});
-const inrFormatter = new Intl.NumberFormat("en-IN", {
-  style: "currency",
-  currency: "INR",
-  maximumFractionDigits: 0,
 });
 
 // Generate last 12 months of data
@@ -72,16 +59,7 @@ export default function MonthWiseExpensesChart() {
               radius={6}
               activeIndex={2}
               activeBar={({ ...props }) => {
-                return (
-                  <Rectangle
-                    {...props}
-                    fillOpacity={0.8}
-                    className="stroke-background/30"
-                    strokeDasharray={5}
-                    strokeWidth={3}
-                    strokeDashoffset={4}
-                  />
-                );
+                return <Rectangle {...props} fillOpacity={0.5} />;
               }}
             />
           </BarChart>

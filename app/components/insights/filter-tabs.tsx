@@ -30,7 +30,6 @@ export default function FilterTabs() {
             }),
           });
         }
-        console.log(val);
       }}
       className="md:w-[200px] w-full"
     >

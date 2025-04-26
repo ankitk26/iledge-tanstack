@@ -3,7 +3,7 @@ import { useSearch } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { formatAmount } from "~/lib/format-amount";
 import { payeesTotalsQuery } from "~/queries";
-import { useInsightsStore } from "~/store/insights-filter-store";
+import { useInsightsStore } from "~/store/use-insights";
 import { Card, CardContent } from "../ui/card";
 import { ScrollArea } from "../ui/scroll-area";
 import { Skeleton } from "../ui/skeleton";

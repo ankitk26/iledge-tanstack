@@ -17,7 +17,6 @@ export default function LoadExpensesButton() {
   const loadExpensesMutation = useMutation({
     mutationFn: () => loadExpenses(),
     onSuccess: async (data) => {
-      console.log(data);
       if (
         data.message === "No transactions found. Please do a full refresh first"
       ) {
@@ -42,7 +41,6 @@ export default function LoadExpensesButton() {
       toast.success("Expenses loaded");
     },
     onError: (error) => {
-      console.log(error);
       if (typeof error === undefined) {
         toast.error("Load unsuccessful", {
           description: "Something went wrong. Try again later",

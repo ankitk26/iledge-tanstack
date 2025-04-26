@@ -1,5 +1,5 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
-import { useInsightsStore } from "~/store/insights-filter-store";
+import { useInsightsStore } from "~/store/use-insights";
 import { Input } from "../ui/input";
 import {
   Select,
