@@ -65,7 +65,7 @@ export default function PayeeDailyExpenses() {
               />
               <ChartTooltip
                 cursor={false}
-                content={<ChartTooltipContent hideIndicator hideLabel />}
+                content={<ChartTooltipContent hideIndicator />}
               />
               <Bar
                 dataKey="amount"
