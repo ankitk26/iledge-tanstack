@@ -10,8 +10,9 @@ import { getPayeeDailyTotals } from "~/server-fns/get-payee-daily-totals";
 import { getPayeeMonthStats } from "~/server-fns/get-payee-month-stats";
 import { getPayeeMonthlyCounts } from "~/server-fns/get-payee-monthly-counts";
 import { getPayeeMonthlyTotals } from "~/server-fns/get-payee-monthly-totals";
-import { getPayeeOverallSummary } from "~/server-fns/get-payee-total";
+import { getPayeeOverallSummary } from "~/server-fns/get-payee-overall-summary";
 import { getPayeeTotals } from "~/server-fns/get-payee-totals";
+import { getSearchPayeeIds } from "~/server-fns/get-search-payee-ids";
 import { getUser } from "~/server-fns/get-user";
 import { getWeeklyTotals } from "~/server-fns/get-weekly-totals";
 
@@ -65,13 +66,13 @@ export const monthlyTotalsQuery = (userId: string) =>
 
 export const expensesQuery = ({
   userId,
-  payeeId,
+  payees,
   month,
   year,
 }: ExpensesQueryParams) =>
   queryOptions({
-    queryKey: ["expenses", { payeeId, month, year }],
-    queryFn: () => getExpenses({ data: { userId, payeeId, month, year } }),
+    queryKey: ["expenses", { payees, month, year }],
+    queryFn: () => getExpenses({ data: { userId, payees, month, year } }),
   });
 
 export const payeeTitleQuery = (payeeId: string) =>
@@ -80,35 +81,39 @@ export const payeeTitleQuery = (payeeId: string) =>
     queryFn: () => getPayeeById({ data: { payeeId } }),
   });
 
-export const payeeOverallSummaryQuery = (payeeId: string) =>
+export const payeeOverallSummaryQuery = (payees: string) =>
   queryOptions({
-    queryKey: ["payee", "total", payeeId],
-    queryFn: () => getPayeeOverallSummary({ data: { payeeId } }),
+    queryKey: ["payee", "total", payees],
+    queryFn: () => getPayeeOverallSummary({ data: { payees } }),
   });
 
-export const payeeMonthStatsQuery = (payeeId: string) =>
+export const payeeMonthStatsQuery = (payees: string) =>
   queryOptions({
-    queryKey: ["payee", "monthStats", payeeId],
-    queryFn: () => getPayeeMonthStats({ data: { payeeId: parseInt(payeeId) } }),
+    queryKey: ["payee", "monthStats", payees],
+    queryFn: () => getPayeeMonthStats({ data: { payees } }),
   });
 
-export const payeeDailyTotalsQuery = (payeeId: string) =>
+export const payeeDailyTotalsQuery = (payees: string) =>
   queryOptions({
-    queryKey: ["payee", "dailyTotals", payeeId],
-    queryFn: () =>
-      getPayeeDailyTotals({ data: { payeeId: parseInt(payeeId) } }),
+    queryKey: ["payee", "dailyTotals", payees],
+    queryFn: () => getPayeeDailyTotals({ data: { payees } }),
   });
 
-export const payeeMonthlyTotalsQuery = (payeeId: string) =>
+export const payeeMonthlyTotalsQuery = (payees: string) =>
   queryOptions({
-    queryKey: ["payee", "monthlyTotals", payeeId],
-    queryFn: () =>
-      getPayeeMonthlyTotals({ data: { payeeId: parseInt(payeeId) } }),
+    queryKey: ["payee", "monthlyTotals", payees],
+    queryFn: () => getPayeeMonthlyTotals({ data: { payees } }),
   });
 
-export const payeeMonthlyCountsQuery = (payeeId: string) =>
+export const payeeMonthlyCountsQuery = (payees: string) =>
   queryOptions({
-    queryKey: ["payee", "monthlyCounts", payeeId],
-    queryFn: () =>
-      getPayeeMonthlyCounts({ data: { payeeId: parseInt(payeeId) } }),
+    queryKey: ["payee", "monthlyCounts", payees],
+    queryFn: () => getPayeeMonthlyCounts({ data: { payees } }),
+  });
+
+export const searchPayeeIdsQuery = (query?: string) =>
+  queryOptions({
+    queryKey: ["search", query],
+    queryFn: () => getSearchPayeeIds({ data: { query: query ?? "" } }),
+    enabled: query ? query.length >= 2 : false,
   });

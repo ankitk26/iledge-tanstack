@@ -12,6 +12,7 @@ const navlinks = [
   { path: "/expenses", label: "Expenses" },
   { path: "/insights", label: "Insights" },
   { path: "/admin", label: "Admin" },
+  { path: "/search", label: "Search" },
 ];
 
 export default function Header() {
@@ -29,6 +30,9 @@ export default function Header() {
               key={link.path}
               to={link.path}
               className="hover:text-foreground/70 hover:underline"
+              search={(prev) =>
+                link.path === "/search" ? { query: undefined } : prev
+              }
             >
               {link.label}
             </Link>

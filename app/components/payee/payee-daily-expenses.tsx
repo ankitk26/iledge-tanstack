@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
 import {
   Bar,
   BarChart,
@@ -23,9 +22,8 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function PayeeDailyExpenses() {
-  const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
-  const { data, isError } = useQuery(payeeDailyTotalsQuery(payeeId));
+export default function PayeeDailyExpenses({ payees }: { payees: string }) {
+  const { data, isError } = useQuery(payeeDailyTotalsQuery(payees));
 
   if (isError) {
     return (

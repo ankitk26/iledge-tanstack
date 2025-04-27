@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
 import {
   Bar,
   BarChart,
@@ -28,9 +27,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function PayeeMonthlyExpensesCount() {
-  const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
-  const { data } = useQuery(payeeMonthlyCountsQuery(payeeId));
+export default function PayeeMonthlyExpensesCount({
+  payees,
+}: {
+  payees: string;
+}) {
+  const { data } = useQuery(payeeMonthlyCountsQuery(payees));
   const isDesktopSize = useMediaQuery();
 
   const paginationInstanceId = "payee-monthly-counts";

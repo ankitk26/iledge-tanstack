@@ -68,7 +68,7 @@ export default function ExpenseTable() {
 
   return (
     <Card className="px-4">
-      <FilterSection />
+      <FilterSection filteredData={filteredData} />
 
       <TableHeader />
 

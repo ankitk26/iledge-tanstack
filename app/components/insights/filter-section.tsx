@@ -8,10 +8,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { Button } from "../ui/button";
 
-export default function FilterSection() {
+export default function FilterSection({
+  filteredData,
+}: {
+  filteredData: {
+    id: number;
+    name: string;
+    upi_id: string;
+    amount: number;
+  }[];
+}) {
   const { view, month, year } = useSearch({ from: "/_protected/insights" });
   const navigate = useNavigate();
+  const { searchQuery, setSearchQuery } = useInsightsStore();
 
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
@@ -20,15 +31,28 @@ export default function FilterSection() {
     new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(2000, i))
   );
 
-  const { searchQuery, setSearchQuery } = useInsightsStore();
-
   return (
     <div className="flex flex-col lg:flex-row items-center gap-6">
-      <Input
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search for payee by name or UPI ID..."
-      />
+      <div className="flex flex-col w-full gap-3">
+        <Input
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search for payee by name or UPI ID..."
+        />
+        {searchQuery && filteredData.length > 0 && (
+          <Button
+            variant="default"
+            size="sm"
+            className="w-fit"
+            title="View insights on search results payee"
+            onClick={() =>
+              navigate({ to: "/search", search: { query: searchQuery } })
+            }
+          >
+            View search summary
+          </Button>
+        )}
+      </div>
       {view === "monthly" && (
         <div className="flex items-center w-full justify-between gap-4">
           <Select

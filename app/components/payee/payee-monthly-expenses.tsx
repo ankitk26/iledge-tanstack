@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { useMediaQuery } from "~/hooks/use-media-query";
 import { getDateParts } from "~/lib/month-year-formatter";
@@ -21,9 +20,8 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function PayeeMonthlyExpenses() {
-  const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
-  const { data } = useQuery(payeeMonthlyTotalsQuery(payeeId));
+export default function PayeeMonthlyExpenses({ payees }: { payees: string }) {
+  const { data } = useQuery(payeeMonthlyTotalsQuery(payees));
   const isDesktopSize = useMediaQuery();
 
   const paginationInstanceId = "payee-monthly-totals";

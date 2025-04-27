@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
 import { Calculator } from "lucide-react";
 import { formatAmount } from "~/lib/format-amount";
 import { payeeOverallSummaryQuery } from "~/queries";
@@ -12,10 +11,9 @@ import {
 } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 
-export default function OverallSpentCard() {
-  const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
+export default function OverallSpentCard({ payees }: { payees: string }) {
   const { data, isPending, isError } = useQuery(
-    payeeOverallSummaryQuery(payeeId)
+    payeeOverallSummaryQuery(payees)
   );
 
   if (isError) {

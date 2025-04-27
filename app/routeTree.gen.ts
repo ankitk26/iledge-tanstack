@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as ProtectedImport } from './routes/_protected'
 import { Route as ProtectedIndexImport } from './routes/_protected.index'
+import { Route as ProtectedSearchImport } from './routes/_protected.search'
 import { Route as ProtectedInsightsImport } from './routes/_protected.insights'
 import { Route as ProtectedExpensesImport } from './routes/_protected.expenses'
 import { Route as ProtectedAdminImport } from './routes/_protected.admin'
@@ -35,6 +36,12 @@ const ProtectedRoute = ProtectedImport.update({
 const ProtectedIndexRoute = ProtectedIndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+
+const ProtectedSearchRoute = ProtectedSearchImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => ProtectedRoute,
 } as any)
 
@@ -101,6 +108,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedInsightsImport
       parentRoute: typeof ProtectedImport
     }
+    '/_protected/search': {
+      id: '/_protected/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof ProtectedSearchImport
+      parentRoute: typeof ProtectedImport
+    }
     '/_protected/': {
       id: '/_protected/'
       path: '/'
@@ -124,6 +138,7 @@ interface ProtectedRouteChildren {
   ProtectedAdminRoute: typeof ProtectedAdminRoute
   ProtectedExpensesRoute: typeof ProtectedExpensesRoute
   ProtectedInsightsRoute: typeof ProtectedInsightsRoute
+  ProtectedSearchRoute: typeof ProtectedSearchRoute
   ProtectedIndexRoute: typeof ProtectedIndexRoute
   ProtectedPayeesPayeeIdRoute: typeof ProtectedPayeesPayeeIdRoute
 }
@@ -132,6 +147,7 @@ const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedAdminRoute: ProtectedAdminRoute,
   ProtectedExpensesRoute: ProtectedExpensesRoute,
   ProtectedInsightsRoute: ProtectedInsightsRoute,
+  ProtectedSearchRoute: ProtectedSearchRoute,
   ProtectedIndexRoute: ProtectedIndexRoute,
   ProtectedPayeesPayeeIdRoute: ProtectedPayeesPayeeIdRoute,
 }
@@ -146,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof ProtectedAdminRoute
   '/expenses': typeof ProtectedExpensesRoute
   '/insights': typeof ProtectedInsightsRoute
+  '/search': typeof ProtectedSearchRoute
   '/': typeof ProtectedIndexRoute
   '/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
@@ -155,6 +172,7 @@ export interface FileRoutesByTo {
   '/admin': typeof ProtectedAdminRoute
   '/expenses': typeof ProtectedExpensesRoute
   '/insights': typeof ProtectedInsightsRoute
+  '/search': typeof ProtectedSearchRoute
   '/': typeof ProtectedIndexRoute
   '/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
@@ -166,6 +184,7 @@ export interface FileRoutesById {
   '/_protected/admin': typeof ProtectedAdminRoute
   '/_protected/expenses': typeof ProtectedExpensesRoute
   '/_protected/insights': typeof ProtectedInsightsRoute
+  '/_protected/search': typeof ProtectedSearchRoute
   '/_protected/': typeof ProtectedIndexRoute
   '/_protected/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
@@ -178,10 +197,18 @@ export interface FileRouteTypes {
     | '/admin'
     | '/expenses'
     | '/insights'
+    | '/search'
     | '/'
     | '/payees/$payeeId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/admin' | '/expenses' | '/insights' | '/' | '/payees/$payeeId'
+  to:
+    | '/login'
+    | '/admin'
+    | '/expenses'
+    | '/insights'
+    | '/search'
+    | '/'
+    | '/payees/$payeeId'
   id:
     | '__root__'
     | '/_protected'
@@ -189,6 +216,7 @@ export interface FileRouteTypes {
     | '/_protected/admin'
     | '/_protected/expenses'
     | '/_protected/insights'
+    | '/_protected/search'
     | '/_protected/'
     | '/_protected/payees/$payeeId'
   fileRoutesById: FileRoutesById
@@ -224,6 +252,7 @@ export const routeTree = rootRoute
         "/_protected/admin",
         "/_protected/expenses",
         "/_protected/insights",
+        "/_protected/search",
         "/_protected/",
         "/_protected/payees/$payeeId"
       ]
@@ -241,6 +270,10 @@ export const routeTree = rootRoute
     },
     "/_protected/insights": {
       "filePath": "_protected.insights.tsx",
+      "parent": "/_protected"
+    },
+    "/_protected/search": {
+      "filePath": "_protected.search.tsx",
       "parent": "/_protected"
     },
     "/_protected/": {

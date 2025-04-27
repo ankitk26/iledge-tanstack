@@ -12,6 +12,8 @@ export const Route = createFileRoute("/_protected/payees/$payeeId")({
 });
 
 function RouteComponent() {
+  const { payeeId } = Route.useParams();
+
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
@@ -19,23 +21,23 @@ function RouteComponent() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        <CurrentMonthCard />
-        <OverallSpentCard />
+        <CurrentMonthCard payees={payeeId} />
+        <OverallSpentCard payees={payeeId} />
       </div>
 
       <div>
-        <PayeeDailyExpenses />
+        <PayeeDailyExpenses payees={payeeId} />
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        <PayeeMonthlyExpenses />
-        <PayeeMonthlyExpensesCount />
+        <PayeeMonthlyExpenses payees={payeeId} />
+        <PayeeMonthlyExpensesCount payees={payeeId} />
       </div>
 
       <div>
         <h3>All transactions</h3>
         <div className="space-y-5 mt-4">
-          <PayeeExpenses />
+          <PayeeExpenses payees={payeeId} />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { and, eq, gte, sql } from "drizzle-orm";
+import { and, eq, gte, inArray, sql } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "~/db";
 import { expense, payee } from "~/db/schema";
@@ -8,12 +8,13 @@ import { nowTz, transactionDateTz } from "~/lib/get-time-zone-dates";
 export const getPayeeMonthStats = createServerFn({ method: "GET" })
   .validator(
     z.object({
-      payeeId: z.number(),
+      payees: z.string(),
     })
   )
   .handler(async ({ data }) => {
     const currentMonth = sql`DATE_TRUNC('month', ${nowTz})`;
     const previousMonth = sql`DATE_TRUNC('month', ${nowTz}) - INTERVAL '1 month'`;
+    const payeeIds = data.payees.split(",").map((p) => parseInt(p));
 
     const result = await db
       .select({
@@ -28,7 +29,7 @@ export const getPayeeMonthStats = createServerFn({ method: "GET" })
       .innerJoin(payee, eq(expense.payee_id, payee.id))
       .where(
         and(
-          eq(expense.payee_id, data.payeeId),
+          inArray(expense.payee_id, payeeIds),
           gte(transactionDateTz, previousMonth)
         )
       );

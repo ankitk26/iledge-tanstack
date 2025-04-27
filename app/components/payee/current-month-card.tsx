@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
 import { AlignJustify, TrendingDown, TrendingUp } from "lucide-react";
 import { formatAmount } from "~/lib/format-amount";
 import { payeeMonthStatsQuery } from "~/queries";
@@ -12,9 +11,8 @@ import {
 } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 
-export default function CurrentMonthCard() {
-  const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
-  const { data, isPending, isError } = useQuery(payeeMonthStatsQuery(payeeId));
+export default function CurrentMonthCard({ payees }: { payees: string }) {
+  const { data, isPending, isError } = useQuery(payeeMonthStatsQuery(payees));
 
   if (isError) {
     return (
