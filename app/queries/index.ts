@@ -12,6 +12,7 @@ import { getPayeeMonthlyCounts } from "~/server-fns/get-payee-monthly-counts";
 import { getPayeeMonthlyTotals } from "~/server-fns/get-payee-monthly-totals";
 import { getPayeeOverallSummary } from "~/server-fns/get-payee-overall-summary";
 import { getPayeeTotals } from "~/server-fns/get-payee-totals";
+import { getPayees } from "~/server-fns/get-payees";
 import { getSearchPayeeIds } from "~/server-fns/get-search-payee-ids";
 import { getUser } from "~/server-fns/get-user";
 import { getWeeklyTotals } from "~/server-fns/get-weekly-totals";
@@ -117,3 +118,8 @@ export const searchPayeeIdsQuery = (query?: string) =>
     queryFn: () => getSearchPayeeIds({ data: { query: query ?? "" } }),
     enabled: query ? query.length >= 2 : false,
   });
+
+export const payeesQuery = queryOptions({
+  queryKey: ["payees", "admin"],
+  queryFn: () => getPayees(),
+});

@@ -12,23 +12,41 @@ import {
 } from "../ui/dialog";
 import CategoryDialogContent from "./category-dialog-content";
 
-export default function PayeeItem() {
+interface Props {
+  payee: {
+    payeeId: number;
+    payeeName: string;
+    payeeUpiId: string;
+    categoryId: number;
+    categoryDescription: string;
+    categoryIcon: string;
+  };
+}
+
+export default function PayeeItem({ payee }: Props) {
+  const avatarFallbackValue = payee.payeeName
+    .split(" ")
+    .map((word, index) => (index < 2 ? word.charAt(0).toUpperCase() : ""))
+    .join("");
+
   return (
     <Card>
       <CardContent className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Avatar className="size-12">
-            <AvatarFallback>AB</AvatarFallback>
+            <AvatarFallback>{avatarFallbackValue}</AvatarFallback>
           </Avatar>
 
           <div className="flex flex-col items-start gap-1">
-            <h3 className="text-sm">ABDUL QADIR</h3>
-            <h4 className="text-xs text-muted-foreground">aq333667@axl</h4>
+            <h3 className="text-sm">{payee.payeeName}</h3>
+            <h4 className="text-xs text-muted-foreground">
+              {payee.payeeUpiId}
+            </h4>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <Badge variant="outline">Doctor Visit</Badge>
+          <Badge variant="outline">{payee.categoryDescription}</Badge>
 
           <Dialog>
             <DialogTrigger asChild>
