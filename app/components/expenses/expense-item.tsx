@@ -12,8 +12,6 @@ interface Props {
     payee_upi_id: string;
     transaction_date: string;
     amount: number;
-    category_id: number;
-    category_description: string;
     category_icon: string;
   };
 }

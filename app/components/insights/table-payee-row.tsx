@@ -1,6 +1,7 @@
 import React from "react";
 import { formatAmount } from "~/lib/format-amount";
 import { Separator } from "../ui/separator";
+import { Link } from "@tanstack/react-router";
 
 interface Props {
   payee: {
@@ -17,7 +18,15 @@ export default function TablePayeeRow({ payee }: Props) {
       <div className="px-4 flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-col">
           <span>{payee.name}</span>
-          <span className="text-muted-foreground text-xs">{payee.upi_id}</span>
+          <Link
+            to="/payees/$payeeId"
+            params={{
+              payeeId: payee.id.toString(),
+            }}
+            className="text-muted-foreground text-xs"
+          >
+            {payee.upi_id}
+          </Link>
         </div>
         <div className="mt-4 lg:mt-0">{formatAmount(payee.amount)}</div>
       </div>

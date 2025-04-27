@@ -1,5 +1,10 @@
-import { CartesianGrid, XAxis, Bar, Rectangle, BarChart } from "recharts";
-import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "@tanstack/react-router";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { getDateParts } from "~/lib/month-year-formatter";
+import { payeeMonthlyTotalsQuery } from "~/queries";
+import XAxisTick from "../shared/x-axis-tick";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -17,16 +22,6 @@ const inrFormatter = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0,
 });
 
-// Generate last 12 months of data
-const chartData = Array.from({ length: 12 }, (_, i) => {
-  const date = new Date();
-  date.setMonth(date.getMonth() - (11 - i));
-  return {
-    month: monthYearFormatter.format(date), // e.g., "Apr 2024"
-    amount: Math.floor(Math.random() * 30000 + 5000), // ₹5,000–₹35,000
-  };
-});
-
 const chartConfig = {
   amount: {
     label: "Amount",
@@ -34,6 +29,9 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function PayeeMonthlyExpenses() {
+  const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
+  const { data } = useQuery(payeeMonthlyTotalsQuery(payeeId));
+
   return (
     <Card>
       <CardHeader className="text-center">
@@ -44,14 +42,20 @@ export default function PayeeMonthlyExpenses() {
           config={chartConfig}
           className="aspect-auto h-[250px] mx-auto"
         >
-          <BarChart data={chartData}>
+          <BarChart data={data}>
             <CartesianGrid vertical={false} />
+            <YAxis scale="sqrt" hide />
             <XAxis
-              dataKey="month"
+              dataKey="monthDate"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
               interval={0}
+              tick={<XAxisTick />}
+              tickFormatter={(value) => {
+                const { monthYear } = getDateParts(value);
+                return monthYear;
+              }}
             />
             <ChartTooltip
               cursor={false}
