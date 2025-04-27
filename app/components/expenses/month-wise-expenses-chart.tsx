@@ -33,7 +33,7 @@ export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
   const { data, isPending } = useQuery(monthlyTotalsQuery(userId));
   const { month, year } = useSearch({ from: "/_protected/expenses" });
   const navigate = useNavigate();
-  const isDesktopSize = useMediaQuery("(min-width: 1024px)");
+  const isDesktopSize = useMediaQuery();
 
   const paginationInstanceId = "all-transactions";
   const paginationConfig = {

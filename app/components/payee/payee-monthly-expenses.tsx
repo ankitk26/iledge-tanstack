@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { useMediaQuery } from "~/hooks/use-media-query";
 import { getDateParts } from "~/lib/month-year-formatter";
 import { payeeMonthlyTotalsQuery } from "~/queries";
+import { usePaginationControls } from "~/store/use-pagination";
+import ChartPagination from "../shared/chart-pagination";
 import XAxisTick from "../shared/x-axis-tick";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
@@ -11,16 +14,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../ui/chart";
-
-const monthYearFormatter = new Intl.DateTimeFormat("en-IN", {
-  month: "short",
-  year: "numeric",
-});
-const inrFormatter = new Intl.NumberFormat("en-IN", {
-  style: "currency",
-  currency: "INR",
-  maximumFractionDigits: 0,
-});
 
 const chartConfig = {
   amount: {
@@ -31,6 +24,18 @@ const chartConfig = {
 export default function PayeeMonthlyExpenses() {
   const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
   const { data } = useQuery(payeeMonthlyTotalsQuery(payeeId));
+  const isDesktopSize = useMediaQuery();
+
+  const paginationInstanceId = "payee-monthly-totals";
+  const paginationConfig = {
+    windowSize: isDesktopSize ? 10 : 6,
+    navigationStep: isDesktopSize ? 10 : 6,
+  };
+  const { getWindowedData, showPagination } = usePaginationControls(
+    paginationInstanceId,
+    paginationConfig
+  );
+  const windowedData = getWindowedData(data ?? []);
 
   return (
     <Card>
@@ -42,7 +47,7 @@ export default function PayeeMonthlyExpenses() {
           config={chartConfig}
           className="aspect-auto h-[250px] mx-auto"
         >
-          <BarChart data={data}>
+          <BarChart data={windowedData}>
             <CartesianGrid vertical={false} />
             <YAxis scale="sqrt" hide />
             <XAxis
@@ -64,6 +69,12 @@ export default function PayeeMonthlyExpenses() {
             <Bar dataKey="amount" className="fill-foreground" radius={6} />
           </BarChart>
         </ChartContainer>
+        {showPagination && (
+          <ChartPagination
+            paginationInstanceId={paginationInstanceId}
+            config={paginationConfig}
+          />
+        )}
       </CardContent>
     </Card>
   );

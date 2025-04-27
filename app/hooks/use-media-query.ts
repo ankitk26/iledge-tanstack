@@ -9,7 +9,7 @@ type UseMediaQueryOptions = {
 const IS_SERVER = typeof window === "undefined";
 
 export function useMediaQuery(
-  query: string,
+  query: string = "(min-width: 1024px)",
   {
     defaultValue = false,
     initializeWithValue = true,

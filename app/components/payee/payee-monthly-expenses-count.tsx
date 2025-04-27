@@ -8,8 +8,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useMediaQuery } from "~/hooks/use-media-query";
 import { getDateParts } from "~/lib/month-year-formatter";
 import { payeeMonthlyCountsQuery } from "~/queries";
+import { usePaginationControls } from "~/store/use-pagination";
+import ChartPagination from "../shared/chart-pagination";
 import XAxisTick from "../shared/x-axis-tick";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
@@ -28,6 +31,18 @@ const chartConfig = {
 export default function PayeeMonthlyExpensesCount() {
   const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
   const { data } = useQuery(payeeMonthlyCountsQuery(payeeId));
+  const isDesktopSize = useMediaQuery();
+
+  const paginationInstanceId = "payee-monthly-counts";
+  const paginationConfig = {
+    windowSize: isDesktopSize ? 10 : 6,
+    navigationStep: isDesktopSize ? 10 : 6,
+  };
+  const { getWindowedData, showPagination } = usePaginationControls(
+    paginationInstanceId,
+    paginationConfig
+  );
+  const windowedData = getWindowedData(data ?? []);
 
   return (
     <Card>
@@ -39,7 +54,7 @@ export default function PayeeMonthlyExpensesCount() {
           config={chartConfig}
           className="aspect-auto h-[250px] mx-auto"
         >
-          <BarChart data={data}>
+          <BarChart data={windowedData}>
             <CartesianGrid vertical={false} />
             <YAxis scale="sqrt" hide />
             <XAxis
@@ -68,6 +83,12 @@ export default function PayeeMonthlyExpensesCount() {
             </Bar>
           </BarChart>
         </ChartContainer>
+        {showPagination && (
+          <ChartPagination
+            paginationInstanceId={paginationInstanceId}
+            config={paginationConfig}
+          />
+        )}
       </CardContent>
     </Card>
   );
