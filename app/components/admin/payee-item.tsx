@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Edit } from "lucide-react";
 import { useAdminStore } from "~/store/use-admin-store";
 import { useDialogStore } from "~/store/use-dialog-store";
@@ -23,6 +24,9 @@ export default function PayeeItem({ payee }: Props) {
   const setSelectedCategoryId = useAdminStore(
     (store) => store.setSelectedCategoryId
   );
+  const setDefaultCategoryId = useAdminStore(
+    (store) => store.setDefaultCategoryId
+  );
 
   const avatarFallbackValue = payee.payeeName
     .split(" ")
@@ -39,9 +43,13 @@ export default function PayeeItem({ payee }: Props) {
 
           <div className="flex flex-col items-start gap-1">
             <h3 className="text-sm">{payee.payeeName}</h3>
-            <h4 className="text-xs text-muted-foreground">
+            <Link
+              to="/payees/$payeeId"
+              params={{ payeeId: payee.payeeId.toString() }}
+              className="text-xs text-muted-foreground"
+            >
               {payee.payeeUpiId}
-            </h4>
+            </Link>
             <Badge
               variant="outline"
               className="lg:py-1.5 inline-flex lg:hidden"
@@ -60,6 +68,7 @@ export default function PayeeItem({ payee }: Props) {
             onClick={() => {
               setSelectedPayeeId(payee.payeeId);
               setSelectedCategoryId(payee.categoryId);
+              setDefaultCategoryId(payee.categoryId);
               openDialog();
             }}
           >

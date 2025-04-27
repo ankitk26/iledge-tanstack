@@ -15,5 +15,5 @@ export const getPayees = createServerFn({ method: "GET" }).handler(async () => {
     })
     .from(payee)
     .innerJoin(category, eq(payee.category_id, category.id))
-    .orderBy(payee.name);
+    .orderBy(payee.name, payee.payee_upi_id);
 });

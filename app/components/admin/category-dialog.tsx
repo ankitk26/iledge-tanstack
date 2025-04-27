@@ -1,3 +1,7 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { expensesQuery, payeesQuery } from "~/queries";
+import { updatePayeeCategory } from "~/server-fns/update-payee-category";
 import { useAdminStore } from "~/store/use-admin-store";
 import { useDialogStore } from "~/store/use-dialog-store";
 import { Button } from "../ui/button";
@@ -12,18 +16,61 @@ import CategoryDialogContent from "./category-dialog-content";
 
 export default function CategoryDialog() {
   const { isOpen, closeDialog } = useDialogStore();
-  const setSelectedPayeeId = useAdminStore((store) => store.setSelectedPayeeId);
-  const setSelectedCategoryId = useAdminStore(
-    (store) => store.setSelectedCategoryId
-  );
+  const { selectedCategoryId, selectedPayeeId, defaultCategoryId, resetStore } =
+    useAdminStore();
+  const queryClient = useQueryClient();
+
+  const updateCategoryMutation = useMutation({
+    mutationFn: async () => {
+      if (selectedCategoryId === defaultCategoryId) {
+        return -1;
+      }
+      await updatePayeeCategory({
+        data: {
+          payeeId: selectedPayeeId,
+          updatedCategoryId: selectedCategoryId,
+        },
+      });
+      return selectedPayeeId;
+    },
+    onSuccess: async (payeeId) => {
+      if (payeeId === -1) {
+        closeDialog();
+        return;
+      }
+
+      await Promise.all([
+        // payees/$payeeId page
+        queryClient.invalidateQueries({
+          queryKey: expensesQuery({ userId: "", payees: payeeId.toString() })
+            .queryKey,
+        }),
+
+        // expenses page
+        queryClient.invalidateQueries({
+          queryKey: expensesQuery({ userId: "" }).queryKey,
+        }),
+
+        // admin page
+        queryClient.invalidateQueries({ queryKey: payeesQuery.queryKey }),
+      ]);
+      toast.success("Category updated");
+      resetStore();
+      closeDialog();
+    },
+    onError: () => {
+      toast.error("Category not updated", {
+        description: "Something went wrong. Please try again",
+      });
+    },
+  });
 
   return (
     <Dialog
       open={isOpen}
       onOpenChange={(open) => {
         if (!open) {
-          setSelectedPayeeId(0);
-          setSelectedCategoryId(0);
+          resetStore();
           closeDialog();
         }
       }}
@@ -38,8 +85,15 @@ export default function CategoryDialog() {
         </ScrollArea>
 
         <DialogFooter>
-          <Button type="button" variant="secondary">
-            Save
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={updateCategoryMutation.isPending}
+            onClick={() => {
+              updateCategoryMutation.mutate();
+            }}
+          >
+            {updateCategoryMutation.isPending ? "Updating..." : "Update"}
           </Button>
         </DialogFooter>
       </DialogContent>
