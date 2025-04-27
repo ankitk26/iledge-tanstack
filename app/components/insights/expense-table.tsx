@@ -21,16 +21,12 @@ export default function ExpenseTable() {
     data = [],
     isPending,
     isError,
-    error,
   } = useQuery(payeesTotalsQuery({ month, year }));
 
   if (isError) {
     return (
       <div className="border rounded-lg p-6 text-destructive">
-        <p>
-          Error loading data:{" "}
-          {error instanceof Error ? error.message : "Unknown error"}
-        </p>
+        <p>Error loading data</p>
       </div>
     );
   }
