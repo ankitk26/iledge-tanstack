@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+import { getCategories } from "~/server-fns/get-categories";
 import { getCurrentDayTotal } from "~/server-fns/get-current-day-total";
 import { getCurrentWeekTotal } from "~/server-fns/get-current-week-total";
 import { getDailyTotals } from "~/server-fns/get-daily-totals";
@@ -122,4 +123,9 @@ export const searchPayeeIdsQuery = (query?: string) =>
 export const payeesQuery = queryOptions({
   queryKey: ["payees", "admin"],
   queryFn: () => getPayees(),
+});
+
+export const categoriesQuery = queryOptions({
+  queryKey: ["categories"],
+  queryFn: () => getCategories(),
 });

@@ -52,3 +52,5 @@ export const expense = pgTable("expense", {
   user_id: text("user_id").references(() => user.id),
   ...timestamps,
 });
+
+export type Category = typeof category.$inferSelect;
