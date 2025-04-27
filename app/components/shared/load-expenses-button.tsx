@@ -3,13 +3,6 @@ import { RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { loadExpenses } from "~/server-fns/load-expenses";
 import { Button } from "../ui/button";
-import {
-  currentDayTotalQuery,
-  currentWeekTotalQuery,
-  dailyTotalsQuery,
-  monthComparisonQuery,
-  weeklyTotalsQuery,
-} from "~/queries";
 
 export default function LoadExpensesButton() {
   const queryClient = useQueryClient();
@@ -23,21 +16,7 @@ export default function LoadExpensesButton() {
         toast.info(data.message);
         return;
       }
-      await queryClient.invalidateQueries({
-        queryKey: currentDayTotalQuery.queryKey,
-      });
-      await queryClient.invalidateQueries({
-        queryKey: currentWeekTotalQuery.queryKey,
-      });
-      await queryClient.invalidateQueries({
-        queryKey: monthComparisonQuery.queryKey,
-      });
-      await queryClient.invalidateQueries({
-        queryKey: weeklyTotalsQuery.queryKey,
-      });
-      await queryClient.invalidateQueries({
-        queryKey: dailyTotalsQuery.queryKey,
-      });
+      await queryClient.invalidateQueries();
       toast.success("Expenses loaded");
     },
     onError: (error) => {
