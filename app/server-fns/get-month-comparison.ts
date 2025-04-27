@@ -1,11 +1,17 @@
 import { createServerFn } from "@tanstack/react-start";
-import { gte, sql } from "drizzle-orm";
+import { and, eq, gte, sql } from "drizzle-orm";
 import { db } from "~/db";
 import { expense } from "~/db/schema";
 import { nowTz, transactionDateTz } from "~/lib/get-time-zone-dates";
+import { getUser } from "./get-user";
 
 export const getMonthComparison = createServerFn({ method: "GET" }).handler(
   async () => {
+    const user = await getUser();
+    if (!user) {
+      throw new Error("Invalid User");
+    }
+
     const currentMonth = sql`DATE_TRUNC('month', ${nowTz})`;
     const previousMonth = sql`DATE_TRUNC('month', ${nowTz}) - INTERVAL '1 month'`;
 
@@ -19,6 +25,8 @@ export const getMonthComparison = createServerFn({ method: "GET" }).handler(
             `,
       })
       .from(expense)
-      .where(gte(transactionDateTz, previousMonth));
+      .where(
+        and(gte(transactionDateTz, previousMonth), eq(expense.user_id, user.id))
+      );
   }
 );

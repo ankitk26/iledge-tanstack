@@ -4,6 +4,7 @@ import { z } from "zod";
 import { db } from "~/db";
 import { expense, payee } from "~/db/schema";
 import { nowTz, transactionDateTz } from "~/lib/get-time-zone-dates";
+import { getUser } from "./get-user";
 
 export const getPayeeMonthStats = createServerFn({ method: "GET" })
   .validator(
@@ -12,6 +13,11 @@ export const getPayeeMonthStats = createServerFn({ method: "GET" })
     })
   )
   .handler(async ({ data }) => {
+    const user = await getUser();
+    if (!user) {
+      throw new Error("Invalid User");
+    }
+
     const currentMonth = sql`DATE_TRUNC('month', ${nowTz})`;
     const previousMonth = sql`DATE_TRUNC('month', ${nowTz}) - INTERVAL '1 month'`;
     const payeeIds = data.payees.split(",").map((p) => parseInt(p));
@@ -30,7 +36,9 @@ export const getPayeeMonthStats = createServerFn({ method: "GET" })
       .where(
         and(
           inArray(expense.payee_id, payeeIds),
-          gte(transactionDateTz, previousMonth)
+          gte(transactionDateTz, previousMonth),
+          eq(expense.user_id, user.id),
+          eq(payee.user_id, user.id)
         )
       );
 

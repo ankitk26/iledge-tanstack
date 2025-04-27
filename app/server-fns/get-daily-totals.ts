@@ -1,11 +1,17 @@
 import { createServerFn } from "@tanstack/react-start";
-import { and, gte, lt, sql, sum } from "drizzle-orm";
+import { and, eq, gte, lt, sql } from "drizzle-orm";
 import { db } from "~/db";
 import { expense } from "~/db/schema";
 import { nowTz, transactionDateTz } from "~/lib/get-time-zone-dates";
+import { getUser } from "./get-user";
 
 export const getDailyTotals = createServerFn({ method: "GET" }).handler(
   async () => {
+    const user = await getUser();
+    if (!user) {
+      throw new Error("Invalid User");
+    }
+
     // truncate current day to month. Example - 23-apr-2025 1400 hours will give 1-apr-2025 0000 hours
     const monthStart = sql`DATE_TRUNC('month', ${nowTz})`;
 
@@ -22,7 +28,11 @@ export const getDailyTotals = createServerFn({ method: "GET" }).handler(
       })
       .from(expense)
       .where(
-        and(gte(transactionDateTz, monthStart), lt(transactionDateTz, monthEnd))
+        and(
+          gte(transactionDateTz, monthStart),
+          lt(transactionDateTz, monthEnd),
+          eq(expense.user_id, user.id)
+        )
       )
       .groupBy(transactionDateDay)
       .orderBy(transactionDateDay);

@@ -1,11 +1,16 @@
 import { createServerFn } from "@tanstack/react-start";
-import { and, gte, lt, sql } from "drizzle-orm";
+import { and, eq, gte, lt, sql } from "drizzle-orm";
 import { db } from "~/db";
 import { expense } from "~/db/schema";
 import { nowTz, transactionDateTz } from "~/lib/get-time-zone-dates";
+import { getUser } from "./get-user";
 
 export const getCurrentWeekTotal = createServerFn({ method: "GET" }).handler(
   async () => {
+    const user = await getUser();
+    if (!user) {
+      throw new Error("Invalid User");
+    }
     // truncate current day to week. Example - 23-apr-2025 1400 hours will give 21-apr-2025 (Monday) 0000 hours
     const weekStart = sql`DATE_TRUNC('week', ${nowTz})`;
 
@@ -18,7 +23,11 @@ export const getCurrentWeekTotal = createServerFn({ method: "GET" }).handler(
       })
       .from(expense)
       .where(
-        and(gte(transactionDateTz, weekStart), lt(transactionDateTz, weekEnd))
+        and(
+          gte(transactionDateTz, weekStart),
+          lt(transactionDateTz, weekEnd),
+          eq(expense.user_id, user.id)
+        )
       )
       .limit(1);
   }

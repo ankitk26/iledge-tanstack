@@ -1,11 +1,17 @@
 import { createServerFn } from "@tanstack/react-start";
-import { and, gte, lt, sql } from "drizzle-orm";
+import { and, eq, gte, lt, sql } from "drizzle-orm";
 import { db } from "~/db";
 import { expense } from "~/db/schema";
 import { nowTz, transactionDateTz } from "~/lib/get-time-zone-dates";
+import { getUser } from "./get-user";
 
 export const getCurrentDayTotal = createServerFn({ method: "GET" }).handler(
   async () => {
+    const user = await getUser();
+    if (!user) {
+      throw new Error("Invalid User");
+    }
+
     // truncate current day. Example - 23-apr-2025 1400 hours will give 23-apr-2025 0000 hours
     const istDayStart = sql`DATE_TRUNC('day', ${nowTz})`;
 
@@ -20,7 +26,8 @@ export const getCurrentDayTotal = createServerFn({ method: "GET" }).handler(
       .where(
         and(
           gte(transactionDateTz, istDayStart),
-          lt(transactionDateTz, istDayEnd)
+          lt(transactionDateTz, istDayEnd),
+          eq(expense.user_id, user.id)
         )
       )
       .limit(1);

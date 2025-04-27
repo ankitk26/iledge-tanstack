@@ -4,6 +4,7 @@ import { z } from "zod";
 import { db } from "~/db";
 import { expense, payee } from "~/db/schema";
 import { transactionDateTz } from "~/lib/get-time-zone-dates";
+import { getUser } from "./get-user";
 
 export const getPayeeTotals = createServerFn({ method: "GET" })
   .validator(
@@ -13,6 +14,11 @@ export const getPayeeTotals = createServerFn({ method: "GET" })
     })
   )
   .handler(async ({ data }) => {
+    const user = await getUser();
+    if (!user) {
+      throw new Error("Invalid User");
+    }
+
     const { month, year } = data;
 
     return db
@@ -33,7 +39,9 @@ export const getPayeeTotals = createServerFn({ method: "GET" })
           eq(
             sql`extract(year from ${transactionDateTz})`,
             year ?? sql`extract(year from ${transactionDateTz})::int`
-          )
+          ),
+          eq(expense.user_id, user.id),
+          eq(payee.user_id, user.id)
         )
       )
       .groupBy(payee.id, payee.name, payee.payee_upi_id)
