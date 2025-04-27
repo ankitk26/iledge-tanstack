@@ -98,7 +98,9 @@ export default function ExpenseTable() {
         {isPending ? (
           <Skeleton className="h-4 w-16 mt-4 lg:mt-0" />
         ) : (
-          <div>Total: {formatAmount(filteredTotalAmount ?? 0)}</div>
+          <div>
+            Total: <strong>{formatAmount(filteredTotalAmount ?? 0)}</strong>
+          </div>
         )}
       </div>
     </Card>
