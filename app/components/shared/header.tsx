@@ -1,19 +1,11 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Menu } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
+import { navlinks } from "~/lib/nav-links";
 import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import HeaderSheetMenu from "./header-sheet-menu";
 import LoadExpensesButton from "./load-expenses-button";
-import SheetUser from "./sheet-user";
 import ThemeToggle from "./theme-toggle";
 import User from "./user";
-
-const navlinks = [
-  { path: "/expenses", label: "Expenses" },
-  { path: "/insights", label: "Insights" },
-  { path: "/admin", label: "Admin" },
-  { path: "/search", label: "Search" },
-];
 
 export default function Header() {
   const navigate = useNavigate();
@@ -51,33 +43,8 @@ export default function Header() {
             Log out
           </Button>
         </div>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button className="lg:hidden">
-              <Menu />
-            </Button>
-          </SheetTrigger>
-          <SheetContent>
-            <div className="grid gap-6 p-4">
-              {navlinks.map((link) => (
-                <Link key={link.path} to={link.path}>
-                  {link.label}
-                </Link>
-              ))}
-              <LoadExpensesButton />
-              <ThemeToggle />
-              <SheetUser />
-              <Button
-                onClick={async () => {
-                  await authClient.signOut();
-                  navigate({ to: "/login" });
-                }}
-              >
-                Log out
-              </Button>
-            </div>
-          </SheetContent>
-        </Sheet>
+
+        <HeaderSheetMenu />
       </nav>
     </header>
   );
