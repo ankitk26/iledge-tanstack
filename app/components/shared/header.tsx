@@ -64,6 +64,8 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
+              <LoadExpensesButton />
+              <ThemeToggle />
               <SheetUser />
               <Button
                 onClick={async () => {

@@ -71,9 +71,15 @@ export default function ExpenseTable() {
       <CardContent className="px-0 text-sm flex flex-col gap-4 mt-0 rounded-lg">
         {isPending && <TableSkeleton />}
 
-        {!isPending && filteredData.length === 0 && (
+        {!isPending && data.length > 0 && filteredData.length === 0 && (
           <div className="text-center text-muted-foreground py-6">
             No expenses found for the selected filters
+          </div>
+        )}
+
+        {!isPending && data.length === 0 && (
+          <div className="text-center text-muted-foreground py-6">
+            No data found
           </div>
         )}
 

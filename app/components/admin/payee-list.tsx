@@ -23,6 +23,10 @@ export default function PayeeList() {
     ));
   }
 
+  if (data?.length === 0) {
+    return <p className="text-muted-foreground text-sm">No data found</p>;
+  }
+
   return (
     <>
       {data?.map((payee) => (

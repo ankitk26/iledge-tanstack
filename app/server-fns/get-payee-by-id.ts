@@ -25,5 +25,6 @@ export const getPayeeById = createServerFn({ method: "GET" })
       .from(payee)
       .where(
         and(eq(payee.id, parseInt(data.payeeId)), eq(payee.user_id, user.id))
-      );
+      )
+      .limit(1);
   });

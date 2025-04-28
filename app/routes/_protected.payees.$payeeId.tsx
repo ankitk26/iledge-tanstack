@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import CurrentMonthCard from "~/components/payee/current-month-card";
 import OverallSpentCard from "~/components/payee/overall-spent-card";
 import PayeeDailyExpenses from "~/components/payee/payee-daily-expenses";
@@ -6,9 +6,20 @@ import PayeeExpenses from "~/components/payee/payee-expenses";
 import PayeeMonthlyExpenses from "~/components/payee/payee-monthly-expenses";
 import PayeeMonthlyExpensesCount from "~/components/payee/payee-monthly-expenses-count";
 import PayeeTitle from "~/components/payee/payee-title";
+import NotFound from "~/components/tanstack/not-found";
+import { getPayeeById } from "~/server-fns/get-payee-by-id";
 
 export const Route = createFileRoute("/_protected/payees/$payeeId")({
+  loader: async ({ params }) => {
+    const payeeId = params.payeeId;
+    const payee = await getPayeeById({ data: { payeeId } });
+
+    if (payee.length === 0) {
+      throw notFound();
+    }
+  },
   component: RouteComponent,
+  notFoundComponent: NotFound,
 });
 
 function RouteComponent() {

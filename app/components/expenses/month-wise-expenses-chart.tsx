@@ -61,53 +61,58 @@ export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
             <Skeleton className="h-full w-12" />
           </div>
         )}
-        {!isPending && (
-          <ChartContainer
-            config={chartConfig}
-            className="aspect-auto h-[250px] mx-auto"
-          >
-            <BarChart data={windowedData}>
-              <CartesianGrid vertical={false} />
-              <YAxis scale="sqrt" hide />
-              <XAxis
-                dataKey="month_date"
-                tickLine={false}
-                tickMargin={15}
-                tick={<XAxisTick />}
-                axisLine={false}
-                interval={0}
-                tickFormatter={(value: string) => {
-                  const { monthYear } = getDateParts(value);
-                  return monthYear;
-                }}
-              />
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel hideIndicator />}
-              />
-              <Bar
-                dataKey="amount"
-                className="cursor-pointer fill-foreground"
-                radius={6}
-                activeBar={({ ...props }) => {
-                  return <Rectangle {...props} fillOpacity={0.5} />;
-                }}
-                onClick={(data) => {
-                  const { year: yearPart, month: monthPart } = getDateParts(
-                    data.month_date
-                  );
-                  navigate({
-                    to: "/expenses",
-                    search: {
-                      month: monthPart,
-                      year: yearPart,
-                    },
-                  });
-                }}
-              />
-            </BarChart>
-          </ChartContainer>
-        )}
+        {!isPending &&
+          (data?.length === 0 ? (
+            <p className="text-muted-foreground text-sm text-center">
+              No data found
+            </p>
+          ) : (
+            <ChartContainer
+              config={chartConfig}
+              className="aspect-auto h-[250px] mx-auto"
+            >
+              <BarChart data={windowedData}>
+                <CartesianGrid vertical={false} />
+                <YAxis scale="sqrt" hide />
+                <XAxis
+                  dataKey="month_date"
+                  tickLine={false}
+                  tickMargin={15}
+                  tick={<XAxisTick />}
+                  axisLine={false}
+                  interval={0}
+                  tickFormatter={(value: string) => {
+                    const { monthYear } = getDateParts(value);
+                    return monthYear;
+                  }}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel hideIndicator />}
+                />
+                <Bar
+                  dataKey="amount"
+                  className="cursor-pointer fill-foreground"
+                  radius={6}
+                  activeBar={({ ...props }) => {
+                    return <Rectangle {...props} fillOpacity={0.5} />;
+                  }}
+                  onClick={(data) => {
+                    const { year: yearPart, month: monthPart } = getDateParts(
+                      data.month_date
+                    );
+                    navigate({
+                      to: "/expenses",
+                      search: {
+                        month: monthPart,
+                        year: yearPart,
+                      },
+                    });
+                  }}
+                />
+              </BarChart>
+            </ChartContainer>
+          ))}
 
         {showPagination && (
           <ChartPagination

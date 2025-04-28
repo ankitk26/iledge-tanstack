@@ -11,9 +11,11 @@ export default function LoadExpensesButton() {
     mutationFn: () => loadExpenses(),
     onSuccess: async (data) => {
       if (
-        data.message === "No transactions found. Please do a full refresh first"
+        data.message === "No expenses found. Please do a full refresh first"
       ) {
-        toast.info(data.message);
+        toast.info("No expenses found", {
+          description: "Please try again later",
+        });
         return;
       }
       await queryClient.invalidateQueries();
@@ -36,6 +38,7 @@ export default function LoadExpensesButton() {
       variant="outline"
       onClick={() => loadExpensesMutation.mutate()}
       disabled={loadExpensesMutation.isPending}
+      className="w-full lg:size-9"
     >
       {loadExpensesMutation.isPending ? (
         <RefreshCw className="animate-spin" />
