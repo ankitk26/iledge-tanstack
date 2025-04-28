@@ -14,9 +14,9 @@ export default function PayeeList() {
         <div className="flex items-center gap-4">
           <Skeleton className="size-10 rounded-full" />
 
-          <div className="flex flex-col w-full items-start gap-3">
-            <Skeleton className="w-1/2 h-6" />
-            <Skeleton className="w-1/4 h-6" />
+          <div className="flex flex-col w-full items-start gap-2">
+            <Skeleton className="w-1/2 h-5" />
+            <Skeleton className="w-1/4 h-5" />
           </div>
         </div>
       </Card>
@@ -28,11 +28,11 @@ export default function PayeeList() {
   }
 
   return (
-    <>
+    <div className="space-y-6">
       {data?.map((payee) => (
         <PayeeItem key={payee.payeeId + "_admin"} payee={payee} />
       ))}
       <CategoryDialog />
-    </>
+    </div>
   );
 }

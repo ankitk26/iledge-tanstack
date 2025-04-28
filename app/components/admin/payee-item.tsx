@@ -35,13 +35,13 @@ export default function PayeeItem({ payee }: Props) {
 
   return (
     <Card>
-      <CardContent className="flex items-center gap-8 justify-between">
+      <CardContent className="flex items-center gap-8 px-4 justify-between">
         <div className="flex flex-1 items-center gap-4">
           <Avatar className="size-12 lg:inline hidden">
             <AvatarFallback>{avatarFallbackValue}</AvatarFallback>
           </Avatar>
 
-          <div className="flex flex-col items-start gap-1">
+          <div className="flex flex-col items-start gap-1 min-w-0">
             <h3 className="text-sm">{payee.payeeName}</h3>
             <Link
               to="/payees/$payeeId"

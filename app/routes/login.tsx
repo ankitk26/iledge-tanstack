@@ -12,7 +12,7 @@ function LoginPage() {
 
   return (
     <div className="flex flex-col h-screen items-center justify-center py-12">
-      <div className="border p-10 flex flex-col items-center rounded-lg w-1/2">
+      <div className="border p-10 flex flex-col items-center rounded-lg">
         <h2 className="text-2xl font-bold">Log in</h2>
         <Button
           className="mt-8"

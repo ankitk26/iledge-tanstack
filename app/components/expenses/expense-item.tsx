@@ -42,7 +42,7 @@ export default function ExpenseItem({ expense }: Props) {
         </div>
       </div>
 
-      <div className="flex flex-col items-end w-full lg:w-auto">
+      <div className="flex flex-col items-start w-full lg:w-auto">
         <span className="text-sm font-semibold text-foreground">
           {formattedAmount}
         </span>

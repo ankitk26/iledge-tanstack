@@ -10,14 +10,20 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  DialogTitle,
 } from "../ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
 import CategoryDialogContent from "./category-dialog-content";
 
 export default function CategoryDialog() {
   const { isOpen, closeDialog } = useDialogStore();
-  const { selectedCategoryId, selectedPayeeId, defaultCategoryId, resetStore } =
-    useAdminStore();
+  const {
+    selectedCategoryId,
+    selectedPayeeId,
+    defaultCategoryId,
+    resetStore,
+    setSelectedCategoryId,
+  } = useAdminStore();
   const queryClient = useQueryClient();
 
   const updateCategoryMutation = useMutation({
@@ -75,20 +81,34 @@ export default function CategoryDialog() {
         }
       }}
     >
-      <DialogContent className="max-h-[90vh] w-[calc(100%-2rem)] max-w-3xl lg:max-h-[80vh] lg:max-w-screen lg:w-[40vw]">
+      <DialogContent className="md:max-h-[80vh] max-w-[425px] md:max-w-screen md:w-[80vw]">
         <DialogHeader className="font-semibold">
-          Update default category for payee
+          <DialogTitle>Update default category for payee</DialogTitle>
         </DialogHeader>
 
-        <ScrollArea className="mt-4 max-h-[40vh] pr-4 lg:mt-6 lg:max-h-[50vh]">
+        <ScrollArea className="mt-4 w-full max-h-[40vh] md:mt-6 md:max-h-[50vh] flex-1">
           <CategoryDialogContent />
         </ScrollArea>
 
         <DialogFooter>
           <Button
             type="button"
+            variant="outline"
+            disabled={
+              updateCategoryMutation.isPending ||
+              selectedCategoryId === defaultCategoryId
+            }
+            onClick={() => setSelectedCategoryId(defaultCategoryId)}
+          >
+            Reset
+          </Button>
+          <Button
+            type="button"
             variant="secondary"
-            disabled={updateCategoryMutation.isPending}
+            disabled={
+              updateCategoryMutation.isPending ||
+              selectedCategoryId === defaultCategoryId
+            }
             onClick={() => {
               updateCategoryMutation.mutate();
             }}

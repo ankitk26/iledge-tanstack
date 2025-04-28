@@ -1,4 +1,4 @@
-import { Link, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { authClient } from "~/lib/auth-client";
 import { Button } from "../ui/button";
 import { SheetContent, SheetTrigger, Sheet } from "../ui/sheet";
@@ -6,7 +6,7 @@ import LoadExpensesButton from "./load-expenses-button";
 import SheetUser from "./sheet-user";
 import ThemeToggle from "./theme-toggle";
 import { navlinks } from "~/lib/nav-links";
-import { useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
 export default function HeaderSheetMenu() {
