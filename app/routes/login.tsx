@@ -20,6 +20,7 @@ function LoginPage() {
           onClick={async () => {
             await authClient.signIn.social({
               provider: "github",
+              callbackURL: "/",
             });
           }}
         >
