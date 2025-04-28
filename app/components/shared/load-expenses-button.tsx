@@ -21,14 +21,10 @@ export default function LoadExpensesButton() {
       await queryClient.invalidateQueries();
       toast.success("Expenses loaded");
     },
-    onError: (error) => {
-      if (typeof error === undefined) {
-        toast.error("Load unsuccessful", {
-          description: "Something went wrong. Try again later",
-        });
-        return;
-      }
-      toast.error("Load unsuccessful", { description: error.message });
+    onError: () => {
+      toast.error("Load unsuccessful", {
+        description: "Something went wrong. Try again later",
+      });
     },
   });
 

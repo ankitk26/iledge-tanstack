@@ -17,7 +17,7 @@ export const loadExpenses = createServerFn({ method: "POST" }).handler(
         throw redirect({ to: "/login" });
       }
 
-      const response = await fetch("http://localhost:8000/expenses/new", {
+      const response = await fetch(process.env.BACKEND_API_ENDPOINT!, {
         method: "POST",
         headers: {
           Cookie: `session_token=${session.session.token}`,
