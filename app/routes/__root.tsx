@@ -32,7 +32,7 @@ export const Route = createRootRouteWithContext<{
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "TanStack Start Starter",
+        title: "iledge - Analyze expenses and save",
       },
     ],
     links: [
