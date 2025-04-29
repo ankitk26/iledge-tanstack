@@ -22,7 +22,6 @@ export const Route = createFileRoute("/_protected/search")({
 });
 
 function RouteComponent() {
-  console.log("rendering parent");
   const { query } = Route.useSearch();
   const { data: payees, isPending } = useQuery(searchPayeeIdsQuery(query));
 

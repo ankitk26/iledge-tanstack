@@ -5,7 +5,6 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
 export default function SearchInput({ query }: { query: string | undefined }) {
-  console.log("rendering");
   const navigate = useNavigate({ from: "/search" });
   const inputRef = useRef<HTMLInputElement>(null);
 
