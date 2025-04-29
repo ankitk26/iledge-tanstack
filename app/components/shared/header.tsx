@@ -17,18 +17,30 @@ export default function Header() {
           iledge
         </Link>
         <div className="space-x-6 hidden lg:flex">
-          {navlinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className="hover:text-foreground/70 hover:underline"
-              search={(prev) =>
-                link.path === "/search" ? { query: undefined } : prev
-              }
-            >
-              {link.label}
-            </Link>
-          ))}
+          <Link
+            to="/expenses"
+            className="hover:text-foreground/70 hover:underline"
+          >
+            Expenses
+          </Link>
+          <Link
+            to="/insights"
+            className="hover:text-foreground/70 hover:underline"
+          >
+            Insights
+          </Link>
+          <Link
+            to="/admin"
+            className="hover:text-foreground/70 hover:underline"
+          >
+            Admin
+          </Link>
+          <Link
+            to="/search"
+            className="hover:text-foreground/70 hover:underline"
+          >
+            Search
+          </Link>
         </div>
         <div className="space-x-6 lg:flex hidden">
           <LoadExpensesButton />

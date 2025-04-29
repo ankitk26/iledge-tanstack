@@ -1,13 +1,12 @@
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu } from "lucide-react";
+import { useState } from "react";
 import { authClient } from "~/lib/auth-client";
 import { Button } from "../ui/button";
-import { SheetContent, SheetTrigger, Sheet } from "../ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import LoadExpensesButton from "./load-expenses-button";
 import SheetUser from "./sheet-user";
 import ThemeToggle from "./theme-toggle";
-import { navlinks } from "~/lib/nav-links";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
 
 export default function HeaderSheetMenu() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -23,17 +22,34 @@ export default function HeaderSheetMenu() {
       </SheetTrigger>
       <SheetContent>
         <div className="grid gap-6 p-4">
-          {navlinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              onClick={() => {
-                setIsSheetOpen(false);
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <Link
+            to="/expenses"
+            className="hover:text-foreground/70 hover:underline"
+            onClick={() => setIsSheetOpen(false)}
+          >
+            Expenses
+          </Link>
+          <Link
+            to="/insights"
+            className="hover:text-foreground/70 hover:underline"
+            onClick={() => setIsSheetOpen(false)}
+          >
+            Insights
+          </Link>
+          <Link
+            to="/admin"
+            className="hover:text-foreground/70 hover:underline"
+            onClick={() => setIsSheetOpen(false)}
+          >
+            Admin
+          </Link>
+          <Link
+            to="/search"
+            className="hover:text-foreground/70 hover:underline"
+            onClick={() => setIsSheetOpen(false)}
+          >
+            Search
+          </Link>
           <LoadExpensesButton />
           <ThemeToggle />
           <SheetUser />

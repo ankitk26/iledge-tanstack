@@ -45,6 +45,8 @@ export const Route = createRootRouteWithContext<{
   }),
   component: RootComponent,
   notFoundComponent: NotFound,
+  pendingMinMs: 0,
+  pendingComponent: undefined,
 });
 
 function RootComponent() {
