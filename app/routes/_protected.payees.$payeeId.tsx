@@ -6,7 +6,6 @@ import PayeeExpenses from "~/components/payee/payee-expenses";
 import PayeeMonthlyExpenses from "~/components/payee/payee-monthly-expenses";
 import PayeeMonthlyExpensesCount from "~/components/payee/payee-monthly-expenses-count";
 import PayeeTitle from "~/components/payee/payee-title";
-import NotFound from "~/components/tanstack/not-found";
 import { getPayeeById } from "~/server-fns/get-payee-by-id";
 
 export const Route = createFileRoute("/_protected/payees/$payeeId")({
@@ -19,7 +18,6 @@ export const Route = createFileRoute("/_protected/payees/$payeeId")({
     }
   },
   component: RouteComponent,
-  notFoundComponent: NotFound,
 });
 
 function RouteComponent() {

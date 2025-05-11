@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { expensesQuery, payeesQuery } from "~/queries";
+import { expensesQuery, payeesQuery, payeeTitleQuery } from "~/queries";
 import { updatePayeeCategory } from "~/server-fns/update-payee-category";
 import { useAdminStore } from "~/store/use-admin-store";
 import { useDialogStore } from "~/store/use-dialog-store";
@@ -59,6 +59,10 @@ export default function CategoryDialog() {
 
         // admin page
         queryClient.invalidateQueries({ queryKey: payeesQuery.queryKey }),
+
+        queryClient.invalidateQueries({
+          queryKey: payeeTitleQuery(payeeId.toString()).queryKey,
+        }),
       ]);
       toast.success("Category updated");
       resetStore();

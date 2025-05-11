@@ -7,12 +7,11 @@ import {
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
-import NotFound from "~/components/tanstack/not-found";
-import appCss from "../app.css?url";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { Toaster } from "~/components/ui/sonner";
-import { getUser } from "~/server-fns/get-user";
 import { authUserQuery } from "~/queries";
+import { getUser } from "~/server-fns/get-user";
+import appCss from "../app.css?url";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -44,7 +43,6 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   component: RootComponent,
-  notFoundComponent: NotFound,
   pendingMinMs: 0,
   pendingComponent: undefined,
 });
