@@ -56,19 +56,23 @@ export default function CurrentMonthCard({ payees }: { payees: string }) {
         {isPending ? (
           <Skeleton className="w-1/4 h-6" />
         ) : (
-          <>
-            {margin > 0 ? (
-              <TrendingUp className="size-4 mr-2 text-foreground/70" />
-            ) : margin < 0 ? (
-              <TrendingDown className="size-4 mr-2 text-foreground/70" />
-            ) : (
-              <AlignJustify className="size-4 mr-2 text-foreground/70" />
-            )}
-            {margin === 0
-              ? "Same as previous month"
-              : `${marginFormatted}% ${margin > 0 ? "more" : "less"} than previous
+          previousMonthSpent > 0 && (
+            <>
+              {margin > 0 ? (
+                <TrendingUp className="size-4 mr-2 text-foreground/70" />
+              ) : margin < 0 ? (
+                <TrendingDown className="size-4 mr-2 text-foreground/70" />
+              ) : (
+                <AlignJustify className="size-4 mr-2 text-foreground/70" />
+              )}
+              {margin === 0
+                ? "Same as previous month"
+                : `${marginFormatted}% ${
+                    margin > 0 ? "more" : "less"
+                  } than previous
             month (${formatAmount(previousMonthSpent)})`}
-          </>
+            </>
+          )
         )}
       </CardFooter>
     </Card>
