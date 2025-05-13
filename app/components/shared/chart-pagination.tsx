@@ -1,8 +1,8 @@
 import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
 } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { PaginationState, usePaginationControls } from "~/store/use-pagination";
@@ -41,7 +41,7 @@ export default function ChartPagination({
           disabled={isAtMostOld}
           title="Go to oldest data"
         >
-          <ChevronsLeft className="h-4 w-4" />
+          <ChevronsLeftIcon className="h-4 w-4" />
         </Button>
         <Button
           variant="outline"
@@ -50,7 +50,7 @@ export default function ChartPagination({
           disabled={!canGoToNewer}
           title="Previous (older data)"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeftIcon className="h-4 w-4" />
         </Button>
         <Button
           variant="outline"
@@ -59,7 +59,7 @@ export default function ChartPagination({
           disabled={!canGoToOlder}
           title="Next (newer data)"
         >
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRightIcon className="h-4 w-4" />
         </Button>
         <Button
           variant="outline"
@@ -68,7 +68,7 @@ export default function ChartPagination({
           disabled={isAtMostRecent}
           title="Go to newest data"
         >
-          <ChevronsRight className="h-4 w-4" />
+          <ChevronsRightIcon className="h-4 w-4" />
         </Button>
       </div>
     </div>

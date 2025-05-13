@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Calculator } from "lucide-react";
+import { CalculatorIcon } from "lucide-react";
 import { formatAmount } from "~/lib/format-amount";
 import { payeeOverallSummaryQuery } from "~/queries";
 import {
@@ -44,7 +44,7 @@ export default function OverallSpentCard({ payees }: { payees: string }) {
       </CardContent>
       <CardFooter className="text-xs">
         {!isPending && (
-          <Calculator className="size-4 mr-2 text-foreground/70" />
+          <CalculatorIcon className="size-4 mr-2 text-foreground/70" />
         )}{" "}
         {isPending ? (
           <Skeleton className="w-1/4 h-6" />

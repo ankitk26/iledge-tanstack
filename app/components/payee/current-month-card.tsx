@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { AlignJustify, TrendingDown, TrendingUp } from "lucide-react";
+import {
+  AlignJustifyIcon,
+  TrendingDownIcon,
+  TrendingUpIcon,
+} from "lucide-react";
 import { formatAmount } from "~/lib/format-amount";
 import { payeeMonthStatsQuery } from "~/queries";
 import {
@@ -59,11 +63,11 @@ export default function CurrentMonthCard({ payees }: { payees: string }) {
           previousMonthSpent > 0 && (
             <>
               {margin > 0 ? (
-                <TrendingUp className="size-4 mr-2 text-foreground/70" />
+                <TrendingUpIcon className="size-4 mr-2 text-foreground/70" />
               ) : margin < 0 ? (
-                <TrendingDown className="size-4 mr-2 text-foreground/70" />
+                <TrendingDownIcon className="size-4 mr-2 text-foreground/70" />
               ) : (
-                <AlignJustify className="size-4 mr-2 text-foreground/70" />
+                <AlignJustifyIcon className="size-4 mr-2 text-foreground/70" />
               )}
               {margin === 0
                 ? "Same as previous month"

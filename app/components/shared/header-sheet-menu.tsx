@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Menu } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "~/lib/auth-client";
 import { Button } from "../ui/button";
@@ -17,7 +17,7 @@ export default function HeaderSheetMenu() {
     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
       <SheetTrigger asChild>
         <Button className="lg:hidden">
-          <Menu />
+          <MenuIcon />
         </Button>
       </SheetTrigger>
       <SheetContent>

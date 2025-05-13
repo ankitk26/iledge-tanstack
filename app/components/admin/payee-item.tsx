@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Edit } from "lucide-react";
+import { EditIcon } from "lucide-react";
 import { useAdminStore } from "~/store/use-admin-store";
 import { useDialogStore } from "~/store/use-dialog-store";
 import { Avatar, AvatarFallback } from "../ui/avatar";
@@ -72,7 +72,7 @@ export default function PayeeItem({ payee }: Props) {
               openDialog();
             }}
           >
-            <Edit />
+            <EditIcon />
           </Button>
         </div>
       </CardContent>

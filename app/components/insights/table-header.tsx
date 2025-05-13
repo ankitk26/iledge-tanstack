@@ -1,5 +1,5 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { CardHeader } from "../ui/card";
 
@@ -39,9 +39,9 @@ export default function TableHeader() {
         <span className="font-semibold">Name</span>
         {sortBy === "name" ? (
           sortDirection === "asc" ? (
-            <ArrowUp className="size-4 text-muted-foreground" />
+            <ArrowUpIcon className="size-4 text-muted-foreground" />
           ) : (
-            <ArrowDown className="size-4 text-muted-foreground" />
+            <ArrowDownIcon className="size-4 text-muted-foreground" />
           )
         ) : null}
       </Button>
@@ -74,9 +74,9 @@ export default function TableHeader() {
         <span className="font-semibold">Amount</span>
         {sortBy === "amount" ? (
           sortDirection === "asc" ? (
-            <ArrowUp className="size-4 text-muted-foreground" />
+            <ArrowUpIcon className="size-4 text-muted-foreground" />
           ) : (
-            <ArrowDown className="size-4 text-muted-foreground" />
+            <ArrowDownIcon className="size-4 text-muted-foreground" />
           )
         ) : null}
       </Button>

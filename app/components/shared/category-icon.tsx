@@ -1,4 +1,4 @@
-import { BanknoteArrowDown, icons, LucideIcon } from "lucide-react";
+import { BanknoteArrowDownIcon, icons, LucideIcon } from "lucide-react";
 import { ComponentProps } from "react";
 
 export default function CategoryIcon({
@@ -8,7 +8,7 @@ export default function CategoryIcon({
   const Icon = icons[iconName as keyof typeof icons] as LucideIcon | undefined;
 
   if (!Icon) {
-    return <BanknoteArrowDown {...props} />;
+    return <BanknoteArrowDownIcon {...props} />;
   }
 
   return <Icon {...props} />;
