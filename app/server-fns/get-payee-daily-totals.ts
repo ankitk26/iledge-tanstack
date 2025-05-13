@@ -24,7 +24,7 @@ export const getPayeeDailyTotals = createServerFn({ method: "GET" })
     return db
       .select({
         day: sql<string>`TO_CHAR(DATE_TRUNC('day', ${transactionDateTz}), 'DD')`,
-        amount: sql<number>`sum(expense.amount)::float`,
+        amount: sql<number>`round(sum(expense.amount))::float`,
       })
       .from(expense)
       .innerJoin(payee, eq(expense.payee_id, payee.id))

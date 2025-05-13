@@ -20,7 +20,7 @@ export const getCurrentDayTotal = createServerFn({ method: "GET" }).handler(
 
     return await db
       .select({
-        amount: sql<number>`COALESCE(SUM(${expense.amount}), 0)::float`,
+        amount: sql<number>`ROUND(COALESCE(SUM(${expense.amount}), 0))::float`,
       })
       .from(expense)
       .where(

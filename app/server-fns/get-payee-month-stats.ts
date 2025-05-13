@@ -25,10 +25,10 @@ export const getPayeeMonthStats = createServerFn({ method: "GET" })
     const result = await db
       .select({
         currentMonthSpent: sql<number>`
-          COALESCE(SUM(CASE WHEN DATE_TRUNC('month', ${transactionDateTz}) = ${currentMonth} THEN expense.amount END), 0)::float
+          ROUND(COALESCE(SUM(CASE WHEN DATE_TRUNC('month', ${transactionDateTz}) = ${currentMonth} THEN expense.amount END), 0))::float
         `,
         previousMonthSpent: sql<number>`
-          COALESCE(SUM(CASE WHEN DATE_TRUNC('month', ${transactionDateTz}) = ${previousMonth} THEN expense.amount END), 0)::float
+          ROUND(COALESCE(SUM(CASE WHEN DATE_TRUNC('month', ${transactionDateTz}) = ${previousMonth} THEN expense.amount END), 0))::float
         `,
       })
       .from(expense)

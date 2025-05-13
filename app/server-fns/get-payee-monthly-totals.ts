@@ -23,7 +23,7 @@ export const getPayeeMonthlyTotals = createServerFn({ method: "GET" })
     return db
       .select({
         monthDate: sql<string>`DATE_TRUNC('month', ${transactionDateTz})`,
-        amount: sql<number>`sum(expense.amount)::float`,
+        amount: sql<number>`round(sum(expense.amount))::float`,
       })
       .from(expense)
       .innerJoin(payee, eq(expense.payee_id, payee.id))

@@ -24,7 +24,9 @@ export const getWeeklyTotals = createServerFn({ method: "GET" }).handler(
           week_start: sql<Date>`DATE_TRUNC('week', ${transactionDateTz})`.as(
             "week_start"
           ),
-          amount: sql<number>`SUM(${expense.amount})::float`.as("amount"),
+          amount: sql<number>`ROUND(SUM(${expense.amount}))::float`.as(
+            "amount"
+          ),
         })
         .from(expense)
         .where(

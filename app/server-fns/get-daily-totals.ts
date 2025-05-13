@@ -24,7 +24,7 @@ export const getDailyTotals = createServerFn({ method: "GET" }).handler(
     return db
       .select({
         day: sql<string>`TO_CHAR(${transactionDateDay}, 'DD')`,
-        amount: sql<number>`sum(expense.amount)::float`,
+        amount: sql<number>`round(sum(expense.amount))::float`,
       })
       .from(expense)
       .where(

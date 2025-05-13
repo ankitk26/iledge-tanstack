@@ -21,8 +21,8 @@ export const getPayeeOverallSummary = createServerFn({ method: "GET" })
 
     return db
       .select({
-        total_amount: sql<number>`SUM(expense.amount)::float`,
-        average_amount: sql<number>`AVG(expense.amount)::float`,
+        total_amount: sql<number>`ROUND(SUM(expense.amount))::float`,
+        average_amount: sql<number>`ROUND(AVG(expense.amount))::float`,
       })
       .from(expense)
       .innerJoin(payee, eq(expense.payee_id, payee.id))

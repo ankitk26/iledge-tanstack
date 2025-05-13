@@ -26,7 +26,7 @@ export const getPayeeTotals = createServerFn({ method: "GET" })
         id: payee.id,
         name: payee.name,
         upi_id: payee.payee_upi_id,
-        amount: sql<number>`sum(${expense.amount})::float`,
+        amount: sql<number>`round(sum(${expense.amount}))::float`,
       })
       .from(expense)
       .innerJoin(payee, eq(expense.payee_id, payee.id))
