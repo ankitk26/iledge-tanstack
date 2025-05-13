@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { authClient } from "~/lib/auth-client";
-import { navlinks } from "~/lib/nav-links";
 import { Button } from "../ui/button";
 import HeaderSheetMenu from "./header-sheet-menu";
 import LoadExpensesButton from "./load-expenses-button";
@@ -42,7 +41,7 @@ export default function Header() {
             Search
           </Link>
         </div>
-        <div className="space-x-6 lg:flex hidden">
+        <div className="space-x-6 lg:flex items-center hidden">
           <LoadExpensesButton />
           <ThemeToggle />
           <User />

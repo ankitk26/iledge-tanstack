@@ -5,9 +5,8 @@ import {
   Scripts,
   createRootRouteWithContext,
 } from "@tanstack/react-router";
-import type { ReactNode } from "react";
-
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import type { ReactNode } from "react";
 import { Toaster } from "~/components/ui/sonner";
 import { authUserQuery } from "~/queries";
 import { getUser } from "~/server-fns/get-user";
@@ -43,8 +42,6 @@ export const Route = createRootRouteWithContext<{
     ],
   }),
   component: RootComponent,
-  pendingMinMs: 0,
-  pendingComponent: undefined,
 });
 
 function RootComponent() {

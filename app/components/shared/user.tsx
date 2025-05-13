@@ -13,7 +13,7 @@ export default function User() {
   const { data, isPending } = useQuery(authUserQuery);
 
   if (isPending) {
-    return <Skeleton className="size-4 rounded-full" />;
+    return <Skeleton className="size-8 rounded-full" />;
   }
 
   return (
