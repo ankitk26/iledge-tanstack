@@ -1,23 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
 import { queries } from "~/queries";
 import CategoryDialog from "../admin/category-dialog";
 import { Badge } from "../ui/badge";
-import { Skeleton } from "../ui/skeleton";
 import UpdateCategoryButton from "./update-category-button";
 
 export default function PayeeTitle() {
   const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
-  const { data, isPending, isError } = useQuery(queries.payees.info(payeeId));
-
-  if (isPending) {
-    return (
-      <div className="flex flex-col w-full items-start gap-2">
-        <Skeleton className="w-1/2 h-6" />
-        <Skeleton className="w-1/4 h-6" />
-      </div>
-    );
-  }
+  const { data, isError } = useSuspenseQuery(queries.payees.info(payeeId));
 
   if (isError) {
     return <p>Something went wrong. Please try again</p>;

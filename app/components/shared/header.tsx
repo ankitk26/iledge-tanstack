@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "@tanstack/react-router";
+import { Suspense } from "react";
 import { authClient } from "~/lib/auth-client";
 import { Button } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 import HeaderSheetMenu from "./header-sheet-menu";
 import LoadExpensesButton from "./load-expenses-button";
 import ThemeToggle from "./theme-toggle";
@@ -44,7 +46,9 @@ export default function Header() {
         <div className="space-x-6 lg:flex items-center hidden">
           <LoadExpensesButton />
           <ThemeToggle />
-          <User />
+          <Suspense fallback={<Skeleton className="size-8 rounded-full" />}>
+            <User />
+          </Suspense>
           <Button
             onClick={async () => {
               await authClient.signOut();

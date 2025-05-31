@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { queries } from "~/queries";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
@@ -7,14 +7,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Skeleton } from "../ui/skeleton";
 
 export default function User() {
-  const { data, isPending } = useQuery(queries.users.me);
-
-  if (isPending) {
-    return <Skeleton className="size-8 rounded-full" />;
-  }
+  const { data } = useSuspenseQuery(queries.users.me);
 
   return (
     <DropdownMenu>

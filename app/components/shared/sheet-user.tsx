@@ -1,14 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { queries } from "~/queries";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Skeleton } from "../ui/skeleton";
 
 export default function SheetUser() {
-  const { data, isPending } = useQuery(queries.users.me);
-
-  if (isPending) {
-    return <Skeleton className="size-4 rounded-full" />;
-  }
+  const { data } = useSuspenseQuery(queries.users.me);
 
   return (
     <div className="flex items-center gap-2">

@@ -14,6 +14,7 @@ import {
 } from "../ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
 import CategoryDialogContent from "./category-dialog-content";
+import { Suspense } from "react";
 
 export default function CategoryDialog() {
   const { isOpen, closeDialog } = useDialogStore();
@@ -95,7 +96,9 @@ export default function CategoryDialog() {
         </DialogHeader>
 
         <ScrollArea className="mt-4 w-full max-h-[40vh] md:mt-6 md:max-h-[50vh] flex-1">
-          <CategoryDialogContent />
+          <Suspense fallback={<p>Loading...</p>}>
+            <CategoryDialogContent />
+          </Suspense>
         </ScrollArea>
 
         <DialogFooter>

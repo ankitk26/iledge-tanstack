@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { MenuIcon } from "lucide-react";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { authClient } from "~/lib/auth-client";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Skeleton } from "../ui/skeleton";
 import LoadExpensesButton from "./load-expenses-button";
 import SheetUser from "./sheet-user";
 import ThemeToggle from "./theme-toggle";
@@ -52,7 +53,9 @@ export default function HeaderSheetMenu() {
           </Link>
           <LoadExpensesButton />
           <ThemeToggle />
-          <SheetUser />
+          <Suspense fallback={<Skeleton className="size-4 rounded-full" />}>
+            <SheetUser />
+          </Suspense>
           <Button
             onClick={async () => {
               await authClient.signOut();
