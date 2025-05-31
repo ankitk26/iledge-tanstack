@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { authUserQuery } from "~/queries";
+import { queries } from "~/queries";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
@@ -10,7 +10,7 @@ import {
 import { Skeleton } from "../ui/skeleton";
 
 export default function User() {
-  const { data, isPending } = useQuery(authUserQuery);
+  const { data, isPending } = useQuery(queries.users.me);
 
   if (isPending) {
     return <Skeleton className="size-8 rounded-full" />;

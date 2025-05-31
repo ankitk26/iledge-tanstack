@@ -13,8 +13,6 @@ export function createRouter() {
     scrollRestoration: true,
     context: { queryClient, user: null },
     defaultPreload: "intent",
-    defaultPendingMs: 200,
-    defaultPendingMinMs: 300,
     defaultPendingComponent: () => (
       <div className="flex items-center justify-center w-full h-full">
         <Loader2Icon className="animate-spin" />

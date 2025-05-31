@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { useMediaQuery } from "~/hooks/use-media-query";
 import { getDateParts } from "~/lib/month-year-formatter";
-import { payeeMonthlyTotalsQuery } from "~/queries";
+import { queries } from "~/queries";
 import { usePaginationControls } from "~/store/use-pagination";
 import ChartPagination from "../shared/chart-pagination";
 import XAxisTick from "../shared/x-axis-tick";
@@ -21,7 +21,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function PayeeMonthlyExpenses({ payees }: { payees: string }) {
-  const { data } = useQuery(payeeMonthlyTotalsQuery(payees));
+  const { data } = useQuery(queries.payees.totalsByMonth(payees));
   const isDesktopSize = useMediaQuery();
 
   const paginationInstanceId = "payee-monthly-totals";

@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { weeklyTotalsQuery } from "~/queries";
+import { queries } from "~/queries";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
   ChartConfig,
@@ -24,7 +24,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function WeeklyExpenseBreakdown() {
-  const { data, isPending } = useQuery(weeklyTotalsQuery);
+  const { data, isPending } = useQuery(queries.expenses.byWeek);
 
   return (
     <Card>

@@ -3,6 +3,7 @@ import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import MonthWiseExpensesChart from "~/components/expenses/month-wise-expenses-chart";
 import MonthWiseExpensesList from "~/components/expenses/month-wise-expenses-list";
+import { queries } from "~/queries";
 
 const searchParams = z.object({
   month: z
@@ -15,7 +16,20 @@ const searchParams = z.object({
 
 export const Route = createFileRoute("/_protected/expenses")({
   validateSearch: zodValidator(searchParams),
-  loader: ({ context }) => {
+  loaderDeps: ({ search }) => {
+    return { month: search.month, year: search.year };
+  },
+  loader: ({ context, deps }) => {
+    context.queryClient.prefetchQuery(
+      queries.expenses.monthlyTotals(context.user.id)
+    );
+    context.queryClient.prefetchQuery(
+      queries.expenses.filteredExpenses({
+        userId: context.user.id,
+        month: deps.month,
+        year: deps.year,
+      })
+    );
     return context.user;
   },
   component: RouteComponent,

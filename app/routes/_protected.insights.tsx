@@ -3,6 +3,7 @@ import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import ExpenseTable from "~/components/insights/expense-table";
 import FilterTabs from "~/components/insights/filter-tabs";
+import { queries } from "~/queries";
 
 const paramsSchema = z.object({
   sortBy: z.enum(["name", "amount"]).default("name"),
@@ -14,6 +15,14 @@ const paramsSchema = z.object({
 
 export const Route = createFileRoute("/_protected/insights")({
   validateSearch: zodValidator(paramsSchema),
+  loaderDeps: ({ search }) => {
+    return search;
+  },
+  loader: ({ context, deps }) => {
+    context.queryClient.prefetchQuery(
+      queries.payees.totalsByMonthYear({ month: deps.month, year: deps.year })
+    );
+  },
   component: RouteComponent,
 });
 

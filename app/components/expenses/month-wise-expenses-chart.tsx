@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import {
   Bar,
   BarChart,
@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import { useMediaQuery } from "~/hooks/use-media-query";
 import { getDateParts } from "~/lib/month-year-formatter";
-import { monthlyTotalsQuery } from "~/queries";
+import { queries } from "~/queries";
 import { usePaginationControls } from "~/store/use-pagination";
 import ChartPagination from "../shared/chart-pagination";
 import XAxisTick from "../shared/x-axis-tick";
@@ -30,8 +30,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
-  const { data, isPending } = useQuery(monthlyTotalsQuery(userId));
-  const { month, year } = useSearch({ from: "/_protected/expenses" });
+  const { data, isPending } = useQuery(queries.expenses.monthlyTotals(userId));
   const navigate = useNavigate();
   const isDesktopSize = useMediaQuery();
 

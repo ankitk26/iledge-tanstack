@@ -6,16 +6,30 @@ import PayeeExpenses from "~/components/payee/payee-expenses";
 import PayeeMonthlyExpenses from "~/components/payee/payee-monthly-expenses";
 import PayeeMonthlyExpensesCount from "~/components/payee/payee-monthly-expenses-count";
 import PayeeTitle from "~/components/payee/payee-title";
+import { queries } from "~/queries";
 import { getPayeeById } from "~/server-fns/get-payee-by-id";
 
 export const Route = createFileRoute("/_protected/payees/$payeeId")({
-  loader: async ({ params }) => {
+  beforeLoad: async ({ params }) => {
     const payeeId = params.payeeId;
     const payee = await getPayeeById({ data: { payeeId } });
 
     if (payee.length === 0) {
       throw notFound();
     }
+  },
+  loader: ({ context, params }) => {
+    const payeeId = params.payeeId;
+
+    context.queryClient.prefetchQuery(queries.payees.info(payeeId));
+    context.queryClient.prefetchQuery(
+      queries.payees.currentAndPreviousMonthTotals(payeeId)
+    );
+    context.queryClient.prefetchQuery(queries.payees.totalAndAverage(payeeId));
+    context.queryClient.prefetchQuery(queries.payees.totalsByDay(payeeId));
+    context.queryClient.prefetchQuery(
+      queries.payees.expenseCountByMonth(payeeId)
+    );
   },
   component: RouteComponent,
 });

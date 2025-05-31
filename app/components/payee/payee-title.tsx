@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
-import { payeeTitleQuery } from "~/queries";
+import { queries } from "~/queries";
 import CategoryDialog from "../admin/category-dialog";
 import { Badge } from "../ui/badge";
 import { Skeleton } from "../ui/skeleton";
@@ -8,7 +8,7 @@ import UpdateCategoryButton from "./update-category-button";
 
 export default function PayeeTitle() {
   const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
-  const { data, isPending, isError } = useQuery(payeeTitleQuery(payeeId));
+  const { data, isPending, isError } = useQuery(queries.payees.info(payeeId));
 
   if (isPending) {
     return (

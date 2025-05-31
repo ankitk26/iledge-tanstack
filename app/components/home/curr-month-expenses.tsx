@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { formatAmount } from "~/lib/format-amount";
-import { monthComparisonQuery } from "~/queries";
+import { queries } from "~/queries";
 import {
   Card,
   CardContent,
@@ -13,7 +13,9 @@ import { Skeleton } from "../ui/skeleton";
 const BUDGET = 30000;
 
 export default function CurrMonthExpenses() {
-  const { data, isPending } = useQuery(monthComparisonQuery);
+  const { data, isPending } = useQuery(
+    queries.expenses.currentAndPreviousMonth
+  );
 
   const previousMonthAmount = data ? data[0].previousMonthSpent : 0;
   const currentMonthAmount = data ? data[0].currentMonthSpent : 0;

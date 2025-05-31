@@ -8,7 +8,7 @@ import {
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
 import { Toaster } from "~/components/ui/sonner";
-import { authUserQuery } from "~/queries";
+import { queries } from "~/queries";
 import { getUser } from "~/server-fns/get-user";
 import appCss from "../app.css?url";
 
@@ -17,7 +17,7 @@ export const Route = createRootRouteWithContext<{
   user: Awaited<ReturnType<typeof getUser>>;
 }>()({
   beforeLoad: async ({ context }) => {
-    const user = await context.queryClient.fetchQuery(authUserQuery);
+    const user = await context.queryClient.fetchQuery(queries.users.me);
     return { user };
   },
   head: () => ({

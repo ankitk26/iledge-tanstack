@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearch } from "@tanstack/react-router";
-import { expensesQuery } from "~/queries";
+import { queries } from "~/queries";
 import { Card } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 import ExpenseItem from "./expense-item";
 
 export default function MonthWiseExpensesList({ userId }: { userId: string }) {
   const { month, year } = useSearch({ from: "/_protected/expenses" });
-  const { data, isPending } = useQuery(expensesQuery({ userId, month, year }));
+  const { data, isPending } = useQuery(
+    queries.expenses.filteredExpenses({ userId, month, year })
+  );
 
   const date = new Date(year, month - 1).toLocaleString("en-US", {
     month: "short",

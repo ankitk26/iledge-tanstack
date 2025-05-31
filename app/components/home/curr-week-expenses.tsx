@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { formatAmount } from "~/lib/format-amount";
-import { currentWeekTotalQuery } from "~/queries";
+import { queries } from "~/queries";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 
 export default function CurrWeekExpenses() {
-  const { data, isPending } = useQuery(currentWeekTotalQuery);
+  const { data, isPending } = useQuery(queries.expenses.currentWeek);
 
   const amount =
     data && data.length === 1 ? formatAmount(data[0].amount ?? 0) : 0;

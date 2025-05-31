@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { formatAmount } from "~/lib/format-amount";
-import { currentDayTotalQuery } from "~/queries";
+import { queries } from "~/queries";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 
 export default function TodayExpenses() {
-  const { data, isPending } = useQuery(currentDayTotalQuery);
+  const { data, isPending } = useQuery(queries.expenses.today);
 
   const amount =
     data && data.length === 1 ? formatAmount(data[0].amount ?? 0) : 0;

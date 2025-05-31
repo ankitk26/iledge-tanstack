@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { payeeDailyTotalsQuery } from "~/queries";
+import { queries } from "~/queries";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
   ChartConfig,
@@ -23,7 +23,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function PayeeDailyExpenses({ payees }: { payees: string }) {
-  const { data, isError } = useQuery(payeeDailyTotalsQuery(payees));
+  const { data, isError } = useQuery(queries.payees.totalsByDay(payees));
 
   if (isError) {
     return (

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { CalculatorIcon } from "lucide-react";
 import { formatAmount } from "~/lib/format-amount";
-import { payeeOverallSummaryQuery } from "~/queries";
+import { queries } from "~/queries";
 import {
   Card,
   CardContent,
@@ -13,7 +13,7 @@ import { Skeleton } from "../ui/skeleton";
 
 export default function OverallSpentCard({ payees }: { payees: string }) {
   const { data, isPending, isError } = useQuery(
-    payeeOverallSummaryQuery(payees)
+    queries.payees.totalAndAverage(payees)
   );
 
   if (isError) {

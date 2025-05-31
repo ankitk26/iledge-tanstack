@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { authClient } from "~/lib/auth-client";
-import { expensesQuery } from "~/queries";
+import { queries } from "~/queries";
 import ExpenseItem from "../expenses/expense-item";
 
 export default function PayeeExpenses({ payees }: { payees: string }) {
   const { data: authData, isPending: authIsPending } = authClient.useSession();
   const { data } = useQuery({
-    ...expensesQuery({
+    ...queries.expenses.filteredExpenses({
       userId: authData?.user.id ?? "",
       payees,
     }),

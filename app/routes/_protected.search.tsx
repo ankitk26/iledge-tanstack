@@ -10,7 +10,7 @@ import PayeeMonthlyExpenses from "~/components/payee/payee-monthly-expenses";
 import PayeeMonthlyExpensesCount from "~/components/payee/payee-monthly-expenses-count";
 import SearchInput from "~/components/search/search-input";
 import { Skeleton } from "~/components/ui/skeleton";
-import { searchPayeeIdsQuery } from "~/queries";
+import { queries } from "~/queries";
 
 const searchParams = z.object({
   query: z.string().optional(),
@@ -23,7 +23,9 @@ export const Route = createFileRoute("/_protected/search")({
 
 function RouteComponent() {
   const { query } = Route.useSearch();
-  const { data: payees, isPending } = useQuery(searchPayeeIdsQuery(query));
+  const { data: payees, isPending } = useQuery(
+    queries.payees.bySearchQuery(query)
+  );
 
   return (
     <div className="space-y-8">
@@ -37,8 +39,6 @@ function RouteComponent() {
           <h2 className="text-xl font-semibold">"{query}" Expense Summary</h2>
         )}
       </div>
-
-      {/* <pre>{JSON.stringify({ payees, query, inputQuery })}</pre> */}
 
       {payees && !isPending && (
         <>

@@ -18,114 +18,110 @@ import { getSearchPayeeIds } from "~/server-fns/get-search-payee-ids";
 import { getUser } from "~/server-fns/get-user";
 import { getWeeklyTotals } from "~/server-fns/get-weekly-totals";
 
-export const authUserQuery = queryOptions({
-  queryKey: ["auth", "user"],
-  queryFn: ({ signal }) => getUser({ signal }),
-});
+const expenseQueries = {
+  today: queryOptions({
+    queryKey: ["expenses", "today"],
+    queryFn: () => getCurrentDayTotal(),
+  }),
+  currentWeek: queryOptions({
+    queryKey: ["expenses", "currentWeek"],
+    queryFn: () => getCurrentWeekTotal(),
+  }),
+  currentAndPreviousMonth: queryOptions({
+    queryKey: ["expenses", "currentAndPreviousMonth"],
+    queryFn: () => getMonthComparison(),
+  }),
+  byWeek: queryOptions({
+    queryKey: ["expenses", "byWeek"],
+    queryFn: () => getWeeklyTotals(),
+  }),
+  byDay: queryOptions({
+    queryKey: ["expenses", "byDay"],
+    queryFn: () => getDailyTotals(),
+  }),
+  monthlyTotals: (userId: string) =>
+    queryOptions({
+      queryKey: ["monthly_totals"],
+      queryFn: () => getMonthlyTotals({ data: { id: userId } }),
+    }),
+  filteredExpenses: ({ userId, payees, month, year }: ExpensesQueryParams) =>
+    queryOptions({
+      queryKey: ["expenses", { payees, month, year }],
+      queryFn: () => getExpenses({ data: { userId, payees, month, year } }),
+    }),
+};
 
-export const monthComparisonQuery = queryOptions({
-  queryKey: ["expenses", "summary", "month"],
-  queryFn: () => getMonthComparison(),
-});
+const payeeQueries = {
+  all: queryOptions({
+    queryKey: ["payees"],
+    queryFn: () => getPayees(),
+  }),
+  totalsByMonthYear: ({
+    month,
+    year,
+  }: {
+    month: number | undefined;
+    year: number | undefined;
+  }) =>
+    queryOptions({
+      queryKey: ["payees", "totals", { month, year }],
+      queryFn: () => getPayeeTotals({ data: { month, year } }),
+    }),
+  info: (payeeId: string) =>
+    queryOptions({
+      queryKey: ["payee", "title", payeeId],
+      queryFn: () => getPayeeById({ data: { payeeId } }),
+    }),
+  currentAndPreviousMonthTotals: (payees: string) =>
+    queryOptions({
+      queryKey: ["payee", "monthStats", payees],
+      queryFn: () => getPayeeMonthStats({ data: { payees } }),
+    }),
+  totalAndAverage: (payees: string) =>
+    queryOptions({
+      queryKey: ["payee", "total", payees],
+      queryFn: () => getPayeeOverallSummary({ data: { payees } }),
+    }),
+  totalsByDay: (payees: string) =>
+    queryOptions({
+      queryKey: ["payee", "dailyTotals", payees],
+      queryFn: () => getPayeeDailyTotals({ data: { payees } }),
+    }),
+  totalsByMonth: (payees: string) =>
+    queryOptions({
+      queryKey: ["payee", "monthlyTotals", payees],
+      queryFn: () => getPayeeMonthlyTotals({ data: { payees } }),
+    }),
+  expenseCountByMonth: (payees: string) =>
+    queryOptions({
+      queryKey: ["payee", "monthlyCounts", payees],
+      queryFn: () => getPayeeMonthlyCounts({ data: { payees } }),
+    }),
+  bySearchQuery: (query?: string) =>
+    queryOptions({
+      queryKey: ["search", query],
+      queryFn: () => getSearchPayeeIds({ data: { query: query ?? "" } }),
+      enabled: query ? query.length >= 2 : false,
+    }),
+};
 
-export const currentWeekTotalQuery = queryOptions({
-  queryKey: ["expenses", "summary", "week"],
-  queryFn: () => getCurrentWeekTotal(),
-});
+const categoryQueries = {
+  all: queryOptions({
+    queryKey: ["categories"],
+    queryFn: () => getCategories(),
+  }),
+};
 
-export const dailyTotalsQuery = queryOptions({
-  queryKey: ["expenses", "breakdown", "day"],
-  queryFn: () => getDailyTotals(),
-});
+const userQueries = {
+  me: queryOptions({
+    queryKey: ["auth", "user"],
+    queryFn: ({ signal }) => getUser({ signal }),
+  }),
+};
 
-export const currentDayTotalQuery = queryOptions({
-  queryKey: ["expenses", "summary", "today"],
-  queryFn: () => getCurrentDayTotal(),
-});
-
-export const weeklyTotalsQuery = queryOptions({
-  queryKey: ["expenses", "breakdown", "week"],
-  queryFn: () => getWeeklyTotals(),
-});
-
-export const payeesTotalsQuery = ({
-  month,
-  year,
-}: {
-  month: number | undefined;
-  year: number | undefined;
-}) =>
-  queryOptions({
-    queryKey: ["payees", "totals", { month, year }],
-    queryFn: () => getPayeeTotals({ data: { month, year } }),
-  });
-
-export const monthlyTotalsQuery = (userId: string) =>
-  queryOptions({
-    queryKey: ["monthly_totals"],
-    queryFn: () => getMonthlyTotals({ data: { id: userId } }),
-  });
-
-export const expensesQuery = ({
-  userId,
-  payees,
-  month,
-  year,
-}: ExpensesQueryParams) =>
-  queryOptions({
-    queryKey: ["expenses", { payees, month, year }],
-    queryFn: () => getExpenses({ data: { userId, payees, month, year } }),
-  });
-
-export const payeeTitleQuery = (payeeId: string) =>
-  queryOptions({
-    queryKey: ["payee", "title", payeeId],
-    queryFn: () => getPayeeById({ data: { payeeId } }),
-  });
-
-export const payeeOverallSummaryQuery = (payees: string) =>
-  queryOptions({
-    queryKey: ["payee", "total", payees],
-    queryFn: () => getPayeeOverallSummary({ data: { payees } }),
-  });
-
-export const payeeMonthStatsQuery = (payees: string) =>
-  queryOptions({
-    queryKey: ["payee", "monthStats", payees],
-    queryFn: () => getPayeeMonthStats({ data: { payees } }),
-  });
-
-export const payeeDailyTotalsQuery = (payees: string) =>
-  queryOptions({
-    queryKey: ["payee", "dailyTotals", payees],
-    queryFn: () => getPayeeDailyTotals({ data: { payees } }),
-  });
-
-export const payeeMonthlyTotalsQuery = (payees: string) =>
-  queryOptions({
-    queryKey: ["payee", "monthlyTotals", payees],
-    queryFn: () => getPayeeMonthlyTotals({ data: { payees } }),
-  });
-
-export const payeeMonthlyCountsQuery = (payees: string) =>
-  queryOptions({
-    queryKey: ["payee", "monthlyCounts", payees],
-    queryFn: () => getPayeeMonthlyCounts({ data: { payees } }),
-  });
-
-export const searchPayeeIdsQuery = (query?: string) =>
-  queryOptions({
-    queryKey: ["search", query],
-    queryFn: () => getSearchPayeeIds({ data: { query: query ?? "" } }),
-    enabled: query ? query.length >= 2 : false,
-  });
-
-export const payeesQuery = queryOptions({
-  queryKey: ["payees", "admin"],
-  queryFn: () => getPayees(),
-});
-
-export const categoriesQuery = queryOptions({
-  queryKey: ["categories"],
-  queryFn: () => getCategories(),
-});
+export const queries = {
+  expenses: expenseQueries,
+  payees: payeeQueries,
+  categories: categoryQueries,
+  users: userQueries,
+};

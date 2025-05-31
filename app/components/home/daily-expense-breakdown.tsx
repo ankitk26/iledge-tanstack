@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { dailyTotalsQuery } from "~/queries";
+import { queries } from "~/queries";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {
   ChartConfig,
@@ -24,7 +24,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function DailyExpenseBreakdown() {
-  const { data, isPending } = useQuery(dailyTotalsQuery);
+  const { data, isPending } = useQuery(queries.expenses.byDay);
 
   return (
     <Card>

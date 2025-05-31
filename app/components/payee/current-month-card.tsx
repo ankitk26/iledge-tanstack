@@ -5,7 +5,7 @@ import {
   TrendingUpIcon,
 } from "lucide-react";
 import { formatAmount } from "~/lib/format-amount";
-import { payeeMonthStatsQuery } from "~/queries";
+import { queries } from "~/queries";
 import {
   Card,
   CardContent,
@@ -16,7 +16,9 @@ import {
 import { Skeleton } from "../ui/skeleton";
 
 export default function CurrentMonthCard({ payees }: { payees: string }) {
-  const { data, isPending, isError } = useQuery(payeeMonthStatsQuery(payees));
+  const { data, isPending, isError } = useQuery(
+    queries.payees.currentAndPreviousMonthTotals(payees)
+  );
 
   if (isError) {
     return (

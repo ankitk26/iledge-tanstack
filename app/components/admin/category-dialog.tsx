@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { expensesQuery, payeesQuery, payeeTitleQuery } from "~/queries";
+import { queries } from "~/queries";
 import { updatePayeeCategory } from "~/server-fns/update-payee-category";
 import { useAdminStore } from "~/store/use-admin-store";
 import { useDialogStore } from "~/store/use-dialog-store";
@@ -48,20 +48,24 @@ export default function CategoryDialog() {
       await Promise.all([
         // payees/$payeeId page
         queryClient.invalidateQueries({
-          queryKey: expensesQuery({ userId: "", payees: payeeId.toString() })
-            .queryKey,
+          queryKey: queries.expenses.filteredExpenses({
+            userId: "",
+            payees: payeeId.toString(),
+          }).queryKey,
         }),
 
         // expenses page
         queryClient.invalidateQueries({
-          queryKey: expensesQuery({ userId: "" }).queryKey,
+          queryKey: queries.expenses.filteredExpenses({ userId: "" }).queryKey,
         }),
 
         // admin page
-        queryClient.invalidateQueries({ queryKey: payeesQuery.queryKey }),
+        queryClient.invalidateQueries({
+          queryKey: queries.payees.all.queryKey,
+        }),
 
         queryClient.invalidateQueries({
-          queryKey: payeeTitleQuery(payeeId.toString()).queryKey,
+          queryKey: queries.payees.info(payeeId.toString()).queryKey,
         }),
       ]);
       toast.success("Category updated");
@@ -108,7 +112,6 @@ export default function CategoryDialog() {
           </Button>
           <Button
             type="button"
-            variant="secondary"
             disabled={
               updateCategoryMutation.isPending ||
               selectedCategoryId === defaultCategoryId
