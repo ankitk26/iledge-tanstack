@@ -27,11 +27,14 @@
     "@tanstack/start": "^1.116.1",
     "@tanstack/zod-adapter": "^1.117.1",
     "better-auth": "^1.2.7",
+    "cheerio": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.41.0",
+    "imapflow": "^1.0.187",
     "lucide-react": "^0.501.0",
+    "mailparser": "^3.7.3",
     "next-themes": "^0.4.6",
     "pg": "^8.14.1",
     "postcss": "^8.5.3",
@@ -47,6 +50,8 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@types/imapflow": "^1.0.22",
+    "@types/mailparser": "^3.4.6",
     "@types/node": "^22.14.1",
     "@types/pg": "^8.11.13",
     "@types/react": "^19.1.2",
