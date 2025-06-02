@@ -14,7 +14,6 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as ProtectedImport } from './routes/_protected'
 import { Route as ProtectedIndexImport } from './routes/_protected.index'
-import { Route as ProtectedTestImport } from './routes/_protected.test'
 import { Route as ProtectedSearchImport } from './routes/_protected.search'
 import { Route as ProtectedInsightsImport } from './routes/_protected.insights'
 import { Route as ProtectedExpensesImport } from './routes/_protected.expenses'
@@ -37,12 +36,6 @@ const ProtectedRoute = ProtectedImport.update({
 const ProtectedIndexRoute = ProtectedIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-
-const ProtectedTestRoute = ProtectedTestImport.update({
-  id: '/test',
-  path: '/test',
   getParentRoute: () => ProtectedRoute,
 } as any)
 
@@ -122,13 +115,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedSearchImport
       parentRoute: typeof ProtectedImport
     }
-    '/_protected/test': {
-      id: '/_protected/test'
-      path: '/test'
-      fullPath: '/test'
-      preLoaderRoute: typeof ProtectedTestImport
-      parentRoute: typeof ProtectedImport
-    }
     '/_protected/': {
       id: '/_protected/'
       path: '/'
@@ -153,7 +139,6 @@ interface ProtectedRouteChildren {
   ProtectedExpensesRoute: typeof ProtectedExpensesRoute
   ProtectedInsightsRoute: typeof ProtectedInsightsRoute
   ProtectedSearchRoute: typeof ProtectedSearchRoute
-  ProtectedTestRoute: typeof ProtectedTestRoute
   ProtectedIndexRoute: typeof ProtectedIndexRoute
   ProtectedPayeesPayeeIdRoute: typeof ProtectedPayeesPayeeIdRoute
 }
@@ -163,7 +148,6 @@ const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedExpensesRoute: ProtectedExpensesRoute,
   ProtectedInsightsRoute: ProtectedInsightsRoute,
   ProtectedSearchRoute: ProtectedSearchRoute,
-  ProtectedTestRoute: ProtectedTestRoute,
   ProtectedIndexRoute: ProtectedIndexRoute,
   ProtectedPayeesPayeeIdRoute: ProtectedPayeesPayeeIdRoute,
 }
@@ -179,7 +163,6 @@ export interface FileRoutesByFullPath {
   '/expenses': typeof ProtectedExpensesRoute
   '/insights': typeof ProtectedInsightsRoute
   '/search': typeof ProtectedSearchRoute
-  '/test': typeof ProtectedTestRoute
   '/': typeof ProtectedIndexRoute
   '/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
@@ -190,7 +173,6 @@ export interface FileRoutesByTo {
   '/expenses': typeof ProtectedExpensesRoute
   '/insights': typeof ProtectedInsightsRoute
   '/search': typeof ProtectedSearchRoute
-  '/test': typeof ProtectedTestRoute
   '/': typeof ProtectedIndexRoute
   '/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
@@ -203,7 +185,6 @@ export interface FileRoutesById {
   '/_protected/expenses': typeof ProtectedExpensesRoute
   '/_protected/insights': typeof ProtectedInsightsRoute
   '/_protected/search': typeof ProtectedSearchRoute
-  '/_protected/test': typeof ProtectedTestRoute
   '/_protected/': typeof ProtectedIndexRoute
   '/_protected/payees/$payeeId': typeof ProtectedPayeesPayeeIdRoute
 }
@@ -217,7 +198,6 @@ export interface FileRouteTypes {
     | '/expenses'
     | '/insights'
     | '/search'
-    | '/test'
     | '/'
     | '/payees/$payeeId'
   fileRoutesByTo: FileRoutesByTo
@@ -227,7 +207,6 @@ export interface FileRouteTypes {
     | '/expenses'
     | '/insights'
     | '/search'
-    | '/test'
     | '/'
     | '/payees/$payeeId'
   id:
@@ -238,7 +217,6 @@ export interface FileRouteTypes {
     | '/_protected/expenses'
     | '/_protected/insights'
     | '/_protected/search'
-    | '/_protected/test'
     | '/_protected/'
     | '/_protected/payees/$payeeId'
   fileRoutesById: FileRoutesById
@@ -275,7 +253,6 @@ export const routeTree = rootRoute
         "/_protected/expenses",
         "/_protected/insights",
         "/_protected/search",
-        "/_protected/test",
         "/_protected/",
         "/_protected/payees/$payeeId"
       ]
@@ -297,10 +274,6 @@ export const routeTree = rootRoute
     },
     "/_protected/search": {
       "filePath": "_protected.search.tsx",
-      "parent": "/_protected"
-    },
-    "/_protected/test": {
-      "filePath": "_protected.test.tsx",
       "parent": "/_protected"
     },
     "/_protected/": {

@@ -10,16 +10,8 @@ export default function LoadExpensesButton() {
   const loadExpensesMutation = useMutation({
     mutationFn: () => loadExpenses(),
     onSuccess: async (data) => {
-      if (
-        data.message === "No expenses found. Please do a full refresh first"
-      ) {
-        toast.info("No expenses found", {
-          description: "Please try again later",
-        });
-        return;
-      }
       await queryClient.invalidateQueries();
-      toast.success("Expenses loaded");
+      toast.success(data?.message ?? "Load successful");
     },
     onError: async () => {
       toast.error("Load unsuccessful", {
