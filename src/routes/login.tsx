@@ -25,7 +25,6 @@ function LoginPage() {
               provider: "github",
               callbackURL: "/",
             });
-            setIsLogging(false);
           }}
         >
           {isLogging ? (
