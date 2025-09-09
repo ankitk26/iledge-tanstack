@@ -10,7 +10,7 @@ import type { ReactNode } from "react";
 import { Toaster } from "~/components/ui/sonner";
 import { queries } from "~/queries";
 import { getUser } from "~/server-fns/get-user";
-import appCss from "../app.css?url";
+import appCss from "~/app.css?url";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -32,8 +32,13 @@ export const Route = createRootRouteWithContext<{
       {
         title: "iledge - Analyze expenses and save",
       },
+      {
+        name: "color-scheme",
+        content: "light dark",
+      },
     ],
     links: [
+      { rel: "preload", href: appCss, as: "style" },
       { rel: "stylesheet", href: appCss },
       {
         rel: "stylesheet",
