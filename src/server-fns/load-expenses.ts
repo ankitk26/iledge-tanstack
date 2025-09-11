@@ -30,8 +30,8 @@ export const loadExpenses = createServerFn({ method: "POST" }).handler(
       port: parseInt(process.env.SMTP_PORT || "993"),
       secure: true,
       auth: {
-        user: process.env.EMAIL_USER!,
-        pass: process.env.EMAIL_USER_PASSWORD!,
+        user: process.env.EMAIL_USER as string,
+        pass: process.env.EMAIL_USER_PASSWORD as string,
       },
     });
 
@@ -66,7 +66,7 @@ export const loadExpenses = createServerFn({ method: "POST" }).handler(
       });
 
       // Return empty list if no mails are found
-      if (!mailIds.length) {
+      if (!mailIds || !mailIds.length) {
         await client.logout();
         return { message: "No new mails found" };
       }
