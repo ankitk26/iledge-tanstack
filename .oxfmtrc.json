@@ -1,7 +1,25 @@
 {
-  "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "ignorePatterns": ["dev/*", "src/routeTree.gen.ts"],
-  "printWidth": 80,
-  "useTabs": true,
-  "tabWidth": 4
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"ignorePatterns": ["dev/*", "src/routeTree.gen.ts"],
+	"printWidth": 80,
+	"useTabs": true,
+	"tabWidth": 4,
+	"experimentalSortImports": {
+		"groups": [
+			["side-effect"],
+			["builtin"],
+			["external", "external-type"],
+			["internal", "internal-type"],
+			["parent", "parent-type"],
+			["sibling", "sibling-type"],
+			["index", "index-type"]
+		],
+		"partitionByNewline": false
+	},
+	"experimentalTailwindcss": {
+		"stylesheet": "./src/app.css",
+		"attributes": ["class", "className"],
+		"functions": ["clsx", "cn"],
+		"preserveWhitespace": true
+	}
 }

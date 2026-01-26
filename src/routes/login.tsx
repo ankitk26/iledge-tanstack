@@ -1,42 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
+
 import GithubIcon from "~/components/login/github-icon";
 import { Button } from "~/components/ui/button";
 import { authClient } from "~/lib/auth-client";
 
 export const Route = createFileRoute("/login")({
-  component: LoginPage,
+	component: LoginPage,
 });
 
 function LoginPage() {
-  const [isLogging, setIsLogging] = useState(false);
+	const [isLogging, setIsLogging] = useState(false);
 
-  return (
-    <div className="flex flex-col h-screen items-center justify-center py-12">
-      <div className="border space-y-8 p-10 flex flex-col items-center rounded-lg">
-        <h2 className="text-2xl font-bold">Log in</h2>
-        <Button
-          className="w-60"
-          size="lg"
-          onClick={async () => {
-            setIsLogging(true);
-            await authClient.signIn.social({
-              provider: "github",
-              callbackURL: "/",
-            });
-          }}
-        >
-          {isLogging ? (
-            <LoaderIcon className="animate-spin" />
-          ) : (
-            <>
-              <GithubIcon />
-              Sign in with Github
-            </>
-          )}
-        </Button>
-      </div>
-    </div>
-  );
+	return (
+		<div className="flex h-screen flex-col items-center justify-center py-12">
+			<div className="flex flex-col items-center space-y-8 rounded-lg border p-10">
+				<h2 className="text-2xl font-bold">Log in</h2>
+				<Button
+					className="w-60"
+					size="lg"
+					onClick={async () => {
+						setIsLogging(true);
+						await authClient.signIn.social({
+							provider: "github",
+							callbackURL: "/",
+						});
+					}}
+				>
+					{isLogging ? (
+						<LoaderIcon className="animate-spin" />
+					) : (
+						<>
+							<GithubIcon />
+							Sign in with Github
+						</>
+					)}
+				</Button>
+			</div>
+		</div>
+	);
 }

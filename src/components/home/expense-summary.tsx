@@ -3,14 +3,14 @@ import CurrWeekExpenses from "./curr-week-expenses";
 import TodayExpenses from "./today-expenses";
 
 export default function ExpenseSummary() {
-  return (
-    <section>
-      <h1 className="text-xl font-semibold">Expense Summary</h1>
-      <div className="grid my-4 lg:grid-cols-3 gap-8">
-        <TodayExpenses />
-        <CurrWeekExpenses />
-        <CurrMonthExpenses />
-      </div>
-    </section>
-  );
+	return (
+		<section>
+			<h1 className="text-xl font-semibold">Expense Summary</h1>
+			<div className="my-4 grid gap-8 lg:grid-cols-3">
+				<TodayExpenses />
+				<CurrWeekExpenses />
+				<CurrMonthExpenses />
+			</div>
+		</section>
+	);
 }
