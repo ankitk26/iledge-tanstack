@@ -72,7 +72,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 					disableTransitionOnChange
 				>
 					{children}
-					<Toaster />
+					<Toaster style={{ fontFamily: "inherit" }} />
 				</NextThemesProvider>
 				<Scripts />
 			</body>
