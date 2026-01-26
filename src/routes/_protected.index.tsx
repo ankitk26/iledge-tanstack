@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import DailyExpenseBreakdown from "~/components/home/daily-expense-breakdown";
-import ExpenseSummary from "~/components/home/expense-summary";
-import WeeklyExpenseBreakdown from "~/components/home/weekly-expense-breakdown";
-import { queries } from "~/queries";
+import DailyExpenseBreakdown from "@/components/home/daily-expense-breakdown";
+import ExpenseSummary from "@/components/home/expense-summary";
+import WeeklyExpenseBreakdown from "@/components/home/weekly-expense-breakdown";
+import { queries } from "@/queries";
 
 export const Route = createFileRoute("/_protected/")({
 	loader: ({ context }) => {

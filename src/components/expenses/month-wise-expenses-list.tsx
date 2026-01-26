@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSearch } from "@tanstack/react-router";
 
-import { queries } from "~/queries";
+import { queries } from "@/queries";
 
 import { Card } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";

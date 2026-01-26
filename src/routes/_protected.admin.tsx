@@ -1,10 +1,10 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { Suspense } from "react";
 
-import PayeeList from "~/components/admin/payee-list";
-import { Card } from "~/components/ui/card";
-import { Skeleton } from "~/components/ui/skeleton";
-import { queries } from "~/queries";
+import PayeeList from "@/components/admin/payee-list";
+import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { queries } from "@/queries";
 
 export const Route = createFileRoute("/_protected/admin")({
 	loader: ({ context }) => {

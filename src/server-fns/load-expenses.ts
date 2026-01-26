@@ -4,8 +4,8 @@ import { eq, max, sql } from "drizzle-orm";
 import { ImapFlow } from "imapflow";
 import { simpleParser } from "mailparser";
 
-import { db } from "~/db";
-import { expense, payee } from "~/db/schema";
+import { db } from "@/db";
+import { expense, payee } from "@/db/schema";
 
 import { getUser } from "./get-user";
 

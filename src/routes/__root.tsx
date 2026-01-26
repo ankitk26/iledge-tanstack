@@ -8,10 +8,10 @@ import {
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
 
-import appCss from "~/app.css?url";
-import { Toaster } from "~/components/ui/sonner";
-import { queries } from "~/queries";
-import { getUser } from "~/server-fns/get-user";
+import appCss from "@/app.css?url";
+import { Toaster } from "@/components/ui/sonner";
+import { queries } from "@/queries";
+import { getUser } from "@/server-fns/get-user";
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;

@@ -1,23 +1,23 @@
 import { queryOptions } from "@tanstack/react-query";
 
-import { getCategories } from "~/server-fns/get-categories";
-import { getCurrentDayTotal } from "~/server-fns/get-current-day-total";
-import { getCurrentWeekTotal } from "~/server-fns/get-current-week-total";
-import { getDailyTotals } from "~/server-fns/get-daily-totals";
-import { ExpensesQueryParams, getExpenses } from "~/server-fns/get-expenses";
-import { getMonthComparison } from "~/server-fns/get-month-comparison";
-import { getMonthlyTotals } from "~/server-fns/get-monthly-totals";
-import { getPayeeById } from "~/server-fns/get-payee-by-id";
-import { getPayeeDailyTotals } from "~/server-fns/get-payee-daily-totals";
-import { getPayeeMonthStats } from "~/server-fns/get-payee-month-stats";
-import { getPayeeMonthlyCounts } from "~/server-fns/get-payee-monthly-counts";
-import { getPayeeMonthlyTotals } from "~/server-fns/get-payee-monthly-totals";
-import { getPayeeOverallSummary } from "~/server-fns/get-payee-overall-summary";
-import { getPayeeTotals } from "~/server-fns/get-payee-totals";
-import { getPayees } from "~/server-fns/get-payees";
-import { getSearchPayeeIds } from "~/server-fns/get-search-payee-ids";
-import { getUser } from "~/server-fns/get-user";
-import { getWeeklyTotals } from "~/server-fns/get-weekly-totals";
+import { getCategories } from "@/server-fns/get-categories";
+import { getCurrentDayTotal } from "@/server-fns/get-current-day-total";
+import { getCurrentWeekTotal } from "@/server-fns/get-current-week-total";
+import { getDailyTotals } from "@/server-fns/get-daily-totals";
+import { ExpensesQueryParams, getExpenses } from "@/server-fns/get-expenses";
+import { getMonthComparison } from "@/server-fns/get-month-comparison";
+import { getMonthlyTotals } from "@/server-fns/get-monthly-totals";
+import { getPayeeById } from "@/server-fns/get-payee-by-id";
+import { getPayeeDailyTotals } from "@/server-fns/get-payee-daily-totals";
+import { getPayeeMonthStats } from "@/server-fns/get-payee-month-stats";
+import { getPayeeMonthlyCounts } from "@/server-fns/get-payee-monthly-counts";
+import { getPayeeMonthlyTotals } from "@/server-fns/get-payee-monthly-totals";
+import { getPayeeOverallSummary } from "@/server-fns/get-payee-overall-summary";
+import { getPayeeTotals } from "@/server-fns/get-payee-totals";
+import { getPayees } from "@/server-fns/get-payees";
+import { getSearchPayeeIds } from "@/server-fns/get-search-payee-ids";
+import { getUser } from "@/server-fns/get-user";
+import { getWeeklyTotals } from "@/server-fns/get-weekly-totals";
 
 const expenseQueries = {
 	today: queryOptions({

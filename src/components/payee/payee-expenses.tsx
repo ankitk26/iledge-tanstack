@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { authClient } from "~/lib/auth-client";
-import { queries } from "~/queries";
+import { authClient } from "@/lib/auth-client";
+import { queries } from "@/queries";
 
 import ExpenseItem from "../expenses/expense-item";
 

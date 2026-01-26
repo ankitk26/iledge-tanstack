@@ -1,6 +1,6 @@
 import { sql } from "drizzle-orm";
 
-import { expense } from "~/db/schema";
+import { expense } from "@/db/schema";
 
 // convert transaction_date to IST
 export const transactionDateTz = sql`${expense.transaction_date} at time zone 'Asia/Kolkata'`;

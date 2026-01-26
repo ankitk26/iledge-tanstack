@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { CalculatorIcon } from "lucide-react";
 
-import { formatAmount } from "~/lib/format-amount";
-import { queries } from "~/queries";
+import { formatAmount } from "@/lib/format-amount";
+import { queries } from "@/queries";
 
 import {
 	Card,

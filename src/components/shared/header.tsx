@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Suspense } from "react";
 
-import { authClient } from "~/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";

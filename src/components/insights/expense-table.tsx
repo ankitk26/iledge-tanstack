@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearch } from "@tanstack/react-router";
 import { useMemo } from "react";
 
-import { formatAmount } from "~/lib/format-amount";
-import { queries } from "~/queries";
-import { useInsightsStore } from "~/store/use-insights";
+import { formatAmount } from "@/lib/format-amount";
+import { queries } from "@/queries";
+import { useInsightsStore } from "@/store/use-insights";
 
 import { Card, CardContent } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";

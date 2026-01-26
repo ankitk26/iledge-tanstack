@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-import { queries } from "~/queries";
+import { queries } from "@/queries";
 
 import CategoryGroup from "./category-group";
 

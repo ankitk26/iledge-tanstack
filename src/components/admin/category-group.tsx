@@ -1,4 +1,4 @@
-import { Category } from "~/db/schema";
+import { Category } from "@/db/schema";
 
 import { Separator } from "../ui/separator";
 

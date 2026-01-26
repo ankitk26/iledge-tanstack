@@ -8,7 +8,7 @@ import {
 	YAxis,
 } from "recharts";
 
-import { queries } from "~/queries";
+import { queries } from "@/queries";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import {

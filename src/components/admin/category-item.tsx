@@ -1,5 +1,5 @@
-import { Category } from "~/db/schema";
-import { useAdminStore } from "~/store/use-admin-store";
+import { Category } from "@/db/schema";
+import { useAdminStore } from "@/store/use-admin-store";
 
 import CategoryIcon from "../shared/category-icon";
 import { Button } from "../ui/button";

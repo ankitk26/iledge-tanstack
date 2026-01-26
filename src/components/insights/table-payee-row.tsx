@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import React from "react";
 
-import { formatAmount } from "~/lib/format-amount";
+import { formatAmount } from "@/lib/format-amount";
 
 import { Separator } from "../ui/separator";
 

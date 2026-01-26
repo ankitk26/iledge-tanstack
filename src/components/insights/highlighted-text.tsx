@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useInsightsStore } from "~/store/use-insights";
+import { useInsightsStore } from "@/store/use-insights";
 
 type Props = {
 	text: string;

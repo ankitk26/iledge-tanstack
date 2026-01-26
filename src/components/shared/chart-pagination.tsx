@@ -5,8 +5,8 @@ import {
 	ChevronsRightIcon,
 } from "lucide-react";
 
-import { Button } from "~/components/ui/button";
-import { PaginationState, usePaginationControls } from "~/store/use-pagination";
+import { Button } from "@/components/ui/button";
+import { PaginationState, usePaginationControls } from "@/store/use-pagination";
 
 export default function ChartPagination({
 	paginationInstanceId,

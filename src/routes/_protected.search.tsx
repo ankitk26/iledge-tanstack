@@ -3,15 +3,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
-import CurrentMonthCard from "~/components/payee/current-month-card";
-import OverallSpentCard from "~/components/payee/overall-spent-card";
-import PayeeDailyExpenses from "~/components/payee/payee-daily-expenses";
-import PayeeExpenses from "~/components/payee/payee-expenses";
-import PayeeMonthlyExpenses from "~/components/payee/payee-monthly-expenses";
-import PayeeMonthlyExpensesCount from "~/components/payee/payee-monthly-expenses-count";
-import SearchInput from "~/components/search/search-input";
-import { Skeleton } from "~/components/ui/skeleton";
-import { queries } from "~/queries";
+import CurrentMonthCard from "@/components/payee/current-month-card";
+import OverallSpentCard from "@/components/payee/overall-spent-card";
+import PayeeDailyExpenses from "@/components/payee/payee-daily-expenses";
+import PayeeExpenses from "@/components/payee/payee-expenses";
+import PayeeMonthlyExpenses from "@/components/payee/payee-monthly-expenses";
+import PayeeMonthlyExpensesCount from "@/components/payee/payee-monthly-expenses-count";
+import SearchInput from "@/components/search/search-input";
+import { Skeleton } from "@/components/ui/skeleton";
+import { queries } from "@/queries";
 
 const searchParams = z.object({
 	query: z.string().optional(),

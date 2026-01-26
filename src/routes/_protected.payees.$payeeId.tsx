@@ -1,16 +1,16 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Suspense } from "react";
 
-import CurrentMonthCard from "~/components/payee/current-month-card";
-import OverallSpentCard from "~/components/payee/overall-spent-card";
-import PayeeDailyExpenses from "~/components/payee/payee-daily-expenses";
-import PayeeExpenses from "~/components/payee/payee-expenses";
-import PayeeMonthlyExpenses from "~/components/payee/payee-monthly-expenses";
-import PayeeMonthlyExpensesCount from "~/components/payee/payee-monthly-expenses-count";
-import PayeeTitle from "~/components/payee/payee-title";
-import { Skeleton } from "~/components/ui/skeleton";
-import { queries } from "~/queries";
-import { getPayeeById } from "~/server-fns/get-payee-by-id";
+import CurrentMonthCard from "@/components/payee/current-month-card";
+import OverallSpentCard from "@/components/payee/overall-spent-card";
+import PayeeDailyExpenses from "@/components/payee/payee-daily-expenses";
+import PayeeExpenses from "@/components/payee/payee-expenses";
+import PayeeMonthlyExpenses from "@/components/payee/payee-monthly-expenses";
+import PayeeMonthlyExpensesCount from "@/components/payee/payee-monthly-expenses-count";
+import PayeeTitle from "@/components/payee/payee-title";
+import { Skeleton } from "@/components/ui/skeleton";
+import { queries } from "@/queries";
+import { getPayeeById } from "@/server-fns/get-payee-by-id";
 
 export const Route = createFileRoute("/_protected/payees/$payeeId")({
 	beforeLoad: async ({ params }) => {

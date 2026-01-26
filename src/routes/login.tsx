@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 
-import GithubIcon from "~/components/login/github-icon";
-import { Button } from "~/components/ui/button";
-import { authClient } from "~/lib/auth-client";
+import GithubIcon from "@/components/login/github-icon";
+import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
 
 export const Route = createFileRoute("/login")({
 	component: LoginPage,

@@ -2,8 +2,8 @@ import { createServerFn } from "@tanstack/react-start";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 
-import { db } from "~/db";
-import { payee } from "~/db/schema";
+import { db } from "@/db";
+import { payee } from "@/db/schema";
 
 import { getUser } from "./get-user";
 

@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 
-import { db } from "~/db";
-import { Category, category } from "~/db/schema";
+import { db } from "@/db";
+import { Category, category } from "@/db/schema";
 
 export const getCategories = createServerFn({ method: "GET" }).handler(
 	async () => {

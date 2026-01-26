@@ -1,4 +1,4 @@
-import { getDateParts } from "~/lib/month-year-formatter";
+import { getDateParts } from "@/lib/month-year-formatter";
 
 export default function XAxisTick({ x, y, payload }: any) {
 	if (!payload || typeof payload.value !== "string") {

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { RefreshCwIcon } from "lucide-react";
 import { toast } from "sonner";
 
-import { loadExpenses } from "~/server-fns/load-expenses";
+import { loadExpenses } from "@/server-fns/load-expenses";
 
 import { Button } from "../ui/button";
 

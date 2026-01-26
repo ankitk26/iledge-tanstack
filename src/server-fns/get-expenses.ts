@@ -2,9 +2,9 @@ import { createServerFn } from "@tanstack/react-start";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { z } from "zod";
 
-import { db } from "~/db";
-import { category, expense, payee } from "~/db/schema";
-import { transactionDateTz } from "~/lib/get-time-zone-dates";
+import { db } from "@/db";
+import { category, expense, payee } from "@/db/schema";
+import { transactionDateTz } from "@/lib/get-time-zone-dates";
 
 const fnParams = z.object({
 	userId: z.string(),

@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { EditIcon } from "lucide-react";
 
-import { useAdminStore } from "~/store/use-admin-store";
-import { useDialogStore } from "~/store/use-dialog-store";
+import { useAdminStore } from "@/store/use-admin-store";
+import { useDialogStore } from "@/store/use-dialog-store";
 
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Badge } from "../ui/badge";

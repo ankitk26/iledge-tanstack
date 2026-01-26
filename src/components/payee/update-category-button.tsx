@@ -1,7 +1,7 @@
 import { PencilIcon } from "lucide-react";
 
-import { useAdminStore } from "~/store/use-admin-store";
-import { useDialogStore } from "~/store/use-dialog-store";
+import { useAdminStore } from "@/store/use-admin-store";
+import { useDialogStore } from "@/store/use-dialog-store";
 
 import { Button } from "../ui/button";
 

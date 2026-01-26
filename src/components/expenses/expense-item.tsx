@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
-import { formatAmount } from "~/lib/format-amount";
-import { getDateParts } from "~/lib/month-year-formatter";
+import { formatAmount } from "@/lib/format-amount";
+import { getDateParts } from "@/lib/month-year-formatter";
 
 import CategoryIcon from "../shared/category-icon";
 import { Card } from "../ui/card";

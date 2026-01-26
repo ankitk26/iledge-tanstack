@@ -2,7 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { MenuIcon } from "lucide-react";
 import { Suspense, useState } from "react";
 
-import { authClient } from "~/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";

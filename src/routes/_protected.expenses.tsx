@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
-import MonthWiseExpensesChart from "~/components/expenses/month-wise-expenses-chart";
-import MonthWiseExpensesList from "~/components/expenses/month-wise-expenses-list";
-import { queries } from "~/queries";
+import MonthWiseExpensesChart from "@/components/expenses/month-wise-expenses-chart";
+import MonthWiseExpensesList from "@/components/expenses/month-wise-expenses-list";
+import { queries } from "@/queries";
 
 const searchParams = z.object({
 	month: z

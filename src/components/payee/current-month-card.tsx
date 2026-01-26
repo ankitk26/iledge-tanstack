@@ -5,8 +5,8 @@ import {
 	TrendingUpIcon,
 } from "lucide-react";
 
-import { formatAmount } from "~/lib/format-amount";
-import { queries } from "~/queries";
+import { formatAmount } from "@/lib/format-amount";
+import { queries } from "@/queries";
 
 import {
 	Card,

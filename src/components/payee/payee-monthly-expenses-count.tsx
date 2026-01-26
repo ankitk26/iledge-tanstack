@@ -8,10 +8,10 @@ import {
 	YAxis,
 } from "recharts";
 
-import { useMediaQuery } from "~/hooks/use-media-query";
-import { getDateParts } from "~/lib/month-year-formatter";
-import { queries } from "~/queries";
-import { usePaginationControls } from "~/store/use-pagination";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { getDateParts } from "@/lib/month-year-formatter";
+import { queries } from "@/queries";
+import { usePaginationControls } from "@/store/use-pagination";
 
 import ChartPagination from "../shared/chart-pagination";
 import XAxisTick from "../shared/x-axis-tick";
