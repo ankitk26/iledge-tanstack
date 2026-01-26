@@ -7,11 +7,11 @@ import { transactionDateTz } from "~/lib/get-time-zone-dates";
 import { getUser } from "./get-user";
 
 export const getPayeeTotals = createServerFn({ method: "GET" })
-  .validator(
+  .inputValidator(
     z.object({
       month: z.number().optional(),
       year: z.number().optional(),
-    })
+    }),
   )
   .handler(async ({ data }) => {
     const user = await getUser();
@@ -34,15 +34,15 @@ export const getPayeeTotals = createServerFn({ method: "GET" })
         and(
           eq(
             sql`extract(month from ${transactionDateTz})`,
-            month ?? sql`extract(month from ${transactionDateTz})::int`
+            month ?? sql`extract(month from ${transactionDateTz})::int`,
           ),
           eq(
             sql`extract(year from ${transactionDateTz})`,
-            year ?? sql`extract(year from ${transactionDateTz})::int`
+            year ?? sql`extract(year from ${transactionDateTz})::int`,
           ),
           eq(expense.user_id, user.id),
-          eq(payee.user_id, user.id)
-        )
+          eq(payee.user_id, user.id),
+        ),
       )
       .groupBy(payee.id, payee.name, payee.payee_upi_id)
       .orderBy(payee.name);

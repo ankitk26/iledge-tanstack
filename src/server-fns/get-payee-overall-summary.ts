@@ -6,10 +6,10 @@ import { expense, payee } from "~/db/schema";
 import { getUser } from "./get-user";
 
 export const getPayeeOverallSummary = createServerFn({ method: "GET" })
-  .validator(
+  .inputValidator(
     z.object({
       payees: z.string(),
-    })
+    }),
   )
   .handler(async ({ data }) => {
     const user = await getUser();
@@ -30,7 +30,7 @@ export const getPayeeOverallSummary = createServerFn({ method: "GET" })
         and(
           inArray(expense.payee_id, payeeIds),
           eq(expense.user_id, user.id),
-          eq(payee.user_id, user.id)
-        )
+          eq(payee.user_id, user.id),
+        ),
       );
   });

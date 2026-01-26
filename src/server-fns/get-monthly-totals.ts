@@ -6,10 +6,10 @@ import { expense } from "~/db/schema";
 import { transactionDateTz } from "~/lib/get-time-zone-dates";
 
 export const getMonthlyTotals = createServerFn({ method: "GET" })
-  .validator(
+  .inputValidator(
     z.object({
       id: z.string(),
-    })
+    }),
   )
   .handler(({ data }) => {
     return db

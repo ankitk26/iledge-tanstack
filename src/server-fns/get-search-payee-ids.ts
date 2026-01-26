@@ -6,10 +6,10 @@ import { payee } from "~/db/schema";
 import { getUser } from "./get-user";
 
 export const getSearchPayeeIds = createServerFn({ method: "GET" })
-  .validator(
+  .inputValidator(
     z.object({
       query: z.string(),
-    })
+    }),
   )
   .handler(async ({ data }) => {
     const user = await getUser();
@@ -26,10 +26,10 @@ export const getSearchPayeeIds = createServerFn({ method: "GET" })
         and(
           or(
             ilike(payee.name, `%${data.query}%`),
-            ilike(payee.payee_upi_id, `%${data.query}%`)
+            ilike(payee.payee_upi_id, `%${data.query}%`),
           ),
-          eq(payee.user_id, user.id)
-        )
+          eq(payee.user_id, user.id),
+        ),
       );
 
     return payees.map((payee) => payee.id.toString()).join(",");

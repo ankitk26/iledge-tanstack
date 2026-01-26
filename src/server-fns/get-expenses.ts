@@ -15,7 +15,7 @@ const fnParams = z.object({
 export type ExpensesQueryParams = z.infer<typeof fnParams>;
 
 export const getExpenses = createServerFn({ method: "GET" })
-  .validator(fnParams)
+  .inputValidator(fnParams)
   .handler(async ({ data }) => {
     const payeesList = data.payees?.split(",").map((p) => parseInt(p));
 
@@ -35,7 +35,7 @@ export const getExpenses = createServerFn({ method: "GET" })
       .innerJoin(payee, eq(expense.payee_id, payee.id))
       .innerJoin(
         category,
-        sql`case when expense.category_id = 0 then payee.category_id else expense.category_id end = category.id`
+        sql`case when expense.category_id = 0 then payee.category_id else expense.category_id end = category.id`,
       )
       .where(
         and(
@@ -47,8 +47,8 @@ export const getExpenses = createServerFn({ method: "GET" })
             ? sql`extract(year from ${transactionDateTz}) = ${data.year}`
             : sql`true`,
           eq(payee.user_id, data.userId),
-          eq(expense.user_id, data.userId)
-        )
+          eq(expense.user_id, data.userId),
+        ),
       )
       .orderBy(desc(expense.transaction_date));
   });

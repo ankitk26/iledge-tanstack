@@ -7,10 +7,10 @@ import { nowTz, transactionDateTz } from "~/lib/get-time-zone-dates";
 import { getUser } from "./get-user";
 
 export const getPayeeMonthStats = createServerFn({ method: "GET" })
-  .validator(
+  .inputValidator(
     z.object({
       payees: z.string(),
-    })
+    }),
   )
   .handler(async ({ data }) => {
     const user = await getUser();
@@ -38,8 +38,8 @@ export const getPayeeMonthStats = createServerFn({ method: "GET" })
           inArray(expense.payee_id, payeeIds),
           gte(transactionDateTz, previousMonth),
           eq(expense.user_id, user.id),
-          eq(payee.user_id, user.id)
-        )
+          eq(payee.user_id, user.id),
+        ),
       );
 
     return result[0];

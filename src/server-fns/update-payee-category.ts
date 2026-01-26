@@ -6,11 +6,11 @@ import { payee } from "~/db/schema";
 import { getUser } from "./get-user";
 
 export const updatePayeeCategory = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     z.object({
       payeeId: z.number(),
       updatedCategoryId: z.number(),
-    })
+    }),
   )
   .handler(async ({ data }) => {
     const user = await getUser();

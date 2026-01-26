@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { reactStartCookies } from "better-auth/react-start";
+import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "~/db";
 import { user, session, account, verification } from "~/db/auth-schema";
@@ -45,5 +45,5 @@ export const auth = betterAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     },
   },
-  plugins: [reactStartCookies()],
+  plugins: [tanstackStartCookies()],
 });

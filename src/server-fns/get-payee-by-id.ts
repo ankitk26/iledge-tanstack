@@ -6,10 +6,10 @@ import { category, payee } from "~/db/schema";
 import { getUser } from "./get-user";
 
 export const getPayeeById = createServerFn({ method: "GET" })
-  .validator(
+  .inputValidator(
     z.object({
       payeeId: z.string(),
-    })
+    }),
   )
   .handler(async ({ data }) => {
     const user = await getUser();
@@ -28,7 +28,7 @@ export const getPayeeById = createServerFn({ method: "GET" })
       .from(payee)
       .innerJoin(category, eq(payee.category_id, category.id))
       .where(
-        and(eq(payee.id, parseInt(data.payeeId)), eq(payee.user_id, user.id))
+        and(eq(payee.id, parseInt(data.payeeId)), eq(payee.user_id, user.id)),
       )
       .limit(1);
   });

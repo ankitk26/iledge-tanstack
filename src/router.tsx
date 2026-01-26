@@ -5,7 +5,7 @@ import { Loader2Icon } from "lucide-react";
 import NotFound from "./components/tanstack/not-found";
 import { routeTree } from "./routeTree.gen";
 
-export function createRouter() {
+export function getRouter() {
   const queryClient = new QueryClient();
 
   const router = createTanStackRouter({
@@ -22,10 +22,4 @@ export function createRouter() {
   });
 
   return routerWithQueryClient(router, queryClient);
-}
-
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: ReturnType<typeof createRouter>;
-  }
 }
