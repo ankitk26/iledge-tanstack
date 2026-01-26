@@ -50,7 +50,7 @@ export default function PayeeDailyExpenses({ payees }: { payees: string }) {
 				) : (
 					<ChartContainer
 						config={chartConfig}
-						className="mx-auto aspect-auto h-[250px]"
+						className="mx-auto aspect-auto h-62.5"
 					>
 						<BarChart data={data}>
 							<CartesianGrid vertical={false} />

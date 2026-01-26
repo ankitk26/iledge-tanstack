@@ -57,7 +57,7 @@ export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
 			</CardHeader>
 			<CardContent className="mt-4">
 				{isPending && (
-					<div className="mx-auto flex aspect-auto h-[250px] w-full items-end justify-evenly gap-8">
+					<div className="mx-auto flex aspect-auto h-62.5 w-full items-end justify-evenly gap-8">
 						<Skeleton className="h-1/2 w-12" />
 						<Skeleton className="h-3/4 w-12" />
 						<Skeleton className="h-1/4 w-12" />
@@ -72,7 +72,7 @@ export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
 					) : (
 						<ChartContainer
 							config={chartConfig}
-							className="mx-auto aspect-auto h-[250px]"
+							className="mx-auto aspect-auto h-62.5"
 						>
 							<BarChart data={windowedData}>
 								<CartesianGrid vertical={false} />
