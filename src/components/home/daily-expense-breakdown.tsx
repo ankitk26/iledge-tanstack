@@ -35,7 +35,7 @@ export default function DailyExpenseBreakdown() {
 			</CardHeader>
 			<CardContent>
 				{isPending ? (
-					<div className="mx-auto flex aspect-auto h-[250px] w-full items-end justify-evenly gap-8">
+					<div className="mx-auto flex aspect-auto h-62.5 w-full items-end justify-evenly gap-8">
 						<Skeleton className="h-1/2 w-8" />
 						<Skeleton className="h-3/4 w-8" />
 						<Skeleton className="h-1/4 w-8" />
@@ -54,11 +54,11 @@ export default function DailyExpenseBreakdown() {
 					data.length > 0 && (
 						<ChartContainer
 							config={chartConfig}
-							className="mx-auto aspect-auto h-[250px]"
+							className="mx-auto aspect-auto h-62.5"
 						>
 							<BarChart data={data}>
 								<CartesianGrid vertical={false} />
-								<YAxis scale="sqrt" hide />
+								<YAxis scale="sqrt" domain={[0, "auto"]} hide />
 								<XAxis
 									dataKey="day"
 									tickLine={false}
