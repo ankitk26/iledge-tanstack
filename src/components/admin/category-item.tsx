@@ -9,18 +9,14 @@ type Props = {
 };
 
 export default function CategoryItem({ category }: Props) {
-	const selectedCategoryId = useAdminStore(
-		(store) => store.selectedCategoryId,
-	);
+	const selectedCategoryId = useAdminStore((store) => store.selectedCategoryId);
 	const setSelectedCategoryId = useAdminStore(
 		(store) => store.setSelectedCategoryId,
 	);
 
 	return (
 		<Button
-			variant={
-				selectedCategoryId === category.id ? "default" : "secondary"
-			}
+			variant={selectedCategoryId === category.id ? "default" : "secondary"}
 			onClick={() => setSelectedCategoryId(category.id)}
 			className="flex w-full items-center justify-start gap-2 lg:w-fit"
 		>

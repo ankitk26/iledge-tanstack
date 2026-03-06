@@ -32,9 +32,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
-	const { data, isPending } = useQuery(
-		queries.expenses.monthlyTotals(userId),
-	);
+	const { data, isPending } = useQuery(queries.expenses.monthlyTotals(userId));
 	const navigate = useNavigate();
 	const isDesktopSize = useMediaQuery();
 
@@ -85,37 +83,25 @@ export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
 									axisLine={false}
 									interval={0}
 									tickFormatter={(value: string) => {
-										const { monthYear } =
-											getDateParts(value);
+										const { monthYear } = getDateParts(value);
 										return monthYear;
 									}}
 								/>
 								<ChartTooltip
 									cursor={false}
-									content={
-										<ChartTooltipContent
-											hideLabel
-											hideIndicator
-										/>
-									}
+									content={<ChartTooltipContent hideLabel hideIndicator />}
 								/>
 								<Bar
 									dataKey="amount"
 									className="cursor-pointer fill-foreground"
 									radius={6}
 									activeBar={({ ...props }) => {
-										return (
-											<Rectangle
-												{...props}
-												fillOpacity={0.5}
-											/>
-										);
+										return <Rectangle {...props} fillOpacity={0.5} />;
 									}}
 									onClick={(data) => {
-										const {
-											year: yearPart,
-											month: monthPart,
-										} = getDateParts(data.month_date);
+										const { year: yearPart, month: monthPart } = getDateParts(
+											data.month_date,
+										);
 										navigate({
 											to: "/expenses",
 											search: {

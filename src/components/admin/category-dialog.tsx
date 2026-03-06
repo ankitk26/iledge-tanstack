@@ -60,8 +60,7 @@ export default function CategoryDialog() {
 
 				// expenses page
 				queryClient.invalidateQueries({
-					queryKey: queries.expenses.filteredExpenses({ userId: "" })
-						.queryKey,
+					queryKey: queries.expenses.filteredExpenses({ userId: "" }).queryKey,
 				}),
 
 				// admin page
@@ -127,9 +126,7 @@ export default function CategoryDialog() {
 							updateCategoryMutation.mutate();
 						}}
 					>
-						{updateCategoryMutation.isPending
-							? "Updating..."
-							: "Update"}
+						{updateCategoryMutation.isPending ? "Updating..." : "Update"}
 					</Button>
 				</DialogFooter>
 			</DialogContent>

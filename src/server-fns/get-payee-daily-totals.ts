@@ -33,10 +33,7 @@ export const getPayeeDailyTotals = createServerFn({ method: "GET" })
 			.where(
 				and(
 					inArray(expense.payee_id, payeeIds),
-					gte(
-						sql`DATE_TRUNC('month', ${transactionDateTz})`,
-						currentMonth,
-					),
+					gte(sql`DATE_TRUNC('month', ${transactionDateTz})`, currentMonth),
 					eq(expense.user_id, user.id),
 					eq(payee.user_id, user.id),
 				),

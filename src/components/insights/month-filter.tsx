@@ -14,9 +14,7 @@ export default function MonthFilter() {
 	const navigate = useNavigate();
 
 	const months = Array.from({ length: 12 }, (_, i) =>
-		new Intl.DateTimeFormat("en", { month: "short" }).format(
-			new Date(2000, i),
-		),
+		new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(2000, i)),
 	);
 
 	return (

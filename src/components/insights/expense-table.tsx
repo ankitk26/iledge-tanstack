@@ -104,10 +104,7 @@ export default function ExpenseTable() {
 					<Skeleton className="mt-4 h-4 w-16 lg:mt-0" />
 				) : (
 					<div>
-						Total:{" "}
-						<strong>
-							{formatAmount(filteredTotalAmount ?? 0)}
-						</strong>
+						Total: <strong>{formatAmount(filteredTotalAmount ?? 0)}</strong>
 					</div>
 				)}
 			</div>

@@ -6,8 +6,7 @@ import { queries } from "@/queries";
 import ExpenseItem from "../expenses/expense-item";
 
 export default function PayeeExpenses({ payees }: { payees: string }) {
-	const { data: authData, isPending: authIsPending } =
-		authClient.useSession();
+	const { data: authData, isPending: authIsPending } = authClient.useSession();
 	const { data } = useQuery({
 		...queries.expenses.filteredExpenses({
 			userId: authData?.user.id ?? "",
@@ -22,10 +21,7 @@ export default function PayeeExpenses({ payees }: { payees: string }) {
 				{data?.length} expense{(data ?? []).length > 1 ? "s" : ""}
 			</h4>
 			{data?.map((expense) => (
-				<ExpenseItem
-					key={expense.id + "_payees_page"}
-					expense={expense}
-				/>
+				<ExpenseItem key={expense.id + "_payees_page"} expense={expense} />
 			))}
 		</div>
 	);

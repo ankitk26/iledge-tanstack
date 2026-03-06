@@ -51,19 +51,10 @@ export default function WeeklyExpenseBreakdown() {
 							<BarChart accessibilityLayer data={data}>
 								<CartesianGrid vertical={false} />
 								<YAxis scale="sqrt" hide />
-								<XAxis
-									dataKey="week"
-									tickLine={false}
-									axisLine={false}
-								/>
+								<XAxis dataKey="week" tickLine={false} axisLine={false} />
 								<ChartTooltip
 									cursor={false}
-									content={
-										<ChartTooltipContent
-											hideLabel
-											hideIndicator
-										/>
-									}
+									content={<ChartTooltipContent hideLabel hideIndicator />}
 								/>
 								<Bar
 									dataKey="amount"

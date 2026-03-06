@@ -30,10 +30,7 @@ export const getPayeeById = createServerFn({ method: "GET" })
 			.from(payee)
 			.innerJoin(category, eq(payee.category_id, category.id))
 			.where(
-				and(
-					eq(payee.id, parseInt(data.payeeId)),
-					eq(payee.user_id, user.id),
-				),
+				and(eq(payee.id, parseInt(data.payeeId)), eq(payee.user_id, user.id)),
 			)
 			.limit(1);
 	});

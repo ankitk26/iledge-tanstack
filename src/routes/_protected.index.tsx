@@ -9,9 +9,7 @@ export const Route = createFileRoute("/_protected/")({
 	loader: ({ context }) => {
 		context.queryClient.prefetchQuery(queries.expenses.today);
 		context.queryClient.prefetchQuery(queries.expenses.currentWeek);
-		context.queryClient.prefetchQuery(
-			queries.expenses.currentAndPreviousMonth,
-		);
+		context.queryClient.prefetchQuery(queries.expenses.currentAndPreviousMonth);
 		context.queryClient.prefetchQuery(queries.expenses.byWeek);
 		context.queryClient.prefetchQuery(queries.expenses.byDay);
 	},

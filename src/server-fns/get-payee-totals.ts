@@ -36,13 +36,11 @@ export const getPayeeTotals = createServerFn({ method: "GET" })
 				and(
 					eq(
 						sql`extract(month from ${transactionDateTz})`,
-						month ??
-							sql`extract(month from ${transactionDateTz})::int`,
+						month ?? sql`extract(month from ${transactionDateTz})::int`,
 					),
 					eq(
 						sql`extract(year from ${transactionDateTz})`,
-						year ??
-							sql`extract(year from ${transactionDateTz})::int`,
+						year ?? sql`extract(year from ${transactionDateTz})::int`,
 					),
 					eq(expense.user_id, user.id),
 					eq(payee.user_id, user.id),

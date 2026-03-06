@@ -23,10 +23,9 @@ export const getWeeklyTotals = createServerFn({ method: "GET" }).handler(
 		const weeklyAggregations = db.$with("weekly_aggregations").as(
 			db
 				.select({
-					week_start:
-						sql<Date>`DATE_TRUNC('week', ${transactionDateTz})`.as(
-							"week_start",
-						),
+					week_start: sql<Date>`DATE_TRUNC('week', ${transactionDateTz})`.as(
+						"week_start",
+					),
 					amount: sql<number>`ROUND(SUM(${expense.amount}))::float`.as(
 						"amount",
 					),

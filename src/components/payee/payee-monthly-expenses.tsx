@@ -64,15 +64,9 @@ export default function PayeeMonthlyExpenses({ payees }: { payees: string }) {
 						/>
 						<ChartTooltip
 							cursor={false}
-							content={
-								<ChartTooltipContent hideLabel hideIndicator />
-							}
+							content={<ChartTooltipContent hideLabel hideIndicator />}
 						/>
-						<Bar
-							dataKey="amount"
-							className="fill-foreground"
-							radius={6}
-						/>
+						<Bar dataKey="amount" className="fill-foreground" radius={6} />
 					</BarChart>
 				</ChartContainer>
 				{showPagination && (

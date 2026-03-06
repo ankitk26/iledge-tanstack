@@ -48,8 +48,7 @@ const expenseQueries = {
 	filteredExpenses: ({ userId, payees, month, year }: ExpensesQueryParams) =>
 		queryOptions({
 			queryKey: ["expenses", { payees, month, year }],
-			queryFn: () =>
-				getExpenses({ data: { userId, payees, month, year } }),
+			queryFn: () => getExpenses({ data: { userId, payees, month, year } }),
 		}),
 };
 

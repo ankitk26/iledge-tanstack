@@ -15,9 +15,7 @@ export default function CategoryGroup({
 }: Props) {
 	return (
 		<div key={parentCategory} className="space-y-4">
-			<h3 className="font-medium text-muted-foreground">
-				{parentCategory}
-			</h3>
+			<h3 className="font-medium text-muted-foreground">{parentCategory}</h3>
 			<div className="mb-6 flex flex-col gap-4 lg:flex-row lg:flex-wrap">
 				{subCategories.map((category) => (
 					<CategoryItem

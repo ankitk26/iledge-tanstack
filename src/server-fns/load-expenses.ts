@@ -88,8 +88,7 @@ export const loadExpenses = createServerFn({ method: "POST" }).handler(
 			const newPayeeMap = new Map<string, NewPayee>();
 
 			// Parse the comma-separated string of IDs into an array for easier checking
-			const userIds =
-				process.env.IDS?.split(",").map((id) => id.trim()) || [];
+			const userIds = process.env.IDS?.split(",").map((id) => id.trim()) || [];
 
 			for await (const mail of mailIterableList) {
 				const currentMailData: Partial<ParsedMail> = {};
@@ -124,16 +123,11 @@ export const loadExpenses = createServerFn({ method: "POST" }).handler(
 						// trim each line
 						?.map((line) => line.trim())
 						// filter out lines having ":" and not beginning with "<"
-						.filter(
-							(line) =>
-								line.includes(":") && !line.startsWith("<"),
-						);
+						.filter((line) => line.includes(":") && !line.startsWith("<"));
 
 					for (const line of filteredLines) {
 						// Get key-value pairs splitted by ":"
-						const [key, val] = line
-							.split(":", 2)
-							.map((s) => s.trim());
+						const [key, val] = line.split(":", 2).map((s) => s.trim());
 
 						// Insert key-value in "currentMailData" based on line's key
 						switch (key) {
@@ -175,8 +169,7 @@ export const loadExpenses = createServerFn({ method: "POST" }).handler(
 
 						// If yes, then invert amount's sign
 						if (isPaidToMe) {
-							currentMailData.amount =
-								"-" + currentMailData.amount;
+							currentMailData.amount = "-" + currentMailData.amount;
 						}
 
 						// Push mail data
@@ -213,9 +206,7 @@ export const loadExpenses = createServerFn({ method: "POST" }).handler(
 				.where(eq(payee.user_id, user.id));
 
 			// Build map
-			const payeeIdMap = new Map(
-				dbPayees.map((p) => [p.payee_upi_id, p.id]),
-			);
+			const payeeIdMap = new Map(dbPayees.map((p) => [p.payee_upi_id, p.id]));
 
 			// Prepare data for insert
 			const expensesToInsert = parsedMails.map((mail) => {

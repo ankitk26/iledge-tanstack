@@ -48,9 +48,7 @@ export default function ExpenseItem({ expense }: Props) {
 				<span className="text-sm font-semibold text-foreground">
 					{formattedAmount}
 				</span>
-				<span className="text-xs text-muted-foreground">
-					{formattedDate}
-				</span>
+				<span className="text-xs text-muted-foreground">{formattedDate}</span>
 			</div>
 		</Card>
 	);

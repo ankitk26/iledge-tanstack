@@ -68,9 +68,7 @@ export default function DailyExpenseBreakdown() {
 								/>
 								<ChartTooltip
 									cursor={false}
-									content={
-										<ChartTooltipContent hideIndicator />
-									}
+									content={<ChartTooltipContent hideIndicator />}
 								/>
 								<Bar
 									dataKey="amount"

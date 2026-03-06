@@ -16,9 +16,7 @@ type Props = {
 
 export default function UpdateCategoryButton({ payee }: Props) {
 	const { openDialog } = useDialogStore();
-	const setSelectedPayeeId = useAdminStore(
-		(store) => store.setSelectedPayeeId,
-	);
+	const setSelectedPayeeId = useAdminStore((store) => store.setSelectedPayeeId);
 	const setSelectedCategoryId = useAdminStore(
 		(store) => store.setSelectedCategoryId,
 	);

@@ -28,9 +28,7 @@ export const Route = createFileRoute("/_protected/payees/$payeeId")({
 		context.queryClient.prefetchQuery(
 			queries.payees.currentAndPreviousMonthTotals(payeeId),
 		);
-		context.queryClient.prefetchQuery(
-			queries.payees.totalAndAverage(payeeId),
-		);
+		context.queryClient.prefetchQuery(queries.payees.totalAndAverage(payeeId));
 		context.queryClient.prefetchQuery(queries.payees.totalsByDay(payeeId));
 		context.queryClient.prefetchQuery(
 			queries.payees.expenseCountByMonth(payeeId),

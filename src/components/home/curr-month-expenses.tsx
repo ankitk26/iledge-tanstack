@@ -36,9 +36,7 @@ export default function CurrMonthExpenses() {
 				{isPending ? (
 					<Skeleton className="h-6 w-full" />
 				) : (
-					<h2 className="text-3xl">
-						{formatAmount(currentMonthAmount)}
-					</h2>
+					<h2 className="text-3xl">{formatAmount(currentMonthAmount)}</h2>
 				)}
 			</CardContent>
 			<CardFooter className="flex flex-col items-start text-xs text-muted-foreground">
@@ -50,10 +48,7 @@ export default function CurrMonthExpenses() {
 				) : (
 					<>
 						<p>{budgetPercent}% budget used</p>
-						<p>
-							Last month's expenses ={" "}
-							{formatAmount(previousMonthAmount)}
-						</p>
+						<p>Last month's expenses = {formatAmount(previousMonthAmount)}</p>
 					</>
 				)}
 			</CardFooter>

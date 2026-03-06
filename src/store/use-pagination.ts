@@ -139,8 +139,7 @@ export const usePaginationInstance = (
 		// apply the options but only do this once
 		if (
 			options &&
-			instanceState.windowStart ===
-				DEFAULT_PAGINATION_STATE.windowStart &&
+			instanceState.windowStart === DEFAULT_PAGINATION_STATE.windowStart &&
 			instanceState.windowSize === DEFAULT_PAGINATION_STATE.windowSize &&
 			instanceState.navigationStep ===
 				DEFAULT_PAGINATION_STATE.navigationStep &&
@@ -180,10 +179,7 @@ export const usePaginationControls = (
 		if (data.length !== totalItems) {
 			// Auto-update totalItems if data length has changed
 			setTotalItems(data.length, instanceId);
-			return data.slice(
-				Math.max(0, data.length - windowSize),
-				data.length,
-			); // Show most recent items
+			return data.slice(Math.max(0, data.length - windowSize), data.length); // Show most recent items
 		}
 
 		return data.slice(

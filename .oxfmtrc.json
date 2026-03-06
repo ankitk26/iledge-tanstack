@@ -1,9 +1,9 @@
 {
 	"$schema": "./node_modules/oxfmt/configuration_schema.json",
-	"ignorePatterns": ["dev/*", "src/routeTree.gen.ts"],
+	"ignorePatterns": ["dev/*", "src/routeTree.gen.ts", "bun.lock"],
 	"printWidth": 80,
 	"useTabs": true,
-	"tabWidth": 4,
+	"tabWidth": 2,
 	"experimentalTailwindcss": {
 		"stylesheet": "./src/app.css",
 		"attributes": ["class", "className"],

@@ -43,9 +43,7 @@ export default function MonthWiseExpensesList({ userId }: { userId: string }) {
 						</Card>
 					))
 				) : data?.length === 0 ? (
-					<p className="text-sm text-muted-foreground">
-						No data found
-					</p>
+					<p className="text-sm text-muted-foreground">No data found</p>
 				) : (
 					data?.map((expense) => (
 						<ExpenseItem key={expense.id} expense={expense} />

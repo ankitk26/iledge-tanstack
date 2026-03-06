@@ -22,9 +22,7 @@ interface Props {
 
 export default function PayeeItem({ payee }: Props) {
 	const openDialog = useDialogStore((store) => store.openDialog);
-	const setSelectedPayeeId = useAdminStore(
-		(store) => store.setSelectedPayeeId,
-	);
+	const setSelectedPayeeId = useAdminStore((store) => store.setSelectedPayeeId);
 	const setSelectedCategoryId = useAdminStore(
 		(store) => store.setSelectedCategoryId,
 	);
@@ -64,10 +62,7 @@ export default function PayeeItem({ payee }: Props) {
 				</div>
 
 				<div className="flex items-center gap-4">
-					<Badge
-						variant="outline"
-						className="hidden lg:inline-flex lg:py-1.5"
-					>
+					<Badge variant="outline" className="hidden lg:inline-flex lg:py-1.5">
 						{payee.categoryDescription}
 					</Badge>
 					<Button

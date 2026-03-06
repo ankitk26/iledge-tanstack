@@ -40,9 +40,7 @@ export const getExpenses = createServerFn({ method: "GET" })
 			)
 			.where(
 				and(
-					payeesList !== undefined
-						? inArray(payee.id, payeesList)
-						: sql`true`,
+					payeesList !== undefined ? inArray(payee.id, payeesList) : sql`true`,
 					data.month !== undefined
 						? sql`extract(month from ${transactionDateTz}) = ${data.month}`
 						: sql`true`,

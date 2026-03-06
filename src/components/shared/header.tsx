@@ -49,9 +49,7 @@ export default function Header() {
 				<div className="hidden items-center space-x-6 lg:flex">
 					<LoadExpensesButton />
 					<ThemeToggle />
-					<Suspense
-						fallback={<Skeleton className="size-8 rounded-full" />}
-					>
+					<Suspense fallback={<Skeleton className="size-8 rounded-full" />}>
 						<User />
 					</Suspense>
 					<Button

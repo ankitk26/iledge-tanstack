@@ -37,9 +37,7 @@ function RouteComponent() {
 					<Skeleton className="h-6 w-full" />
 				)}
 				{query && payees && !isPending && (
-					<h2 className="text-xl font-semibold">
-						"{query}" Expense Summary
-					</h2>
+					<h2 className="text-xl font-semibold">"{query}" Expense Summary</h2>
 				)}
 			</div>
 

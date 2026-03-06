@@ -61,9 +61,7 @@ export default function PayeeDailyExpenses({ payees }: { payees: string }) {
 								tickMargin={10}
 								interval={1}
 								axisLine={false}
-								tickFormatter={(value: string) =>
-									value.replace("Day ", "")
-								}
+								tickFormatter={(value: string) => value.replace("Day ", "")}
 							/>
 							<ChartTooltip
 								cursor={false}

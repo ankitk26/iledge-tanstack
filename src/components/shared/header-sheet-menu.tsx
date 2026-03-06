@@ -56,9 +56,7 @@ export default function HeaderSheetMenu() {
 					</Link>
 					<LoadExpensesButton />
 					<ThemeToggle />
-					<Suspense
-						fallback={<Skeleton className="size-4 rounded-full" />}
-					>
+					<Suspense fallback={<Skeleton className="size-4 rounded-full" />}>
 						<SheetUser />
 					</Suspense>
 					<Button

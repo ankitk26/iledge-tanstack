@@ -75,15 +75,9 @@ export default function PayeeMonthlyExpensesCount({
 						/>
 						<ChartTooltip
 							cursor={false}
-							content={
-								<ChartTooltipContent hideLabel hideIndicator />
-							}
+							content={<ChartTooltipContent hideLabel hideIndicator />}
 						/>
-						<Bar
-							dataKey="count"
-							className="fill-foreground"
-							radius={6}
-						>
+						<Bar dataKey="count" className="fill-foreground" radius={6}>
 							<LabelList
 								position="insideTop"
 								offset={10}
