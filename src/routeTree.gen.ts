@@ -16,7 +16,7 @@ import { Route as ProtectedSearchRouteImport } from './routes/_protected.search'
 import { Route as ProtectedInsightsRouteImport } from './routes/_protected.insights'
 import { Route as ProtectedExpensesRouteImport } from './routes/_protected.expenses'
 import { Route as ProtectedAdminRouteImport } from './routes/_protected.admin'
-import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
 import { Route as ProtectedPayeesPayeeIdRouteImport } from './routes/_protected.payees.$payeeId'
 
 const LoginRoute = LoginRouteImport.update({
