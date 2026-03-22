@@ -59,7 +59,7 @@ function RootComponent() {
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 	return (
-		<html>
+		<html suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
@@ -69,6 +69,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange
+					scriptProps={{ "data-cfasync": "false" }}
 				>
 					{children}
 					<Toaster style={{ fontFamily: "inherit" }} />
