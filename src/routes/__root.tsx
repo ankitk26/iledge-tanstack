@@ -7,8 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
-
-import appCss from "@/app.css?url";
+import appCss from "@/styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
 import { queries } from "@/queries";
 import { getUser } from "@/server-fns/get-user";
