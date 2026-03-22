@@ -15,12 +15,14 @@ export default function User() {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<Avatar className="cursor-pointer">
-					<AvatarImage src={data?.image ?? ""} alt={data?.name} />
-					<AvatarFallback>**</AvatarFallback>
-				</Avatar>
-			</DropdownMenuTrigger>
+			<DropdownMenuTrigger
+				render={
+					<Avatar className="cursor-pointer">
+						<AvatarImage src={data?.image ?? ""} alt={data?.name} />
+						<AvatarFallback>**</AvatarFallback>
+					</Avatar>
+				}
+			/>
 			<DropdownMenuContent>
 				<DropdownMenuLabel className="leading-none font-medium">
 					<div className="flex flex-col space-y-2">

@@ -19,11 +19,13 @@ export default function HeaderSheetMenu() {
 
 	return (
 		<Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-			<SheetTrigger asChild>
-				<Button className="lg:hidden">
-					<MenuIcon />
-				</Button>
-			</SheetTrigger>
+			<SheetTrigger
+				render={
+					<Button className="lg:hidden">
+						<MenuIcon />
+					</Button>
+				}
+			/>
 			<SheetContent>
 				<div className="grid gap-6 p-4">
 					<Link
