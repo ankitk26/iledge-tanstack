@@ -20,28 +20,22 @@ export const Route = createFileRoute("/_protected/expenses")({
 		return { month: search.month, year: search.year };
 	},
 	loader: ({ context, deps }) => {
-		context.queryClient.prefetchQuery(
-			queries.expenses.monthlyTotals(context.user.id),
-		);
+		context.queryClient.prefetchQuery(queries.expenses.monthlyTotals);
 		context.queryClient.prefetchQuery(
 			queries.expenses.filteredExpenses({
-				userId: context.user.id,
 				month: deps.month,
 				year: deps.year,
 			}),
 		);
-		return context.user;
 	},
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const user = Route.useLoaderData();
-
 	return (
 		<div className="space-y-12">
-			<MonthWiseExpensesChart userId={user.id} />
-			<MonthWiseExpensesList userId={user.id} />
+			<MonthWiseExpensesChart />
+			<MonthWiseExpensesList />
 		</div>
 	);
 }

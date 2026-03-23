@@ -50,14 +50,13 @@ export default function CategoryDialog() {
 				// payees/$payeeId page
 				queryClient.invalidateQueries({
 					queryKey: queries.expenses.filteredExpenses({
-						userId: "",
 						payees: payeeId.toString(),
 					}).queryKey,
 				}),
 
 				// expenses page
 				queryClient.invalidateQueries({
-					queryKey: queries.expenses.filteredExpenses({ userId: "" }).queryKey,
+					queryKey: queries.expenses.filteredExpenses({}).queryKey,
 				}),
 
 				// admin page

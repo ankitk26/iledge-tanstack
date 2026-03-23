@@ -29,8 +29,8 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
-	const { data, isPending } = useQuery(queries.expenses.monthlyTotals(userId));
+export default function MonthWiseExpensesChart() {
+	const { data, isPending } = useQuery(queries.expenses.monthlyTotals);
 	const navigate = useNavigate();
 	const isDesktopSize = useMediaQuery();
 

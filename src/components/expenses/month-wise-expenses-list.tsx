@@ -5,10 +5,10 @@ import { Card } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 import ExpenseItem from "./expense-item";
 
-export default function MonthWiseExpensesList({ userId }: { userId: string }) {
+export default function MonthWiseExpensesList() {
 	const { month, year } = useSearch({ from: "/_protected/expenses" });
 	const { data, isPending } = useQuery(
-		queries.expenses.filteredExpenses({ userId, month, year }),
+		queries.expenses.filteredExpenses({ month, year }),
 	);
 
 	const date = new Date(year, month - 1).toLocaleString("en-US", {

@@ -39,15 +39,14 @@ const expenseQueries = {
 		queryKey: ["expenses", "byDay"],
 		queryFn: () => getDailyTotals(),
 	}),
-	monthlyTotals: (userId: string) =>
-		queryOptions({
-			queryKey: ["monthly_totals"],
-			queryFn: () => getMonthlyTotals({ data: { id: userId } }),
-		}),
-	filteredExpenses: ({ userId, payees, month, year }: ExpensesQueryParams) =>
+	monthlyTotals: queryOptions({
+		queryKey: ["monthly_totals"],
+		queryFn: () => getMonthlyTotals(),
+	}),
+	filteredExpenses: ({ payees, month, year }: ExpensesQueryParams) =>
 		queryOptions({
 			queryKey: ["expenses", { payees, month, year }],
-			queryFn: () => getExpenses({ data: { userId, payees, month, year } }),
+			queryFn: () => getExpenses({ data: { payees, month, year } }),
 		}),
 };
 
