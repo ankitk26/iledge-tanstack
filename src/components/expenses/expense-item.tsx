@@ -23,7 +23,7 @@ export default function ExpenseItem({ expense }: Props) {
 	return (
 		<Card className="flex flex-col items-start justify-between gap-4 border-border/50 p-4 lg:flex-row lg:items-center">
 			<div className="flex w-full items-start gap-4 lg:w-auto lg:items-center">
-				<div className="shrink-0 rounded-xl bg-muted p-2">
+				<div className="shrink-0 rounded-none bg-muted p-2">
 					<CategoryIcon
 						iconName={expense.category_icon}
 						className="size-6 text-muted-foreground"

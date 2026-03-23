@@ -56,7 +56,7 @@ export default function ExpenseTable() {
 
 			<TableHeader />
 
-			<CardContent className="mt-0 flex flex-col gap-4 rounded-lg px-0 text-sm">
+			<CardContent className="mt-0 flex flex-col gap-4 rounded-none px-0 text-sm">
 				{data.length > 0 && filteredData.length === 0 && (
 					<div className="py-6 text-center text-muted-foreground">
 						No expenses found for the selected filters

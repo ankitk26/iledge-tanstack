@@ -62,7 +62,7 @@ function RouteComponent() {
 				</Suspense>
 				<Suspense
 					fallback={
-						<div className="flex h-full flex-col justify-between rounded-lg border p-6">
+						<div className="flex h-full flex-col justify-between rounded-none border p-6">
 							<div>
 								<Skeleton className="h-4 w-1/3" />
 								<Skeleton className="mt-4 h-8 w-1/2" />
@@ -77,7 +77,7 @@ function RouteComponent() {
 
 			<Suspense
 				fallback={
-					<div className="flex h-62.5 flex-col justify-center rounded-lg border">
+					<div className="flex h-62.5 flex-col justify-center rounded-none border">
 						<Skeleton className="mx-auto h-4 w-1/3" />
 						<Skeleton className="mx-auto mt-4 h-40 w-full" />
 					</div>
@@ -89,7 +89,7 @@ function RouteComponent() {
 			<div className="grid gap-8 lg:grid-cols-2">
 				<Suspense
 					fallback={
-						<div className="flex h-62.5 flex-col justify-center rounded-lg border">
+						<div className="flex h-62.5 flex-col justify-center rounded-none border">
 							<Skeleton className="mx-auto h-4 w-1/3" />
 							<Skeleton className="mx-auto mt-4 h-40 w-full" />
 						</div>
@@ -99,7 +99,7 @@ function RouteComponent() {
 				</Suspense>
 				<Suspense
 					fallback={
-						<div className="flex h-62.5 flex-col justify-center rounded-lg border">
+						<div className="flex h-62.5 flex-col justify-center rounded-none border">
 							<Skeleton className="mx-auto h-4 w-1/3" />
 							<Skeleton className="mx-auto mt-4 h-40 w-full" />
 						</div>

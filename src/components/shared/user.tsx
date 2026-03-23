@@ -16,7 +16,7 @@ export default function User() {
 		<DropdownMenu>
 			<DropdownMenuTrigger
 				render={
-					<button type="button" className="rounded-full">
+					<button type="button" className="rounded-none">
 						<Avatar>
 							<AvatarImage src={data?.image ?? ""} alt={data?.name} />
 							<AvatarFallback>**</AvatarFallback>

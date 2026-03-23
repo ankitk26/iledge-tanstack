@@ -26,7 +26,7 @@ function RouteComponent() {
 				fallback={Array.from({ length: 5 }).map((_, index) => (
 					<Card className="p-4" key={index + "_category_skeleton"}>
 						<div className="flex items-center gap-4">
-							<Skeleton className="size-10 rounded-full" />
+							<Skeleton className="size-10 rounded-none" />
 
 							<div className="flex w-full flex-col items-start gap-2">
 								<Skeleton className="h-5 w-1/2" />

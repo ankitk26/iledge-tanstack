@@ -10,7 +10,7 @@ export default function TableHeader() {
 	const navigate = useNavigate();
 
 	return (
-		<CardHeader className="flex justify-between rounded-lg px-0">
+		<CardHeader className="flex justify-between rounded-none px-0">
 			<Button
 				variant="ghost"
 				className="flex items-center gap-2"

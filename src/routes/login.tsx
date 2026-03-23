@@ -14,7 +14,7 @@ function LoginPage() {
 
 	return (
 		<div className="flex h-screen flex-col items-center justify-center py-12">
-			<div className="flex flex-col items-center space-y-8 rounded-lg border p-10">
+			<div className="flex flex-col items-center space-y-8 rounded-none border p-10">
 				<h2 className="text-2xl font-bold">Log in</h2>
 				<Button
 					className="w-60"
