@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { getDateParts } from "@/lib/month-year-formatter";
@@ -21,7 +21,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function PayeeMonthlyExpenses({ payees }: { payees: string }) {
-	const { data } = useQuery(queries.payees.totalsByMonth(payees));
+	const { data } = useSuspenseQuery(queries.payees.totalsByMonth(payees));
 	const isDesktopSize = useMediaQuery();
 
 	const paginationInstanceId = "payee-monthly-totals";
@@ -43,7 +43,7 @@ export default function PayeeMonthlyExpenses({ payees }: { payees: string }) {
 			<CardContent className="mt-4">
 				<ChartContainer
 					config={chartConfig}
-					className="mx-auto aspect-auto h-[250px]"
+					className="mx-auto aspect-auto h-62.5"
 				>
 					<BarChart data={windowedData}>
 						<CartesianGrid vertical={false} />

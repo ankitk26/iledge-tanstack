@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
 	Bar,
 	BarChart,
@@ -23,17 +23,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function PayeeDailyExpenses({ payees }: { payees: string }) {
-	const { data, isError } = useQuery(queries.payees.totalsByDay(payees));
-
-	if (isError) {
-		return (
-			<Card className="p-4">
-				<p className="text-center text-sm text-muted-foreground">
-					Something went wrong
-				</p>
-			</Card>
-		);
-	}
+	const { data } = useSuspenseQuery(queries.payees.totalsByDay(payees));
 
 	return (
 		<Card>
@@ -41,7 +31,7 @@ export default function PayeeDailyExpenses({ payees }: { payees: string }) {
 				<CardTitle>Daily Expense Breakdown this month</CardTitle>
 			</CardHeader>
 			<CardContent>
-				{data?.length === 0 ? (
+				{data.length === 0 ? (
 					<p className="text-center text-sm text-muted-foreground">
 						No expenses this month
 					</p>

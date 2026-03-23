@@ -7,11 +7,7 @@ import UpdateCategoryButton from "./update-category-button";
 
 export default function PayeeTitle() {
 	const { payeeId } = useParams({ from: "/_protected/payees/$payeeId" });
-	const { data, isError } = useSuspenseQuery(queries.payees.info(payeeId));
-
-	if (isError) {
-		return <p>Something went wrong. Please try again</p>;
-	}
+	const { data } = useSuspenseQuery(queries.payees.info(payeeId));
 
 	const payee = data[0];
 

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
 	Bar,
 	BarChart,
@@ -32,7 +32,7 @@ export default function PayeeMonthlyExpensesCount({
 }: {
 	payees: string;
 }) {
-	const { data } = useQuery(queries.payees.expenseCountByMonth(payees));
+	const { data } = useSuspenseQuery(queries.payees.expenseCountByMonth(payees));
 	const isDesktopSize = useMediaQuery();
 
 	const paginationInstanceId = "payee-monthly-counts";
@@ -54,7 +54,7 @@ export default function PayeeMonthlyExpensesCount({
 			<CardContent className="mt-4">
 				<ChartContainer
 					config={chartConfig}
-					className="mx-auto aspect-auto h-[250px]"
+					className="mx-auto aspect-auto h-62.5"
 				>
 					<BarChart data={windowedData}>
 						<CartesianGrid vertical={false} />

@@ -23,13 +23,15 @@ export const Route = createFileRoute("/_protected/payees/$payeeId")({
 	loader: ({ context, params }) => {
 		const payeeId = params.payeeId;
 
-		context.queryClient.prefetchQuery(queries.payees.info(payeeId));
-		context.queryClient.prefetchQuery(
+		context.queryClient.ensureQueryData(queries.payees.info(payeeId));
+		context.queryClient.ensureQueryData(
 			queries.payees.currentAndPreviousMonthTotals(payeeId),
 		);
-		context.queryClient.prefetchQuery(queries.payees.totalAndAverage(payeeId));
-		context.queryClient.prefetchQuery(queries.payees.totalsByDay(payeeId));
-		context.queryClient.prefetchQuery(
+		context.queryClient.ensureQueryData(
+			queries.payees.totalAndAverage(payeeId),
+		);
+		context.queryClient.ensureQueryData(queries.payees.totalsByDay(payeeId));
+		context.queryClient.ensureQueryData(
 			queries.payees.expenseCountByMonth(payeeId),
 		);
 	},
@@ -55,24 +57,71 @@ function RouteComponent() {
 			</div>
 
 			<div className="grid gap-8 lg:grid-cols-2">
-				<CurrentMonthCard payees={payeeId} />
-				<OverallSpentCard payees={payeeId} />
+				<Suspense fallback={<Skeleton className="h-6 w-1/4" />}>
+					<CurrentMonthCard payees={payeeId} />
+				</Suspense>
+				<Suspense
+					fallback={
+						<div className="flex h-full flex-col justify-between rounded-lg border p-6">
+							<div>
+								<Skeleton className="h-4 w-1/3" />
+								<Skeleton className="mt-4 h-8 w-1/2" />
+							</div>
+							<Skeleton className="mt-4 h-3 w-1/4" />
+						</div>
+					}
+				>
+					<OverallSpentCard payees={payeeId} />
+				</Suspense>
 			</div>
 
-			<div>
+			<Suspense
+				fallback={
+					<div className="flex h-62.5 flex-col justify-center rounded-lg border">
+						<Skeleton className="mx-auto h-4 w-1/3" />
+						<Skeleton className="mx-auto mt-4 h-40 w-full" />
+					</div>
+				}
+			>
 				<PayeeDailyExpenses payees={payeeId} />
-			</div>
+			</Suspense>
 
 			<div className="grid gap-8 lg:grid-cols-2">
-				<PayeeMonthlyExpenses payees={payeeId} />
-				<PayeeMonthlyExpensesCount payees={payeeId} />
+				<Suspense
+					fallback={
+						<div className="flex h-62.5 flex-col justify-center rounded-lg border">
+							<Skeleton className="mx-auto h-4 w-1/3" />
+							<Skeleton className="mx-auto mt-4 h-40 w-full" />
+						</div>
+					}
+				>
+					<PayeeMonthlyExpenses payees={payeeId} />
+				</Suspense>
+				<Suspense
+					fallback={
+						<div className="flex h-62.5 flex-col justify-center rounded-lg border">
+							<Skeleton className="mx-auto h-4 w-1/3" />
+							<Skeleton className="mx-auto mt-4 h-40 w-full" />
+						</div>
+					}
+				>
+					<PayeeMonthlyExpensesCount payees={payeeId} />
+				</Suspense>
 			</div>
 
 			<div>
 				<h3>All transactions</h3>
-				<div className="mt-4 space-y-5">
+				<Suspense
+					fallback={
+						<div className="mt-4 space-y-4">
+							{Array.from({ length: 3 }).map((_, i) => (
+								<Skeleton key={i} className="h-20 w-full" />
+							))}
+						</div>
+					}
+				>
 					<PayeeExpenses payees={payeeId} />
-				</div>
+				</Suspense>
 			</div>
 		</div>
 	);
