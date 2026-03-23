@@ -21,7 +21,7 @@ export default function OverallSpentCard({ payees }: { payees: string }) {
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<h2 className="text-3xl">{formatAmount(data[0].total_amount)}</h2>
+				<p className="text-3xl">{formatAmount(data[0].total_amount)}</p>
 			</CardContent>
 			<CardFooter className="text-xs">
 				<CalculatorIcon className="mr-2 size-4 text-foreground/70" />

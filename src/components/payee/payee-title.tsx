@@ -15,7 +15,7 @@ export default function PayeeTitle() {
 		<div className="flex w-full items-center justify-between">
 			<div>
 				<h2 className="text-xl font-semibold">{payee.name}</h2>
-				<h5 className="text-muted-foreground">{payee.payee_upi_id}</h5>
+				<p className="text-muted-foreground">{payee.payee_upi_id}</p>
 				<Badge className="mt-4" variant="secondary">
 					{payee.category_name}
 				</Badge>

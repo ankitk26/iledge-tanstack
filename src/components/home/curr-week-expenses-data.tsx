@@ -7,5 +7,5 @@ export default function CurrWeekExpensesData() {
 
 	const amount = data.length === 1 ? formatAmount(data[0].amount ?? 0) : 0;
 
-	return <h2 className="text-3xl">{amount}</h2>;
+	return <p className="text-3xl">{amount}</p>;
 }
