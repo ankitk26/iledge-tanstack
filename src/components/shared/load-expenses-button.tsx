@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { RefreshCwIcon } from "lucide-react";
+import { ArrowsClockwiseIcon } from "@phosphor-icons/react";
 import { toast } from "sonner";
 
 import { loadExpenses } from "@/server-fns/load-expenses";
@@ -32,9 +32,9 @@ export default function LoadExpensesButton() {
 			className="w-full lg:size-9"
 		>
 			{loadExpensesMutation.isPending ? (
-				<RefreshCwIcon className="animate-spin" />
+				<ArrowsClockwiseIcon className="animate-spin" />
 			) : (
-				<RefreshCwIcon />
+				<ArrowsClockwiseIcon />
 			)}
 		</Button>
 	);

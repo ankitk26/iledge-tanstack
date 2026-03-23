@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { EditIcon } from "lucide-react";
+import { PencilSimpleIcon } from "@phosphor-icons/react";
 
 import { useAdminStore } from "@/store/use-admin-store";
 import { useDialogStore } from "@/store/use-dialog-store";
@@ -74,7 +74,7 @@ export default function PayeeItem({ payee }: Props) {
 							openDialog();
 						}}
 					>
-						<EditIcon />
+						<PencilSimpleIcon />
 					</Button>
 				</div>
 			</CardContent>

@@ -1,7 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { routerWithQueryClient } from "@tanstack/react-router-with-query";
-import { Loader2Icon } from "lucide-react";
+import { SpinnerIcon } from "@phosphor-icons/react";
 
 import NotFound from "./components/tanstack/not-found";
 import { routeTree } from "./routeTree.gen";
@@ -16,7 +16,7 @@ export function getRouter() {
 		defaultPreload: "intent",
 		defaultPendingComponent: () => (
 			<div className="flex h-full w-full items-center justify-center">
-				<Loader2Icon className="animate-spin" />
+				<SpinnerIcon className="animate-spin" />
 			</div>
 		),
 		defaultNotFoundComponent: NotFound,

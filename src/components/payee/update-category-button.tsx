@@ -1,4 +1,4 @@
-import { PencilIcon } from "lucide-react";
+import { PencilIcon } from "@phosphor-icons/react";
 
 import { useAdminStore } from "@/store/use-admin-store";
 import { useDialogStore } from "@/store/use-dialog-store";

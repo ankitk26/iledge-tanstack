@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import { XIcon } from "lucide-react";
+import { XIcon } from "@phosphor-icons/react";
 import { useRef } from "react";
 
 import { Button } from "../ui/button";

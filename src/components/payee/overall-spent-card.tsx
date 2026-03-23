@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { CalculatorIcon } from "lucide-react";
+import { CalculatorIcon } from "@phosphor-icons/react";
 
 import { formatAmount } from "@/lib/format-amount";
 import { queries } from "@/queries";

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { MenuIcon } from "lucide-react";
+import { ListIcon } from "@phosphor-icons/react";
 import { Suspense, useState } from "react";
 
 import { authClient } from "@/lib/auth-client";
@@ -22,7 +22,7 @@ export default function HeaderSheetMenu() {
 			<SheetTrigger
 				render={
 					<Button className="lg:hidden">
-						<MenuIcon />
+						<ListIcon />
 					</Button>
 				}
 			/>
