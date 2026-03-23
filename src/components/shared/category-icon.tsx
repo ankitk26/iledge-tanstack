@@ -59,39 +59,45 @@ const iconMapping: Record<
 	string,
 	React.ComponentType<ComponentProps<"svg">>
 > = {
+	// Uncategorized
+	Question: QuestionIcon,
+
 	// Housing
+	House: HouseIcon,
 	Scroll: ScrollIcon,
 	Umbrella: UmbrellaIcon,
-	Zap: LightningIcon,
+	Lightning: LightningIcon,
 	Wrench: WrenchIcon,
 
 	// Transportation
-	Fuel: GasPumpIcon,
+	GasPump: GasPumpIcon,
+	Train: TrainIcon,
 	MapPin: MapPinIcon,
 	ShieldCheck: ShieldCheckIcon,
-	ParkingMeter: ParkIcon,
+	Park: ParkIcon,
 
 	// Travel
-	Plane: AirplaneTiltIcon,
+	AirplaneTilt: AirplaneTiltIcon,
 	Bed: BedIcon,
-	Luggage: SuitcaseRollingIcon,
+	SuitcaseRolling: SuitcaseRollingIcon,
 	Car: CarIcon,
 	Shield: ShieldIcon,
 
 	// Food & Dining
-	ShoppingBasket: ShoppingCartIcon,
-	Utensils: ForkKnifeIcon,
+	ShoppingCart: ShoppingCartIcon,
+	ForkKnife: ForkKnifeIcon,
 	Coffee: CoffeeIcon,
 	Pizza: PizzaIcon,
-	IceCreamCone: IceCreamIcon,
-	Croissant: CookieIcon,
+	IceCream: IceCreamIcon,
+	Cookie: CookieIcon,
+	Bicycle: BicycleIcon,
 
 	// Health & Wellness
 	Stethoscope: StethoscopeIcon,
+	FirstAid: FirstAidIcon,
 	Pill: PillIcon,
-	Laugh: ToothIcon,
-	Dumbbell: BarbellIcon,
-	BriefcaseMedical: FirstAidIcon,
+	Tooth: ToothIcon,
+	Barbell: BarbellIcon,
 
 	// Finances
 	Coins: CoinsIcon,
@@ -100,47 +106,39 @@ const iconMapping: Record<
 	HandCoins: HandCoinsIcon,
 
 	// Entertainment
-	Clapperboard: FilmStripIcon,
+	FilmStrip: FilmStripIcon,
 	Repeat: RepeatIcon,
+	MicrophoneStage: MicrophoneStageIcon,
 	Palette: PaletteIcon,
-	MicVocal: MicrophoneStageIcon,
 
 	// Education
 	GraduationCap: GraduationCapIcon,
 	BookOpen: BookOpenIcon,
-	Building2: BuildingsIcon,
+	Buildings: BuildingsIcon,
 
 	// Shopping & Personal
-	Shirt: TShirtIcon,
+	TShirt: TShirtIcon,
 	Laptop: LaptopIcon,
-	ScanFace: SparkleIcon,
-	Sofa: CouchIcon,
+	Sparkle: SparkleIcon,
+	Couch: CouchIcon,
 
 	// Gifts & Donations
 	Gift: GiftIcon,
-	HeartHandshake: HandHeartIcon,
+	HandHeart: HandHeartIcon,
 
 	// Miscellaneous
-	TriangleAlert: WarningIcon,
+	Warning: WarningIcon,
 	Wallet: WalletIcon,
-	ReceiptText: ReceiptIcon,
+	Receipt: ReceiptIcon,
 
 	// Communication
 	Phone: PhoneIcon,
-	Wifi: WifiHighIcon,
+	WifiHigh: WifiHighIcon,
 
 	// Pet Expenses
 	Bone: BoneIcon,
-	HeartPulse: HeartbeatIcon,
+	Heartbeat: HeartbeatIcon,
 	Scissors: ScissorsIcon,
-
-	// Emergency & Contingency
-	TrainFront: TrainIcon,
-	Bike: BicycleIcon,
-
-	// Uncategorized
-	CircleHelp: QuestionIcon,
-	House: HouseIcon,
 };
 
 export default function CategoryIcon({
