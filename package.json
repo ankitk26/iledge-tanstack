@@ -6,7 +6,8 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"start": "node .output/server/index.mjs",
-		"fmt": "oxfmt"
+		"fmt": "oxfmt",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.3.0",
