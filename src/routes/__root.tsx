@@ -1,3 +1,4 @@
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import {
 	HeadContent,
@@ -73,6 +74,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 				>
 					{children}
 					<Toaster style={{ fontFamily: "inherit" }} />
+					<ReactQueryDevtools buttonPosition="bottom-right" />
 				</NextThemesProvider>
 				<Scripts />
 			</body>

@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-
 import DailyExpenseBreakdown from "@/components/home/daily-expense-breakdown";
 import ExpenseSummary from "@/components/home/expense-summary";
 import WeeklyExpenseBreakdown from "@/components/home/weekly-expense-breakdown";
@@ -7,11 +6,13 @@ import { queries } from "@/queries";
 
 export const Route = createFileRoute("/_protected/")({
 	loader: ({ context }) => {
-		context.queryClient.prefetchQuery(queries.expenses.today);
-		context.queryClient.prefetchQuery(queries.expenses.currentWeek);
-		context.queryClient.prefetchQuery(queries.expenses.currentAndPreviousMonth);
-		context.queryClient.prefetchQuery(queries.expenses.byWeek);
-		context.queryClient.prefetchQuery(queries.expenses.byDay);
+		context.queryClient.ensureQueryData(queries.expenses.today);
+		context.queryClient.ensureQueryData(queries.expenses.currentWeek);
+		context.queryClient.ensureQueryData(
+			queries.expenses.currentAndPreviousMonth,
+		);
+		context.queryClient.ensureQueryData(queries.expenses.byWeek);
+		context.queryClient.ensureQueryData(queries.expenses.byDay);
 	},
 	component: RouteComponent,
 });
