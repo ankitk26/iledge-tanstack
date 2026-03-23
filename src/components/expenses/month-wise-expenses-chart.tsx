@@ -82,8 +82,8 @@ export default function MonthWiseExpensesChart() {
 							/>
 							<Bar
 								dataKey="amount"
-								className="cursor-pointer fill-foreground"
-								radius={6}
+								className="cursor-pointer"
+								fill="var(--bar-fill)"
 								activeBar={({ ...props }) => {
 									return <Rectangle {...props} fillOpacity={0.5} />;
 								}}

@@ -48,8 +48,7 @@ export default function DailyExpenseBreakdownData() {
 				/>
 				<Bar
 					dataKey="amount"
-					radius={6}
-					className="fill-foreground"
+					fill="var(--bar-fill)"
 					activeBar={({ ...props }) => {
 						return (
 							<Rectangle
