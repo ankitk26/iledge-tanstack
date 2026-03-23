@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
+import { Suspense } from "react";
 import { z } from "zod";
 import ExpenseTable from "@/components/insights/expense-table";
 import FilterTabs from "@/components/insights/filter-tabs";
+import TableSkeleton from "@/components/insights/table-skeleton";
 import { queries } from "@/queries";
 
 const paramsSchema = z.object({
@@ -19,7 +21,7 @@ export const Route = createFileRoute("/_protected/insights")({
 		return search;
 	},
 	loader: ({ context, deps }) => {
-		context.queryClient.prefetchQuery(
+		context.queryClient.ensureQueryData(
 			queries.payees.totalsByMonthYear({
 				month: deps.month,
 				year: deps.year,
@@ -40,7 +42,9 @@ function RouteComponent() {
 			</div>
 
 			<div className="min-h-0 grow">
-				<ExpenseTable />
+				<Suspense fallback={<TableSkeleton />}>
+					<ExpenseTable />
+				</Suspense>
 			</div>
 		</div>
 	);
