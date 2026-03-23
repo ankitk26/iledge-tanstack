@@ -35,7 +35,7 @@ export default function CurrentMonthCard({ payees }: { payees: string }) {
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<h2 className="text-3xl">{formatAmount(currentMonthSpent)}</h2>
+				<p className="text-3xl">{formatAmount(currentMonthSpent)}</p>
 			</CardContent>
 			<CardFooter className="text-xs">
 				{previousMonthSpent > 0 && (

@@ -18,7 +18,7 @@ export default function CurrMonthExpensesData() {
 	return (
 		<>
 			<CardContent>
-				<h2 className="text-3xl">{formatAmount(currentMonthAmount)}</h2>
+				<p className="text-3xl">{formatAmount(currentMonthAmount)}</p>
 			</CardContent>
 			<CardFooter className="flex flex-col items-start text-xs text-muted-foreground">
 				<p>{budgetPercent}% budget used</p>

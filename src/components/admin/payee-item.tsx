@@ -42,7 +42,7 @@ export default function PayeeItem({ payee }: Props) {
 					</Avatar>
 
 					<div className="flex min-w-0 flex-col items-start gap-1">
-						<h3 className="text-sm">{payee.payeeName}</h3>
+						<p className="text-sm">{payee.payeeName}</p>
 						<Link
 							to="/payees/$payeeId"
 							params={{ payeeId: payee.payeeId.toString() }}
