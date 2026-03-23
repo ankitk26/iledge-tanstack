@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import {
 	Bar,
@@ -30,7 +30,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function MonthWiseExpensesChart() {
-	const { data, isPending } = useQuery(queries.expenses.monthlyTotals);
+	const { data } = useSuspenseQuery(queries.expenses.monthlyTotals);
 	const navigate = useNavigate();
 	const isDesktopSize = useMediaQuery();
 
@@ -60,58 +60,57 @@ export default function MonthWiseExpensesChart() {
 						<Skeleton className="h-full w-12" />
 					</div>
 				)}
-				{!isPending &&
-					(data?.length === 0 ? (
-						<p className="text-center text-sm text-muted-foreground">
-							No data found
-						</p>
-					) : (
-						<ChartContainer
-							config={chartConfig}
-							className="mx-auto aspect-auto h-62.5"
-						>
-							<BarChart data={windowedData}>
-								<CartesianGrid vertical={false} />
-								<YAxis scale="sqrt" hide />
-								<XAxis
-									dataKey="month_date"
-									tickLine={false}
-									tickMargin={15}
-									tick={<XAxisTick />}
-									axisLine={false}
-									interval={0}
-									tickFormatter={(value: string) => {
-										const { monthYear } = getDateParts(value);
-										return monthYear;
-									}}
-								/>
-								<ChartTooltip
-									cursor={false}
-									content={<ChartTooltipContent hideLabel hideIndicator />}
-								/>
-								<Bar
-									dataKey="amount"
-									className="cursor-pointer fill-foreground"
-									radius={6}
-									activeBar={({ ...props }) => {
-										return <Rectangle {...props} fillOpacity={0.5} />;
-									}}
-									onClick={(data) => {
-										const { year: yearPart, month: monthPart } = getDateParts(
-											data.month_date,
-										);
-										navigate({
-											to: "/expenses",
-											search: {
-												month: monthPart,
-												year: yearPart,
-											},
-										});
-									}}
-								/>
-							</BarChart>
-						</ChartContainer>
-					))}
+				{data?.length === 0 ? (
+					<p className="text-center text-sm text-muted-foreground">
+						No data found
+					</p>
+				) : (
+					<ChartContainer
+						config={chartConfig}
+						className="mx-auto aspect-auto h-62.5"
+					>
+						<BarChart data={windowedData}>
+							<CartesianGrid vertical={false} />
+							<YAxis scale="sqrt" hide />
+							<XAxis
+								dataKey="month_date"
+								tickLine={false}
+								tickMargin={15}
+								tick={<XAxisTick />}
+								axisLine={false}
+								interval={0}
+								tickFormatter={(value: string) => {
+									const { monthYear } = getDateParts(value);
+									return monthYear;
+								}}
+							/>
+							<ChartTooltip
+								cursor={false}
+								content={<ChartTooltipContent hideLabel hideIndicator />}
+							/>
+							<Bar
+								dataKey="amount"
+								className="cursor-pointer fill-foreground"
+								radius={6}
+								activeBar={({ ...props }) => {
+									return <Rectangle {...props} fillOpacity={0.5} />;
+								}}
+								onClick={(data) => {
+									const { year: yearPart, month: monthPart } = getDateParts(
+										data.month_date,
+									);
+									navigate({
+										to: "/expenses",
+										search: {
+											month: monthPart,
+											year: yearPart,
+										},
+									});
+								}}
+							/>
+						</BarChart>
+					</ChartContainer>
+				)}
 
 				{showPagination && (
 					<ChartPagination
