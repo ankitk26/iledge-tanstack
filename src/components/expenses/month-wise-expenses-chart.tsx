@@ -88,9 +88,11 @@ export default function MonthWiseExpensesChart() {
 									return <Rectangle {...props} fillOpacity={0.5} />;
 								}}
 								onClick={(data) => {
-									const { year: yearPart, month: monthPart } = getDateParts(
-										data.month_date,
-									);
+									const { month_date } = data as unknown as {
+										month_date: string;
+									};
+									const { year: yearPart, month: monthPart } =
+										getDateParts(month_date);
 									navigate({
 										to: "/expenses",
 										search: {

@@ -19,7 +19,10 @@ export default function YearFilter() {
 			onValueChange={(val) =>
 				navigate({
 					to: "/insights",
-					search: (prev) => ({ ...prev, year: parseInt(val) }),
+					search: (prev) => ({
+						...prev,
+						year: parseInt(val ?? currentYear.toString()),
+					}),
 				})
 			}
 		>
