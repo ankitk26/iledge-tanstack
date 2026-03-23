@@ -6,6 +6,7 @@ import {
 	DropdownMenuContent,
 	DropdownMenuGroup,
 	DropdownMenuLabel,
+	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
@@ -24,10 +25,15 @@ export default function User() {
 					</button>
 				}
 			/>
-			<DropdownMenuContent>
+			<DropdownMenuContent align="end" className="w-64 min-w-64">
 				<DropdownMenuGroup>
-					<DropdownMenuLabel>{data?.name}</DropdownMenuLabel>
-					<DropdownMenuLabel>{data?.email}</DropdownMenuLabel>
+					<DropdownMenuLabel className="text-sm font-medium text-foreground">
+						{data?.name}
+					</DropdownMenuLabel>
+					<DropdownMenuSeparator />
+					<DropdownMenuLabel className="truncate" title={data?.email ?? ""}>
+						{data?.email}
+					</DropdownMenuLabel>
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>
