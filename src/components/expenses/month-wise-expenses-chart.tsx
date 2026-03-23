@@ -52,14 +52,6 @@ export default function MonthWiseExpensesChart() {
 				<CardTitle>Monthly Expense Breakdown</CardTitle>
 			</CardHeader>
 			<CardContent className="mt-4">
-				{isPending && (
-					<div className="mx-auto flex aspect-auto h-62.5 w-full items-end justify-evenly gap-8">
-						<Skeleton className="h-1/2 w-12" />
-						<Skeleton className="h-3/4 w-12" />
-						<Skeleton className="h-1/4 w-12" />
-						<Skeleton className="h-full w-12" />
-					</div>
-				)}
 				{data?.length === 0 ? (
 					<p className="text-center text-sm text-muted-foreground">
 						No data found
