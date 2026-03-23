@@ -1,7 +1,5 @@
 import { Category } from "@/db/schema";
-
 import { Separator } from "../ui/separator";
-
 import CategoryItem from "./category-item";
 
 type Props = {

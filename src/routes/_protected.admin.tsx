@@ -1,18 +1,19 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { Suspense } from "react";
-
 import PayeeList from "@/components/admin/payee-list";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { queries } from "@/queries";
 
 export const Route = createFileRoute("/_protected/admin")({
-	loader: ({ context }) => {
+	beforeLoad: ({ context }) => {
 		const user = context.user;
 		if (user.role !== "admin") {
 			throw redirect({ to: "/" });
 		}
-		context.queryClient.prefetchQuery(queries.payees.all);
+	},
+	loader: ({ context }) => {
+		context.queryClient.ensureQueryData(queries.payees.all);
 	},
 	component: RouteComponent,
 });

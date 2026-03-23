@@ -1,5 +1,4 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
-
 import {
 	Select,
 	SelectContent,
@@ -23,7 +22,10 @@ export default function MonthFilter() {
 			onValueChange={(val) =>
 				navigate({
 					to: "/insights",
-					search: (prev) => ({ ...prev, month: parseInt(val) }),
+					search: (prev) => ({
+						...prev,
+						month: parseInt(val ?? currentMonth.toString()),
+					}),
 				})
 			}
 		>

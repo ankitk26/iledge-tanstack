@@ -1,10 +1,9 @@
 import {
-	ChevronLeftIcon,
-	ChevronRightIcon,
-	ChevronsLeftIcon,
-	ChevronsRightIcon,
-} from "lucide-react";
-
+	CaretLeftIcon,
+	CaretRightIcon,
+	CaretDoubleLeftIcon,
+	CaretDoubleRightIcon,
+} from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { PaginationState, usePaginationControls } from "@/store/use-pagination";
 
@@ -42,7 +41,7 @@ export default function ChartPagination({
 					disabled={isAtMostOld}
 					title="Go to oldest data"
 				>
-					<ChevronsLeftIcon className="h-4 w-4" />
+					<CaretDoubleLeftIcon className="h-4 w-4" />
 				</Button>
 				<Button
 					variant="outline"
@@ -51,7 +50,7 @@ export default function ChartPagination({
 					disabled={!canGoToNewer}
 					title="Previous (older data)"
 				>
-					<ChevronLeftIcon className="h-4 w-4" />
+					<CaretLeftIcon className="h-4 w-4" />
 				</Button>
 				<Button
 					variant="outline"
@@ -60,7 +59,7 @@ export default function ChartPagination({
 					disabled={!canGoToOlder}
 					title="Next (newer data)"
 				>
-					<ChevronRightIcon className="h-4 w-4" />
+					<CaretRightIcon className="h-4 w-4" />
 				</Button>
 				<Button
 					variant="outline"
@@ -69,7 +68,7 @@ export default function ChartPagination({
 					disabled={isAtMostRecent}
 					title="Go to newest data"
 				>
-					<ChevronsRightIcon className="h-4 w-4" />
+					<CaretDoubleRightIcon className="h-4 w-4" />
 				</Button>
 			</div>
 		</div>

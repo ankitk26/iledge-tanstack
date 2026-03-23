@@ -1,7 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-
 import { useInsightsStore } from "@/store/use-insights";
-
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 

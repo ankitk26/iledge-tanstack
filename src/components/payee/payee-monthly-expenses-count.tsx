@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
 	Bar,
 	BarChart,
@@ -7,12 +7,10 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
-
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { getDateParts } from "@/lib/month-year-formatter";
 import { queries } from "@/queries";
 import { usePaginationControls } from "@/store/use-pagination";
-
 import ChartPagination from "../shared/chart-pagination";
 import XAxisTick from "../shared/x-axis-tick";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
@@ -34,7 +32,7 @@ export default function PayeeMonthlyExpensesCount({
 }: {
 	payees: string;
 }) {
-	const { data } = useQuery(queries.payees.expenseCountByMonth(payees));
+	const { data } = useSuspenseQuery(queries.payees.expenseCountByMonth(payees));
 	const isDesktopSize = useMediaQuery();
 
 	const paginationInstanceId = "payee-monthly-counts";
@@ -56,7 +54,7 @@ export default function PayeeMonthlyExpensesCount({
 			<CardContent className="mt-4">
 				<ChartContainer
 					config={chartConfig}
-					className="mx-auto aspect-auto h-[250px]"
+					className="mx-auto aspect-auto h-62.5"
 				>
 					<BarChart data={windowedData}>
 						<CartesianGrid vertical={false} />
@@ -64,7 +62,7 @@ export default function PayeeMonthlyExpensesCount({
 						<XAxis
 							dataKey="monthDate"
 							tickLine={false}
-							tickMargin={10}
+							tickMargin={15}
 							axisLine={false}
 							interval={0}
 							tick={<XAxisTick />}
@@ -77,7 +75,7 @@ export default function PayeeMonthlyExpensesCount({
 							cursor={false}
 							content={<ChartTooltipContent hideLabel hideIndicator />}
 						/>
-						<Bar dataKey="count" className="fill-foreground" radius={6}>
+						<Bar dataKey="count" fill="var(--bar-fill)">
 							<LabelList
 								position="insideTop"
 								offset={10}

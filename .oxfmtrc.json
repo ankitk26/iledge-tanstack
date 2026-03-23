@@ -4,10 +4,11 @@
 	"printWidth": 80,
 	"useTabs": true,
 	"tabWidth": 2,
-	"experimentalTailwindcss": {
-		"stylesheet": "./src/app.css",
-		"attributes": ["class", "className"],
-		"functions": ["clsx", "cn"],
-		"preserveWhitespace": true
+	"sortImports": {
+		"newlinesBetween": false
+	},
+	"sortTailwindcss": {
+		"stylesheet": "./src/styles.css",
+		"functions": ["clsx", "cn"]
 	}
 }

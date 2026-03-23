@@ -8,7 +8,13 @@ export default function XAxisTick({ x, y, payload }: any) {
 
 	return (
 		<g transform={`translate(${x},${y - 3})`}>
-			<text x={0} y={0} textAnchor="middle" fontSize={12}>
+			<text
+				x={0}
+				y={0}
+				textAnchor="middle"
+				fontSize={12}
+				fill="var(--bar-fill)"
+			>
 				<tspan x={0} dy="0">
 					{shortMonth}
 				</tspan>

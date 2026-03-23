@@ -1,30 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-
-import { formatAmount } from "@/lib/format-amount";
-import { queries } from "@/queries";
-
-import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "../ui/card";
+import { Suspense } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
-
-const BUDGET = 30000;
+import CurrMonthExpensesData from "./curr-month-expenses-data";
 
 export default function CurrMonthExpenses() {
-	const { data, isPending } = useQuery(
-		queries.expenses.currentAndPreviousMonth,
-	);
-
-	const previousMonthAmount = data ? data[0].previousMonthSpent : 0;
-	const currentMonthAmount = data ? data[0].currentMonthSpent : 0;
-	const budgetPercent = Number(
-		((currentMonthAmount / BUDGET) * 100).toFixed(2),
-	);
-
 	return (
 		<Card className="col-span-1">
 			<CardHeader>
@@ -32,26 +11,21 @@ export default function CurrMonthExpenses() {
 					This month's expenses
 				</CardTitle>
 			</CardHeader>
-			<CardContent>
-				{isPending ? (
-					<Skeleton className="h-6 w-full" />
-				) : (
-					<h2 className="text-3xl">{formatAmount(currentMonthAmount)}</h2>
-				)}
-			</CardContent>
-			<CardFooter className="flex flex-col items-start text-xs text-muted-foreground">
-				{isPending ? (
+			<Suspense
+				fallback={
 					<>
-						<Skeleton className="h-3 w-32" />
-						<Skeleton className="mt-1 h-3 w-48" />
+						<CardContent>
+							<Skeleton className="h-6 w-full" />
+						</CardContent>
+						<CardContent className="pt-0">
+							<Skeleton className="h-3 w-32" />
+							<Skeleton className="mt-1 h-3 w-48" />
+						</CardContent>
 					</>
-				) : (
-					<>
-						<p>{budgetPercent}% budget used</p>
-						<p>Last month's expenses = {formatAmount(previousMonthAmount)}</p>
-					</>
-				)}
-			</CardFooter>
+				}
+			>
+				<CurrMonthExpensesData />
+			</Suspense>
 		</Card>
 	);
 }

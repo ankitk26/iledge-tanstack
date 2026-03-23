@@ -1,5 +1,4 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
-
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 
 export default function FilterTabs() {
@@ -32,7 +31,7 @@ export default function FilterTabs() {
 					});
 				}
 			}}
-			className="w-full md:w-[200px]"
+			className="w-full md:w-50"
 		>
 			<TabsList className="grid w-full grid-cols-2">
 				<TabsTrigger value="all">All</TabsTrigger>

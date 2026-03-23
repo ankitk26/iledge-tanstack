@@ -1,9 +1,7 @@
+import { PencilSimpleIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
-import { EditIcon } from "lucide-react";
-
 import { useAdminStore } from "@/store/use-admin-store";
 import { useDialogStore } from "@/store/use-dialog-store";
-
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -74,7 +72,7 @@ export default function PayeeItem({ payee }: Props) {
 							openDialog();
 						}}
 					>
-						<EditIcon />
+						<PencilSimpleIcon />
 					</Button>
 				</div>
 			</CardContent>

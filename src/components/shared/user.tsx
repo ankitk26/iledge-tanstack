@@ -1,11 +1,10 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-
 import { queries } from "@/queries";
-
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
+	DropdownMenuGroup,
 	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
@@ -15,21 +14,21 @@ export default function User() {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<Avatar className="cursor-pointer">
-					<AvatarImage src={data?.image ?? ""} alt={data?.name} />
-					<AvatarFallback>**</AvatarFallback>
-				</Avatar>
-			</DropdownMenuTrigger>
+			<DropdownMenuTrigger
+				render={
+					<button type="button" className="rounded-full">
+						<Avatar>
+							<AvatarImage src={data?.image ?? ""} alt={data?.name} />
+							<AvatarFallback>**</AvatarFallback>
+						</Avatar>
+					</button>
+				}
+			/>
 			<DropdownMenuContent>
-				<DropdownMenuLabel className="leading-none font-medium">
-					<div className="flex flex-col space-y-2">
-						<p className="text-sm leading-none font-medium">{data?.name}</p>
-						<p className="text-xs leading-none text-muted-foreground">
-							{data?.email}
-						</p>
-					</div>
-				</DropdownMenuLabel>
+				<DropdownMenuGroup>
+					<DropdownMenuLabel>{data?.name}</DropdownMenuLabel>
+					<DropdownMenuLabel>{data?.email}</DropdownMenuLabel>
+				</DropdownMenuGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);

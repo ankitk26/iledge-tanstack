@@ -1,5 +1,4 @@
 import { useSearch } from "@tanstack/react-router";
-
 import InsightsSearchInput from "./insights-search-input";
 import MonthFilter from "./month-filter";
 import YearFilter from "./year-filter";

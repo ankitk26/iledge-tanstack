@@ -1,13 +1,10 @@
+import { ListIcon } from "@phosphor-icons/react";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { MenuIcon } from "lucide-react";
 import { Suspense, useState } from "react";
-
 import { authClient } from "@/lib/auth-client";
-
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Skeleton } from "../ui/skeleton";
-
 import LoadExpensesButton from "./load-expenses-button";
 import SheetUser from "./sheet-user";
 import ThemeToggle from "./theme-toggle";
@@ -19,11 +16,13 @@ export default function HeaderSheetMenu() {
 
 	return (
 		<Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-			<SheetTrigger asChild>
-				<Button className="lg:hidden">
-					<MenuIcon />
-				</Button>
-			</SheetTrigger>
+			<SheetTrigger
+				render={
+					<Button className="lg:hidden">
+						<ListIcon />
+					</Button>
+				}
+			/>
 			<SheetContent>
 				<div className="grid gap-6 p-4">
 					<Link

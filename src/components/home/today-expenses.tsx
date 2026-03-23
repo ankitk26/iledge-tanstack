@@ -1,17 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-
-import { formatAmount } from "@/lib/format-amount";
-import { queries } from "@/queries";
-
+import { Suspense } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
+import TodayExpensesData from "./today-expenses-data";
 
 export default function TodayExpenses() {
-	const { data, isPending } = useQuery(queries.expenses.today);
-
-	const amount =
-		data && data.length === 1 ? formatAmount(data[0].amount ?? 0) : 0;
-
 	return (
 		<Card className="col-span-1">
 			<CardHeader>
@@ -20,11 +12,9 @@ export default function TodayExpenses() {
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
-				{isPending ? (
-					<Skeleton className="h-6 w-full" />
-				) : (
-					<h2 className="text-3xl">{amount}</h2>
-				)}
+				<Suspense fallback={<Skeleton className="h-6 w-full" />}>
+					<TodayExpensesData />
+				</Suspense>
 			</CardContent>
 		</Card>
 	);

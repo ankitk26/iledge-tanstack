@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import {
 	Bar,
@@ -8,12 +8,10 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
-
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { getDateParts } from "@/lib/month-year-formatter";
 import { queries } from "@/queries";
 import { usePaginationControls } from "@/store/use-pagination";
-
 import ChartPagination from "../shared/chart-pagination";
 import XAxisTick from "../shared/x-axis-tick";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
@@ -23,7 +21,6 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "../ui/chart";
-import { Skeleton } from "../ui/skeleton";
 
 const chartConfig = {
 	amount: {
@@ -31,8 +28,8 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
-	const { data, isPending } = useQuery(queries.expenses.monthlyTotals(userId));
+export default function MonthWiseExpensesChart() {
+	const { data } = useSuspenseQuery(queries.expenses.monthlyTotals);
 	const navigate = useNavigate();
 	const isDesktopSize = useMediaQuery();
 
@@ -54,66 +51,59 @@ export default function MonthWiseExpensesChart({ userId }: { userId: string }) {
 				<CardTitle>Monthly Expense Breakdown</CardTitle>
 			</CardHeader>
 			<CardContent className="mt-4">
-				{isPending && (
-					<div className="mx-auto flex aspect-auto h-62.5 w-full items-end justify-evenly gap-8">
-						<Skeleton className="h-1/2 w-12" />
-						<Skeleton className="h-3/4 w-12" />
-						<Skeleton className="h-1/4 w-12" />
-						<Skeleton className="h-full w-12" />
-					</div>
+				{data?.length === 0 ? (
+					<p className="text-center text-sm text-muted-foreground">
+						No data found
+					</p>
+				) : (
+					<ChartContainer
+						config={chartConfig}
+						className="mx-auto aspect-auto h-62.5"
+					>
+						<BarChart data={windowedData}>
+							<CartesianGrid vertical={false} />
+							<YAxis scale="sqrt" hide />
+							<XAxis
+								dataKey="month_date"
+								tickLine={false}
+								tickMargin={15}
+								tick={<XAxisTick />}
+								axisLine={false}
+								interval={0}
+								tickFormatter={(value: string) => {
+									const { monthYear } = getDateParts(value);
+									return monthYear;
+								}}
+							/>
+							<ChartTooltip
+								cursor={false}
+								content={<ChartTooltipContent hideLabel hideIndicator />}
+							/>
+							<Bar
+								dataKey="amount"
+								className="cursor-pointer"
+								fill="var(--bar-fill)"
+								activeBar={({ ...props }) => {
+									return <Rectangle {...props} fillOpacity={0.5} />;
+								}}
+								onClick={(data) => {
+									const { month_date } = data as unknown as {
+										month_date: string;
+									};
+									const { year: yearPart, month: monthPart } =
+										getDateParts(month_date);
+									navigate({
+										to: "/expenses",
+										search: {
+											month: monthPart,
+											year: yearPart,
+										},
+									});
+								}}
+							/>
+						</BarChart>
+					</ChartContainer>
 				)}
-				{!isPending &&
-					(data?.length === 0 ? (
-						<p className="text-center text-sm text-muted-foreground">
-							No data found
-						</p>
-					) : (
-						<ChartContainer
-							config={chartConfig}
-							className="mx-auto aspect-auto h-62.5"
-						>
-							<BarChart data={windowedData}>
-								<CartesianGrid vertical={false} />
-								<YAxis scale="sqrt" hide />
-								<XAxis
-									dataKey="month_date"
-									tickLine={false}
-									tickMargin={15}
-									tick={<XAxisTick />}
-									axisLine={false}
-									interval={0}
-									tickFormatter={(value: string) => {
-										const { monthYear } = getDateParts(value);
-										return monthYear;
-									}}
-								/>
-								<ChartTooltip
-									cursor={false}
-									content={<ChartTooltipContent hideLabel hideIndicator />}
-								/>
-								<Bar
-									dataKey="amount"
-									className="cursor-pointer fill-foreground"
-									radius={6}
-									activeBar={({ ...props }) => {
-										return <Rectangle {...props} fillOpacity={0.5} />;
-									}}
-									onClick={(data) => {
-										const { year: yearPart, month: monthPart } = getDateParts(
-											data.month_date,
-										);
-										navigate({
-											to: "/expenses",
-											search: {
-												month: monthPart,
-												year: yearPart,
-											},
-										});
-									}}
-								/>
-							</BarChart>
-						</ChartContainer>
-					))}
 
 				{showPagination && (
 					<ChartPagination

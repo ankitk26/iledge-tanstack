@@ -1,13 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 import { z } from "zod";
-
 import { db } from "@/db";
 import { category, expense, payee } from "@/db/schema";
 import { transactionDateTz } from "@/lib/get-time-zone-dates";
+import { getUser } from "./get-user";
 
 const fnParams = z.object({
-	userId: z.string(),
 	payees: z.string().optional(),
 	month: z.number().min(1).max(12).optional(),
 	year: z.number().optional(),
@@ -18,6 +17,11 @@ export type ExpensesQueryParams = z.infer<typeof fnParams>;
 export const getExpenses = createServerFn({ method: "GET" })
 	.inputValidator(fnParams)
 	.handler(async ({ data }) => {
+		const user = await getUser();
+		if (!user) {
+			throw new Error("Invalid User");
+		}
+
 		const payeesList = data.payees?.split(",").map((p) => parseInt(p));
 
 		return db
@@ -47,8 +51,8 @@ export const getExpenses = createServerFn({ method: "GET" })
 					data.year !== undefined
 						? sql`extract(year from ${transactionDateTz}) = ${data.year}`
 						: sql`true`,
-					eq(payee.user_id, data.userId),
-					eq(expense.user_id, data.userId),
+					eq(payee.user_id, user.id),
+					eq(expense.user_id, user.id),
 				),
 			)
 			.orderBy(desc(expense.transaction_date));

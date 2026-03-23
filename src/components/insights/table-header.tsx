@@ -1,6 +1,5 @@
+import { ArrowDownIcon, ArrowUpIcon } from "@phosphor-icons/react";
 import { useNavigate, useSearch } from "@tanstack/react-router";
-import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
-
 import { Button } from "../ui/button";
 import { CardHeader } from "../ui/card";
 

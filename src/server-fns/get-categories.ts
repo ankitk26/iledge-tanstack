@@ -1,5 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-
 import { db } from "@/db";
 import { Category, category } from "@/db/schema";
 

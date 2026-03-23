@@ -1,7 +1,6 @@
+import { SpinnerIcon } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
-import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
-
 import GithubIcon from "@/components/login/github-icon";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
@@ -29,7 +28,7 @@ function LoginPage() {
 					}}
 				>
 					{isLogging ? (
-						<LoaderIcon className="animate-spin" />
+						<SpinnerIcon className="animate-spin" />
 					) : (
 						<>
 							<GithubIcon />
