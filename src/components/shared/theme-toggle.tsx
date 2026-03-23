@@ -7,7 +7,7 @@ export default function ThemeToggler() {
 
 	return (
 		<Button
-			className="group-data-[collapsible=icon]:opacity-0"
+			className="relative w-full group-data-[collapsible=icon]:opacity-0 lg:size-9"
 			onClick={() => {
 				if (theme === "light") {
 					setTheme("dark");
@@ -18,7 +18,7 @@ export default function ThemeToggler() {
 			size="icon"
 			variant="outline"
 		>
-			<SunIcon className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+			<SunIcon className="absolute h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
 			<MoonIcon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
 			<span className="sr-only">Toggle theme</span>
 		</Button>
