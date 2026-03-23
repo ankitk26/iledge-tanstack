@@ -6,7 +6,6 @@ import {
 	DropdownMenuContent,
 	DropdownMenuGroup,
 	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
@@ -17,7 +16,7 @@ export default function User() {
 		<DropdownMenu>
 			<DropdownMenuTrigger
 				render={
-					<button className="rounded-full">
+					<button type="button" className="rounded-full">
 						<Avatar>
 							<AvatarImage src={data?.image ?? ""} alt={data?.name} />
 							<AvatarFallback>**</AvatarFallback>

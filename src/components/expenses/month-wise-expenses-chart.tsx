@@ -21,7 +21,6 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "../ui/chart";
-import { Skeleton } from "../ui/skeleton";
 
 const chartConfig = {
 	amount: {

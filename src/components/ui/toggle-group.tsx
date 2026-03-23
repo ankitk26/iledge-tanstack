@@ -32,6 +32,7 @@ function ToggleGroup({
 	}) {
 	return (
 		<ToggleGroupPrimitive
+			orientation={orientation}
 			data-slot="toggle-group"
 			data-variant={variant}
 			data-size={size}
