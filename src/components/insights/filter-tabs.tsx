@@ -1,5 +1,4 @@
 import { useNavigate, useSearch } from "@tanstack/react-router";
-
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 
 export default function FilterTabs() {

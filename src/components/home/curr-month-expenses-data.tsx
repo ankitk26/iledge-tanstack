@@ -1,9 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-
 import { formatAmount } from "@/lib/format-amount";
 import { queries } from "@/queries";
-
-import { CardFooter } from "../ui/card";
+import { CardContent, CardFooter } from "../ui/card";
 
 const BUDGET = 30000;
 
@@ -19,7 +17,9 @@ export default function CurrMonthExpensesData() {
 
 	return (
 		<>
-			<h2 className="text-3xl">{formatAmount(currentMonthAmount)}</h2>
+			<CardContent>
+				<h2 className="text-3xl">{formatAmount(currentMonthAmount)}</h2>
+			</CardContent>
 			<CardFooter className="flex flex-col items-start text-xs text-muted-foreground">
 				<p>{budgetPercent}% budget used</p>
 				<p>Last month's expenses = {formatAmount(previousMonthAmount)}</p>

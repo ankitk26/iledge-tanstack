@@ -4,7 +4,6 @@ import {
 	CaretDoubleLeftIcon,
 	CaretDoubleRightIcon,
 } from "@phosphor-icons/react";
-
 import { Button } from "@/components/ui/button";
 import { PaginationState, usePaginationControls } from "@/store/use-pagination";
 

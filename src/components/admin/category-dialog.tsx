@@ -1,12 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { toast } from "sonner";
-
 import { queries } from "@/queries";
 import { updatePayeeCategory } from "@/server-fns/update-payee-category";
 import { useAdminStore } from "@/store/use-admin-store";
 import { useDialogStore } from "@/store/use-dialog-store";
-
 import { Button } from "../ui/button";
 import {
 	Dialog,
@@ -16,7 +14,6 @@ import {
 	DialogTitle,
 } from "../ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
-
 import CategoryDialogContent from "./category-dialog-content";
 
 export default function CategoryDialog() {

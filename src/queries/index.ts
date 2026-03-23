@@ -1,5 +1,4 @@
 import { queryOptions } from "@tanstack/react-query";
-
 import { getCategories } from "@/server-fns/get-categories";
 import { getCurrentDayTotal } from "@/server-fns/get-current-day-total";
 import { getCurrentWeekTotal } from "@/server-fns/get-current-week-total";

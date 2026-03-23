@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
-
 import ExpenseTable from "@/components/insights/expense-table";
 import FilterTabs from "@/components/insights/filter-tabs";
 import { queries } from "@/queries";

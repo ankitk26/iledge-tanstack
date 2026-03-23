@@ -1,10 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { and, eq, ilike, or } from "drizzle-orm";
 import { z } from "zod";
-
 import { db } from "@/db";
 import { payee } from "@/db/schema";
-
 import { getUser } from "./get-user";
 
 export const getSearchPayeeIds = createServerFn({ method: "GET" })

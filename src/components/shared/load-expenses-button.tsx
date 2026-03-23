@@ -1,9 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowsClockwiseIcon } from "@phosphor-icons/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-
 import { loadExpenses } from "@/server-fns/load-expenses";
-
 import { Button } from "../ui/button";
 
 export default function LoadExpensesButton() {

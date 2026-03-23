@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
-
 import CurrentMonthCard from "@/components/payee/current-month-card";
 import OverallSpentCard from "@/components/payee/overall-spent-card";
 import PayeeDailyExpenses from "@/components/payee/payee-daily-expenses";

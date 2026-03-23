@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import WeeklyExpenseBreakdownData from "./weekly-expense-breakdown-data";
 import { Skeleton } from "../ui/skeleton";
+import WeeklyExpenseBreakdownData from "./weekly-expense-breakdown-data";
 
 export default function WeeklyExpenseBreakdown() {
 	return (

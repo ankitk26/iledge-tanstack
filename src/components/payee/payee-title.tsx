@@ -1,11 +1,8 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useParams } from "@tanstack/react-router";
-
 import { queries } from "@/queries";
-
 import CategoryDialog from "../admin/category-dialog";
 import { Badge } from "../ui/badge";
-
 import UpdateCategoryButton from "./update-category-button";
 
 export default function PayeeTitle() {

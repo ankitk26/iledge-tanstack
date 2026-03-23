@@ -1,5 +1,5 @@
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
 	HeadContent,
 	Outlet,
@@ -8,10 +8,10 @@ import {
 } from "@tanstack/react-router";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
-import appCss from "@/styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
 import { queries } from "@/queries";
 import { getUser } from "@/server-fns/get-user";
+import appCss from "@/styles.css?url";
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;

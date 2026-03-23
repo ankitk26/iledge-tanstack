@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { useIsomorphicLayoutEffect } from "./use-isomorphic-layout-effect"; // Assuming this exists
 
 type UseMediaQueryOptions = {

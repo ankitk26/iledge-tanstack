@@ -1,10 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { and, eq, gte, lt, sql } from "drizzle-orm";
-
 import { db } from "@/db";
 import { expense } from "@/db/schema";
 import { nowTz, transactionDateTz } from "@/lib/get-time-zone-dates";
-
 import { getUser } from "./get-user";
 
 export const getDailyTotals = createServerFn({ method: "GET" }).handler(

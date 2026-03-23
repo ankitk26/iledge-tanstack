@@ -1,9 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
-
 import { db } from "@/db";
 import { category, payee } from "@/db/schema";
-
 import { getUser } from "./get-user";
 
 export const getPayees = createServerFn({ method: "GET" }).handler(async () => {

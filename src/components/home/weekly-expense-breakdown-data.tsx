@@ -1,3 +1,4 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
 	Bar,
 	BarChart,
@@ -6,14 +7,13 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import { queries } from "@/queries";
 import {
 	ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from "../ui/chart";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { queries } from "@/queries";
 
 const chartConfig = {
 	amount: {

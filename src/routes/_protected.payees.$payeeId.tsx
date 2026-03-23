@@ -1,6 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Suspense } from "react";
-
 import CurrentMonthCard from "@/components/payee/current-month-card";
 import OverallSpentCard from "@/components/payee/overall-spent-card";
 import PayeeDailyExpenses from "@/components/payee/payee-daily-expenses";

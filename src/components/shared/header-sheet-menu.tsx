@@ -1,13 +1,10 @@
-import { Link, useNavigate } from "@tanstack/react-router";
 import { ListIcon } from "@phosphor-icons/react";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Suspense, useState } from "react";
-
 import { authClient } from "@/lib/auth-client";
-
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Skeleton } from "../ui/skeleton";
-
 import LoadExpensesButton from "./load-expenses-button";
 import SheetUser from "./sheet-user";
 import ThemeToggle from "./theme-toggle";

@@ -1,11 +1,8 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Suspense } from "react";
-
 import { authClient } from "@/lib/auth-client";
-
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
-
 import HeaderSheetMenu from "./header-sheet-menu";
 import LoadExpensesButton from "./load-expenses-button";
 import ThemeToggle from "./theme-toggle";

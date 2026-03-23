@@ -1,3 +1,4 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
 	Bar,
 	BarChart,
@@ -6,7 +7,6 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { queries } from "@/queries";
 import {
 	ChartConfig,
