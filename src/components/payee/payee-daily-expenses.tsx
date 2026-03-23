@@ -46,7 +46,7 @@ export default function PayeeDailyExpenses({ payees }: { payees: string }) {
 							<XAxis
 								dataKey="day"
 								tickLine={false}
-								tickMargin={10}
+								tickMargin={15}
 								interval={1}
 								axisLine={false}
 								tickFormatter={(value: string) => value.replace("Day ", "")}

@@ -51,7 +51,7 @@ export default function PayeeMonthlyExpenses({ payees }: { payees: string }) {
 						<XAxis
 							dataKey="monthDate"
 							tickLine={false}
-							tickMargin={10}
+							tickMargin={15}
 							axisLine={false}
 							interval={0}
 							tick={<XAxisTick />}
