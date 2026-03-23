@@ -9,8 +9,8 @@ import {
 	CarIcon,
 	CoinsIcon,
 	CoffeeIcon,
-	CouchIcon,
 	CookieIcon,
+	CouchIcon,
 	FileTextIcon,
 	FilmStripIcon,
 	FirstAidIcon,
@@ -26,7 +26,7 @@ import {
 	LaptopIcon,
 	LightningIcon,
 	MapPinIcon,
-	MicrophoneIcon,
+	MicrophoneStageIcon,
 	PaletteIcon,
 	ParkIcon,
 	PhoneIcon,
@@ -36,15 +36,15 @@ import {
 	QuestionIcon,
 	ReceiptIcon,
 	RepeatIcon,
-	ScanIcon,
 	ScissorsIcon,
 	ScrollIcon,
 	ShieldCheckIcon,
 	ShieldIcon,
-	ShoppingBagIcon,
-	SmileyIcon,
+	ShoppingCartIcon,
+	SparkleIcon,
 	StethoscopeIcon,
 	SuitcaseRollingIcon,
+	ToothIcon,
 	TrainIcon,
 	TShirtIcon,
 	UmbrellaIcon,
@@ -59,59 +59,88 @@ const iconMapping: Record<
 	string,
 	React.ComponentType<ComponentProps<"svg">>
 > = {
-	BookOpen: BookOpenIcon,
+	// Housing
+	Scroll: ScrollIcon,
+	Umbrella: UmbrellaIcon,
 	Zap: LightningIcon,
-	Bed: BedIcon,
-	Luggage: SuitcaseRollingIcon,
+	Wrench: WrenchIcon,
+
+	// Transportation
+	Fuel: GasPumpIcon,
+	MapPin: MapPinIcon,
 	ShieldCheck: ShieldCheckIcon,
 	ParkingMeter: ParkIcon,
-	House: HouseIcon,
-	Bone: BoneIcon,
-	ReceiptText: ReceiptIcon,
-	Utensils: ForkKnifeIcon,
-	Clapperboard: FilmStripIcon,
-	Laptop: LaptopIcon,
-	PiggyBank: PiggyBankIcon,
-	Phone: PhoneIcon,
-	Building2: BuildingsIcon,
-	Stethoscope: StethoscopeIcon,
-	HandCoins: HandCoinsIcon,
-	TriangleAlert: WarningIcon,
-	Bike: BicycleIcon,
-	Shield: ShieldIcon,
-	HeartHandshake: HandHeartIcon,
-	BriefcaseMedical: FirstAidIcon,
-	GraduationCap: GraduationCapIcon,
-	Car: CarIcon,
-	MapPin: MapPinIcon,
-	Sofa: CouchIcon,
-	ScanFace: ScanIcon,
-	Fuel: GasPumpIcon,
-	Scissors: ScissorsIcon,
-	Wifi: WifiHighIcon,
-	Coins: CoinsIcon,
-	Pill: PillIcon,
-	HeartPulse: HeartbeatIcon,
-	Laugh: SmileyIcon,
-	FileText: FileTextIcon,
-	Umbrella: UmbrellaIcon,
-	Pizza: PizzaIcon,
-	Croissant: CookieIcon,
-	IceCreamCone: IceCreamIcon,
-	ShoppingBasket: ShoppingBagIcon,
-	CircleHelp: QuestionIcon,
-	Shirt: TShirtIcon,
-	MicVocal: MicrophoneIcon,
-	Wallet: WalletIcon,
-	Dumbbell: BarbellIcon,
-	Coffee: CoffeeIcon,
-	Repeat: RepeatIcon,
+
+	// Travel
 	Plane: AirplaneTiltIcon,
-	TrainFront: TrainIcon,
-	Gift: GiftIcon,
+	Bed: BedIcon,
+	Luggage: SuitcaseRollingIcon,
+	Car: CarIcon,
+	Shield: ShieldIcon,
+
+	// Food & Dining
+	ShoppingBasket: ShoppingCartIcon,
+	Utensils: ForkKnifeIcon,
+	Coffee: CoffeeIcon,
+	Pizza: PizzaIcon,
+	IceCreamCone: IceCreamIcon,
+	Croissant: CookieIcon,
+
+	// Health & Wellness
+	Stethoscope: StethoscopeIcon,
+	Pill: PillIcon,
+	Laugh: ToothIcon,
+	Dumbbell: BarbellIcon,
+	BriefcaseMedical: FirstAidIcon,
+
+	// Finances
+	Coins: CoinsIcon,
+	PiggyBank: PiggyBankIcon,
+	FileText: FileTextIcon,
+	HandCoins: HandCoinsIcon,
+
+	// Entertainment
+	Clapperboard: FilmStripIcon,
+	Repeat: RepeatIcon,
 	Palette: PaletteIcon,
-	Wrench: WrenchIcon,
-	Scroll: ScrollIcon,
+	MicVocal: MicrophoneStageIcon,
+
+	// Education
+	GraduationCap: GraduationCapIcon,
+	BookOpen: BookOpenIcon,
+	Building2: BuildingsIcon,
+
+	// Shopping & Personal
+	Shirt: TShirtIcon,
+	Laptop: LaptopIcon,
+	ScanFace: SparkleIcon,
+	Sofa: CouchIcon,
+
+	// Gifts & Donations
+	Gift: GiftIcon,
+	HeartHandshake: HandHeartIcon,
+
+	// Miscellaneous
+	TriangleAlert: WarningIcon,
+	Wallet: WalletIcon,
+	ReceiptText: ReceiptIcon,
+
+	// Communication
+	Phone: PhoneIcon,
+	Wifi: WifiHighIcon,
+
+	// Pet Expenses
+	Bone: BoneIcon,
+	HeartPulse: HeartbeatIcon,
+	Scissors: ScissorsIcon,
+
+	// Emergency & Contingency
+	TrainFront: TrainIcon,
+	Bike: BicycleIcon,
+
+	// Uncategorized
+	CircleHelp: QuestionIcon,
+	House: HouseIcon,
 };
 
 export default function CategoryIcon({
